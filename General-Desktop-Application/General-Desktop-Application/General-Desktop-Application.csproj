@@ -32,6 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +52,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Business\Business.cs" />
+    <Compile Include="Business\B_City.cs" />
+    <Compile Include="Business\B_Session.cs" />
+    <Compile Include="Business\B_State.cs" />
+    <Compile Include="Business\B_User.cs" />
+    <Compile Include="Classes\NetStraad.cs" />
+    <Compile Include="Classes\PreferencesStraad.cs" />
+    <Compile Include="Classes\SQLServer.cs" />
+    <Compile Include="Classes\Tools.cs" />
+    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\D_City.cs" />
+    <Compile Include="Data\D_Session.cs" />
+    <Compile Include="Data\D_State.cs" />
+    <Compile Include="Data\D_User.cs" />
+    <Compile Include="Enumerables\ErrorMessages.cs" />
+    <Compile Include="Models\M_Appointment.cs" />
+    <Compile Include="Models\M_Appointment_User.cs" />
+    <Compile Include="Models\M_BranchOffice.cs" />
+    <Compile Include="Models\M_BranchOffice_User.cs" />
+    <Compile Include="Models\M_City.cs" />
+    <Compile Include="Models\M_Class.cs" />
+    <Compile Include="Models\M_Classroom.cs" />
+    <Compile Include="Models\M_Class_User.cs" />
+    <Compile Include="Models\M_Club.cs" />
+    <Compile Include="Models\M_Club_User.cs" />
+    <Compile Include="Models\M_Date.cs" />
+    <Compile Include="Models\M_File.cs" />
+    <Compile Include="Models\M_Kardex.cs" />
+    <Compile Include="Models\M_Session.cs" />
+    <Compile Include="Models\M_State.cs" />
+    <Compile Include="Models\M_User.cs" />
+    <Compile Include="Presentation\Form_001.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Presentation\Form_001.Designer.cs">
+      <DependentUpon>Form_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Form_002.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Form_002.Designer.cs">
+      <DependentUpon>Form_002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Form_003.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Form_003.Designer.cs">
+      <DependentUpon>Form_003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Form_004.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Form_004.Designer.cs">
+      <DependentUpon>Form_004.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\Form_001.resx">
+      <DependentUpon>Form_001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Form_002.resx">
+      <DependentUpon>Form_002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Form_003.resx">
+      <DependentUpon>Form_003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Form_004.resx">
+      <DependentUpon>Form_004.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +130,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +143,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette - 30.png" />
+    <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette.png" />
+    <Content Include="Resources\Background Images\green-cloth-texture-1.jpg" />
+    <Content Include="Resources\Icons\icon.ico" />
+    <Content Include="Resources\Scripts\Build_scritp.sql" />
+    <Content Include="Resources\Scripts\Build_scritp_01.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Executables\" />
+    <Folder Include="Resources\Libraries\" />
+    <Folder Include="Resources\Logos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

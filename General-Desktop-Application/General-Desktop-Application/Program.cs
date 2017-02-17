@@ -4,6 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;//
+using System.Net;//
+using General_Desktop_Application.Presentation;
+using General_Desktop_Application.Classes;
+
 namespace General_Desktop_Application
 {
     static class Program
@@ -16,7 +21,8 @@ namespace General_Desktop_Application
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //MessageBox.Show(NetStraad.GetExternalIP());// Only Test
+            Application.Run(new Form_001());
         }
     }
 }
