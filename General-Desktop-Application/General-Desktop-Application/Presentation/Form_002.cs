@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using General_Desktop_Application.Properties;
+using General_Desktop_Application.BusinessLayer;
 using General_Desktop_Application.Classes;
 
 namespace General_Desktop_Application.Presentation
@@ -16,32 +16,32 @@ namespace General_Desktop_Application.Presentation
     public partial class Form_002 : Form
     {
         // Objects
-        Form_001 oForm_001;
-        Form_003 oForm_003;
-        Form_004 oForm_004;
+        Form_001 objForm_001;
+        Form_003 objForm_003;
+        Form_004 objForm_004;
 
-        public Form_002(Form_001 oForm_001)
+        public Form_002(Form_001 objForm_001)
         {
             InitializeComponent();
 
-            this.oForm_001 = oForm_001;
+            this.objForm_001 = objForm_001;
 
             KeyPreview = true;
         }
 
         private void Form_002_Load(object sender, EventArgs e)
         {
-            Text += " - " + PreferencesStraad.TitleSoftware;
+            Text += " - " + Preferences.TitleSoftware;
         }
 
         private void Form_002_FormClosed(object sender, FormClosedEventArgs e)
         {
-            oForm_001.Close();
+            objForm_001.Close();
         }
 
         private void Form_002_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Do you want to exit the application?", PreferencesStraad.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (MessageBox.Show("Do you want to exit of application?", Preferences.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 e.Cancel = true;
         }
 
@@ -50,7 +50,7 @@ namespace General_Desktop_Application.Presentation
             if (e.KeyCode == Keys.Escape)
                 Close();
             else if (e.KeyCode == Keys.F1)
-                MessageBox.Show("Versión: " + PreferencesStraad.CurrentVersion, PreferencesStraad.TitleSoftware);
+                MessageBox.Show("Versión: " + Preferences.CurrentVersion, Preferences.TitleSoftware);
             else if (e.KeyCode == Keys.Enter)
             {
                 if (txtUser.Focused && !string.IsNullOrEmpty(txtUser.Text))
@@ -67,13 +67,35 @@ namespace General_Desktop_Application.Presentation
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(Settings.Default["Local"]))
+            if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                // Local mode
+                var vUser = Business.FindByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
+
+                if (vUser != null)
+                {
+                    var vSession = Business.CreateSession();
+
+                    if (vSession != null)
+                    {
+                        Hide();
+                        objForm_004 = new Form_004(this, vUser, null);
+                        objForm_004.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Didn't find any user with these data.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtUser.Focus();
+                }
             }
             else
             {
-                // Remote mode
+                MessageBox.Show("The user's data aren't incorrect.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtUser.Focus();
             }
         }
 
@@ -89,8 +111,8 @@ namespace General_Desktop_Application.Presentation
 
         private void lblSettings_Click(object sender, EventArgs e)
         {
-            oForm_003 = new Form_003(this);
-            oForm_003.Show();
+            objForm_003 = new Form_003(this);
+            objForm_003.Show();
             Hide();
         }
     }

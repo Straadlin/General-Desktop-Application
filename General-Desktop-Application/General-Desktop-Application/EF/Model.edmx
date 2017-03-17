@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="straad_generaldesktopapplication_pcpcpcpc_001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="city_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="city_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="city_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="stat_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="coin">
+          <Key>
+            <PropertyRef Name="coin_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="coin_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="coin_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="coin_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="coun_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="coun_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="coun_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="coun_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="lang_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="lang_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lang_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="lang_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="preference">
+          <Key>
+            <PropertyRef Name="pref_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="pref_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="pref_type__int" Type="int" Nullable="false" />
+          <Property Name="pref_value__bit" Type="bit" />
+          <Property Name="pref_value__tinyint" Type="tinyint" />
+          <Property Name="pref_value__int" Type="int" />
+          <Property Name="pref_value__nvarchar" Type="nvarchar(max)" />
+          <Property Name="user_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="pref_uuid_root__uniqueidentifier" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="stat_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="stat_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="stat_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="coun_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="user_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_username__nvarchar" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_email__nvarchar" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_cellphone__nvarchar" Type="varchar" MaxLength="10" />
+          <Property Name="user_password__nvarchar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_firstname__nvarchar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_lastname__nvarchar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_rol__tinyint" Type="tinyint" Nullable="false" />
+          <Property Name="user_extradata__nvarchar" Type="nvarchar(max)" />
+          <Property Name="reso_uuid_picture__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="date_uuid_birthdate__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="city_uuid__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="sess_uuid_used__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_uuid_root__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="sess_uuid_deleted__uniqueidentifier" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="date">
+          <Key>
+            <PropertyRef Name="date_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="date_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="date_value__date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="resource">
+          <Key>
+            <PropertyRef Name="reso_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="reso_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="reso_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="reso_extension__tinyint" Type="tinyint" Nullable="false" />
+          <Property Name="reso_description__nvarchar" Type="nvarchar(max)" />
+          <Property Name="reso_value__varbinary" Type="varbinary(max)" />
+          <Property Name="reso_externalurlorname__nvarchar" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="session">
+          <Key>
+            <PropertyRef Name="sess_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="sess_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sess_starttime__time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="sess_lastactivity__time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="sess_ipbatch01__tinyint" Type="tinyint" />
+          <Property Name="sess_ipbatch02__tinyint" Type="tinyint" />
+          <Property Name="sess_ipbatch03__tinyint" Type="tinyint" />
+          <Property Name="sess_ipbatch04__tinyint" Type="tinyint" />
+          <Property Name="sess_extradata__nvarchar" Type="nvarchar(max)" />
+          <Property Name="date_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_uuid_created__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FKcity970084">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="stat_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="stat_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference267585">
+          <End Role="preference" Type="Self.preference" Multiplicity="0..1" />
+          <End Role="preference1" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preference">
+              <PropertyRef Name="pref_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference1">
+              <PropertyRef Name="pref_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference59225">
+          <End Role="session" Type="Self.session" Multiplicity="1" />
+          <End Role="preference" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference627068">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="preference" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKsession541289">
+          <End Role="date" Type="Self.date" Multiplicity="1" />
+          <End Role="session" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="session">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKsession868286">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="session" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="session">
+              <PropertyRef Name="user_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKstate183298">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="coun_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="coun_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser138147">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="user1" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user1">
+              <PropertyRef Name="user_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser373134">
+          <End Role="session" Type="Self.session" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser377146">
+          <End Role="session" Type="Self.session" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_deleted__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser515892">
+          <End Role="session" Type="Self.session" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_used__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser85024">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser951719">
+          <End Role="resource" Type="Self.resource" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resource">
+              <PropertyRef Name="reso_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="reso_uuid_picture__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser954464">
+          <End Role="date" Type="Self.date" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="date_uuid_birthdate__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="straad_generaldesktopapplication_pcpcpcpc_001ModelStoreContainer">
+          <EntitySet Name="city" EntityType="Self.city" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="coin" EntityType="Self.coin" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="language" EntityType="Self.language" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="preference" EntityType="Self.preference" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="build_level001" store:Type="Tables" />
+          <EntitySet Name="date" EntityType="Self.date" Schema="build_level002" store:Type="Tables" />
+          <EntitySet Name="resource" EntityType="Self.resource" Schema="build_level002" store:Type="Tables" />
+          <EntitySet Name="session" EntityType="Self.session" Schema="build_level002" store:Type="Tables" />
+          <AssociationSet Name="FKcity970084" Association="Self.FKcity970084">
+            <End Role="state" EntitySet="state" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference267585" Association="Self.FKpreference267585">
+            <End Role="preference" EntitySet="preference" />
+            <End Role="preference1" EntitySet="preference" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference59225" Association="Self.FKpreference59225">
+            <End Role="session" EntitySet="session" />
+            <End Role="preference" EntitySet="preference" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference627068" Association="Self.FKpreference627068">
+            <End Role="user" EntitySet="user" />
+            <End Role="preference" EntitySet="preference" />
+          </AssociationSet>
+          <AssociationSet Name="FKsession541289" Association="Self.FKsession541289">
+            <End Role="date" EntitySet="date" />
+            <End Role="session" EntitySet="session" />
+          </AssociationSet>
+          <AssociationSet Name="FKsession868286" Association="Self.FKsession868286">
+            <End Role="user" EntitySet="user" />
+            <End Role="session" EntitySet="session" />
+          </AssociationSet>
+          <AssociationSet Name="FKstate183298" Association="Self.FKstate183298">
+            <End Role="country" EntitySet="country" />
+            <End Role="state" EntitySet="state" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser138147" Association="Self.FKuser138147">
+            <End Role="user" EntitySet="user" />
+            <End Role="user1" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser373134" Association="Self.FKuser373134">
+            <End Role="session" EntitySet="session" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser377146" Association="Self.FKuser377146">
+            <End Role="session" EntitySet="session" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser515892" Association="Self.FKuser515892">
+            <End Role="session" EntitySet="session" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser85024" Association="Self.FKuser85024">
+            <End Role="city" EntitySet="city" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser951719" Association="Self.FKuser951719">
+            <End Role="resource" EntitySet="resource" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser954464" Association="Self.FKuser954464">
+            <End Role="date" EntitySet="date" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="straad_generaldesktopapplication_pcpcpcpc_001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="city_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="city_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="city_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stat_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="state" Relationship="Self.FKcity970084" FromRole="city" ToRole="state" />
+          <NavigationProperty Name="users" Relationship="Self.FKuser85024" FromRole="city" ToRole="user" />
+        </EntityType>
+        <EntityType Name="coin">
+          <Key>
+            <PropertyRef Name="coin_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="coin_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="coin_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coin_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="coun_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="coun_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="coun_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coun_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="states" Relationship="Self.FKstate183298" FromRole="country" ToRole="state" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="lang_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="lang_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="lang_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lang_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="preference">
+          <Key>
+            <PropertyRef Name="pref_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="pref_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="pref_type__int" Type="Int32" Nullable="false" />
+          <Property Name="pref_value__bit" Type="Boolean" />
+          <Property Name="pref_value__tinyint" Type="Byte" />
+          <Property Name="pref_value__int" Type="Int32" />
+          <Property Name="pref_value__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="pref_uuid_root__uniqueidentifier" Type="Guid" />
+          <NavigationProperty Name="preference1" Relationship="Self.FKpreference267585" FromRole="preference" ToRole="preference1" />
+          <NavigationProperty Name="preference2" Relationship="Self.FKpreference267585" FromRole="preference1" ToRole="preference" />
+          <NavigationProperty Name="session" Relationship="Self.FKpreference59225" FromRole="preference" ToRole="session" />
+          <NavigationProperty Name="user" Relationship="Self.FKpreference627068" FromRole="preference" ToRole="user" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="stat_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="stat_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="stat_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coun_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="Self.FKcity970084" FromRole="state" ToRole="city" />
+          <NavigationProperty Name="country" Relationship="Self.FKstate183298" FromRole="state" ToRole="country" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="user_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="user_username__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_email__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_cellphone__nvarchar" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_password__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_firstname__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_lastname__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_rol__tinyint" Type="Byte" Nullable="false" />
+          <Property Name="user_extradata__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reso_uuid_picture__uniqueidentifier" Type="Guid" />
+          <Property Name="date_uuid_birthdate__uniqueidentifier" Type="Guid" />
+          <Property Name="city_uuid__uniqueidentifier" Type="Guid" />
+          <Property Name="sess_uuid_used__uniqueidentifier" Type="Guid" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="user_uuid_root__uniqueidentifier" Type="Guid" />
+          <Property Name="sess_uuid_deleted__uniqueidentifier" Type="Guid" />
+          <NavigationProperty Name="city" Relationship="Self.FKuser85024" FromRole="user" ToRole="city" />
+          <NavigationProperty Name="preferences" Relationship="Self.FKpreference627068" FromRole="user" ToRole="preference" />
+          <NavigationProperty Name="sessions" Relationship="Self.FKsession868286" FromRole="user" ToRole="session" />
+          <NavigationProperty Name="user1" Relationship="Self.FKuser138147" FromRole="user" ToRole="user1" />
+          <NavigationProperty Name="user2" Relationship="Self.FKuser138147" FromRole="user1" ToRole="user" />
+          <NavigationProperty Name="session" Relationship="Self.FKuser373134" FromRole="user" ToRole="session" />
+          <NavigationProperty Name="session1" Relationship="Self.FKuser377146" FromRole="user" ToRole="session" />
+          <NavigationProperty Name="session2" Relationship="Self.FKuser515892" FromRole="user" ToRole="session" />
+          <NavigationProperty Name="resource" Relationship="Self.FKuser951719" FromRole="user" ToRole="resource" />
+          <NavigationProperty Name="date" Relationship="Self.FKuser954464" FromRole="user" ToRole="date" />
+        </EntityType>
+        <EntityType Name="date">
+          <Key>
+            <PropertyRef Name="date_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="date_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="date_value__date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="users" Relationship="Self.FKuser954464" FromRole="date" ToRole="user" />
+          <NavigationProperty Name="sessions" Relationship="Self.FKsession541289" FromRole="date" ToRole="session" />
+        </EntityType>
+        <EntityType Name="resource">
+          <Key>
+            <PropertyRef Name="reso_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="reso_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="reso_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reso_extension__tinyint" Type="Byte" Nullable="false" />
+          <Property Name="reso_description__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reso_value__varbinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="reso_externalurlorname__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="users" Relationship="Self.FKuser951719" FromRole="resource" ToRole="user" />
+        </EntityType>
+        <EntityType Name="session">
+          <Key>
+            <PropertyRef Name="sess_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="sess_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="sess_starttime__time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="sess_lastactivity__time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="sess_ipbatch01__tinyint" Type="Byte" />
+          <Property Name="sess_ipbatch02__tinyint" Type="Byte" />
+          <Property Name="sess_ipbatch03__tinyint" Type="Byte" />
+          <Property Name="sess_ipbatch04__tinyint" Type="Byte" />
+          <Property Name="sess_extradata__nvarchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="user_uuid_created__uniqueidentifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="preferences" Relationship="Self.FKpreference59225" FromRole="session" ToRole="preference" />
+          <NavigationProperty Name="user" Relationship="Self.FKsession868286" FromRole="session" ToRole="user" />
+          <NavigationProperty Name="users" Relationship="Self.FKuser373134" FromRole="session" ToRole="user" />
+          <NavigationProperty Name="users1" Relationship="Self.FKuser377146" FromRole="session" ToRole="user" />
+          <NavigationProperty Name="users2" Relationship="Self.FKuser515892" FromRole="session" ToRole="user" />
+          <NavigationProperty Name="date" Relationship="Self.FKsession541289" FromRole="session" ToRole="date" />
+        </EntityType>
+        <Association Name="FKcity970084">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="stat_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="stat_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser85024">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKstate183298">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="coun_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="coun_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference267585">
+          <End Role="preference" Type="Self.preference" Multiplicity="0..1" />
+          <End Role="preference1" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preference">
+              <PropertyRef Name="pref_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference1">
+              <PropertyRef Name="pref_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference59225">
+          <End Role="session" Type="Self.session" Multiplicity="1" />
+          <End Role="preference" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKpreference627068">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="preference" Type="Self.preference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="preference">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKsession868286">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="session" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="session">
+              <PropertyRef Name="user_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser138147">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="user1" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user1">
+              <PropertyRef Name="user_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser373134">
+          <End Role="session" Type="Self.session" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser377146">
+          <End Role="session" Type="Self.session" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_deleted__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser515892">
+          <End Role="session" Type="Self.session" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="sess_uuid_used__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser951719">
+          <End Role="resource" Type="Self.resource" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resource">
+              <PropertyRef Name="reso_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="reso_uuid_picture__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuser954464">
+          <End Role="date" Type="Self.date" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="date_uuid_birthdate__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKsession541289">
+          <End Role="date" Type="Self.date" Multiplicity="1" />
+          <End Role="session" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="session">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="straad_generaldesktopapplication_pcpcpcpc_001Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="coins" EntityType="Self.coin" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="languages" EntityType="Self.language" />
+          <EntitySet Name="preferences" EntityType="Self.preference" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="dates" EntityType="Self.date" />
+          <EntitySet Name="resources" EntityType="Self.resource" />
+          <EntitySet Name="sessions" EntityType="Self.session" />
+          <AssociationSet Name="FKcity970084" Association="Self.FKcity970084">
+            <End Role="state" EntitySet="states" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser85024" Association="Self.FKuser85024">
+            <End Role="city" EntitySet="cities" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKstate183298" Association="Self.FKstate183298">
+            <End Role="country" EntitySet="countries" />
+            <End Role="state" EntitySet="states" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference267585" Association="Self.FKpreference267585">
+            <End Role="preference" EntitySet="preferences" />
+            <End Role="preference1" EntitySet="preferences" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference59225" Association="Self.FKpreference59225">
+            <End Role="session" EntitySet="sessions" />
+            <End Role="preference" EntitySet="preferences" />
+          </AssociationSet>
+          <AssociationSet Name="FKpreference627068" Association="Self.FKpreference627068">
+            <End Role="user" EntitySet="users" />
+            <End Role="preference" EntitySet="preferences" />
+          </AssociationSet>
+          <AssociationSet Name="FKsession868286" Association="Self.FKsession868286">
+            <End Role="user" EntitySet="users" />
+            <End Role="session" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser138147" Association="Self.FKuser138147">
+            <End Role="user" EntitySet="users" />
+            <End Role="user1" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser373134" Association="Self.FKuser373134">
+            <End Role="session" EntitySet="sessions" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser377146" Association="Self.FKuser377146">
+            <End Role="session" EntitySet="sessions" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser515892" Association="Self.FKuser515892">
+            <End Role="session" EntitySet="sessions" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser951719" Association="Self.FKuser951719">
+            <End Role="resource" EntitySet="resources" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKuser954464" Association="Self.FKuser954464">
+            <End Role="date" EntitySet="dates" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FKsession541289" Association="Self.FKsession541289">
+            <End Role="date" EntitySet="dates" />
+            <End Role="session" EntitySet="sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="straad_generaldesktopapplication_pcpcpcpc_001ModelStoreContainer" CdmEntityContainer="straad_generaldesktopapplication_pcpcpcpc_001Entities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
+                <ScalarProperty Name="city_name__nvarchar" ColumnName="city_name__nvarchar" />
+                <ScalarProperty Name="stat_uuid__uniqueidentifier" ColumnName="stat_uuid__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coins">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.coin">
+              <MappingFragment StoreEntitySet="coin">
+                <ScalarProperty Name="coin_uuid__uniqueidentifier" ColumnName="coin_uuid__uniqueidentifier" />
+                <ScalarProperty Name="coin_code__nvarchar" ColumnName="coin_code__nvarchar" />
+                <ScalarProperty Name="coin_name__nvarchar" ColumnName="coin_name__nvarchar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="coun_uuid__uniqueidentifier" ColumnName="coun_uuid__uniqueidentifier" />
+                <ScalarProperty Name="coun_code__nvarchar" ColumnName="coun_code__nvarchar" />
+                <ScalarProperty Name="coun_name__nvarchar" ColumnName="coun_name__nvarchar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="languages">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.language">
+              <MappingFragment StoreEntitySet="language">
+                <ScalarProperty Name="lang_uuid__uniqueidentifier" ColumnName="lang_uuid__uniqueidentifier" />
+                <ScalarProperty Name="lang_code__nvarchar" ColumnName="lang_code__nvarchar" />
+                <ScalarProperty Name="lang_name__nvarchar" ColumnName="lang_name__nvarchar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preferences">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.preference">
+              <MappingFragment StoreEntitySet="preference">
+                <ScalarProperty Name="pref_uuid__uniqueidentifier" ColumnName="pref_uuid__uniqueidentifier" />
+                <ScalarProperty Name="pref_type__int" ColumnName="pref_type__int" />
+                <ScalarProperty Name="pref_value__bit" ColumnName="pref_value__bit" />
+                <ScalarProperty Name="pref_value__tinyint" ColumnName="pref_value__tinyint" />
+                <ScalarProperty Name="pref_value__int" ColumnName="pref_value__int" />
+                <ScalarProperty Name="pref_value__nvarchar" ColumnName="pref_value__nvarchar" />
+                <ScalarProperty Name="user_uuid__uniqueidentifier" ColumnName="user_uuid__uniqueidentifier" />
+                <ScalarProperty Name="sess_uuid_created__uniqueidentifier" ColumnName="sess_uuid_created__uniqueidentifier" />
+                <ScalarProperty Name="pref_uuid_root__uniqueidentifier" ColumnName="pref_uuid_root__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="stat_uuid__uniqueidentifier" ColumnName="stat_uuid__uniqueidentifier" />
+                <ScalarProperty Name="stat_name__nvarchar" ColumnName="stat_name__nvarchar" />
+                <ScalarProperty Name="coun_uuid__uniqueidentifier" ColumnName="coun_uuid__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_uuid__uniqueidentifier" ColumnName="user_uuid__uniqueidentifier" />
+                <ScalarProperty Name="user_username__nvarchar" ColumnName="user_username__nvarchar" />
+                <ScalarProperty Name="user_email__nvarchar" ColumnName="user_email__nvarchar" />
+                <ScalarProperty Name="user_cellphone__nvarchar" ColumnName="user_cellphone__nvarchar" />
+                <ScalarProperty Name="user_password__nvarchar" ColumnName="user_password__nvarchar" />
+                <ScalarProperty Name="user_firstname__nvarchar" ColumnName="user_firstname__nvarchar" />
+                <ScalarProperty Name="user_lastname__nvarchar" ColumnName="user_lastname__nvarchar" />
+                <ScalarProperty Name="user_rol__tinyint" ColumnName="user_rol__tinyint" />
+                <ScalarProperty Name="user_extradata__nvarchar" ColumnName="user_extradata__nvarchar" />
+                <ScalarProperty Name="reso_uuid_picture__uniqueidentifier" ColumnName="reso_uuid_picture__uniqueidentifier" />
+                <ScalarProperty Name="date_uuid_birthdate__uniqueidentifier" ColumnName="date_uuid_birthdate__uniqueidentifier" />
+                <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
+                <ScalarProperty Name="sess_uuid_used__uniqueidentifier" ColumnName="sess_uuid_used__uniqueidentifier" />
+                <ScalarProperty Name="sess_uuid_created__uniqueidentifier" ColumnName="sess_uuid_created__uniqueidentifier" />
+                <ScalarProperty Name="user_uuid_root__uniqueidentifier" ColumnName="user_uuid_root__uniqueidentifier" />
+                <ScalarProperty Name="sess_uuid_deleted__uniqueidentifier" ColumnName="sess_uuid_deleted__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dates">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.date">
+              <MappingFragment StoreEntitySet="date">
+                <ScalarProperty Name="date_uuid__uniqueidentifier" ColumnName="date_uuid__uniqueidentifier" />
+                <ScalarProperty Name="date_value__date" ColumnName="date_value__date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resources">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.resource">
+              <MappingFragment StoreEntitySet="resource">
+                <ScalarProperty Name="reso_uuid__uniqueidentifier" ColumnName="reso_uuid__uniqueidentifier" />
+                <ScalarProperty Name="reso_name__nvarchar" ColumnName="reso_name__nvarchar" />
+                <ScalarProperty Name="reso_extension__tinyint" ColumnName="reso_extension__tinyint" />
+                <ScalarProperty Name="reso_description__nvarchar" ColumnName="reso_description__nvarchar" />
+                <ScalarProperty Name="reso_value__varbinary" ColumnName="reso_value__varbinary" />
+                <ScalarProperty Name="reso_externalurlorname__nvarchar" ColumnName="reso_externalurlorname__nvarchar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sessions">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.session">
+              <MappingFragment StoreEntitySet="session">
+                <ScalarProperty Name="sess_uuid__uniqueidentifier" ColumnName="sess_uuid__uniqueidentifier" />
+                <ScalarProperty Name="sess_starttime__time" ColumnName="sess_starttime__time" />
+                <ScalarProperty Name="sess_lastactivity__time" ColumnName="sess_lastactivity__time" />
+                <ScalarProperty Name="sess_ipbatch01__tinyint" ColumnName="sess_ipbatch01__tinyint" />
+                <ScalarProperty Name="sess_ipbatch02__tinyint" ColumnName="sess_ipbatch02__tinyint" />
+                <ScalarProperty Name="sess_ipbatch03__tinyint" ColumnName="sess_ipbatch03__tinyint" />
+                <ScalarProperty Name="sess_ipbatch04__tinyint" ColumnName="sess_ipbatch04__tinyint" />
+                <ScalarProperty Name="sess_extradata__nvarchar" ColumnName="sess_extradata__nvarchar" />
+                <ScalarProperty Name="date_uuid__uniqueidentifier" ColumnName="date_uuid__uniqueidentifier" />
+                <ScalarProperty Name="user_uuid_created__uniqueidentifier" ColumnName="user_uuid_created__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

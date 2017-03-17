@@ -45,7 +45,7 @@
             this.lblSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.lblSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSettings.ForeColor = System.Drawing.Color.White;
-            this.lblSettings.Location = new System.Drawing.Point(199, 0);
+            this.lblSettings.Location = new System.Drawing.Point(240, 0);
             this.lblSettings.Name = "lblSettings";
             this.lblSettings.Size = new System.Drawing.Size(60, 23);
             this.lblSettings.TabIndex = 10003;
@@ -60,7 +60,7 @@
             this.btnExit.Location = new System.Drawing.Point(175, 112);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 11;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -70,7 +70,7 @@
             this.btnLogIn.Location = new System.Drawing.Point(7, 112);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(75, 23);
-            this.btnLogIn.TabIndex = 2;
+            this.btnLogIn.TabIndex = 10;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
@@ -84,23 +84,23 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(24, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(208, 64);
-            this.panel1.TabIndex = 10002;
+            this.panel1.Size = new System.Drawing.Size(258, 64);
+            this.panel1.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(96, 32);
+            this.txtPassword.Location = new System.Drawing.Point(149, 29);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtPassword.TabIndex = 1;
+            this.txtPassword.TabIndex = 2;
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(96, 8);
+            this.txtUser.Location = new System.Drawing.Point(149, 5);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(100, 20);
-            this.txtUser.TabIndex = 0;
+            this.txtUser.TabIndex = 1;
             // 
             // label2
             // 
@@ -122,16 +122,16 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "User:";
+            this.label1.Text = "User/Email/Cellphone:";
             // 
             // Form_002
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(258, 143);
+            this.ClientSize = new System.Drawing.Size(299, 143);
             this.Controls.Add(this.lblSettings);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogIn);

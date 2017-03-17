@@ -21,8 +21,8 @@ namespace General_Desktop_Application.Presentation
         {
             InitializeComponent();
 
-            Text = lblTitle.Text = PreferencesStraad.TitleSoftware;
-            lblVersion.Text = "Versión " + PreferencesStraad.CurrentVersion;
+            Text = lblTitle.Text = Preferences.TitleSoftware;
+            lblVersion.Text = "Versión " + Preferences.CurrentVersion;
         }
 
         private void timTimer_Tick(object sender, EventArgs e)

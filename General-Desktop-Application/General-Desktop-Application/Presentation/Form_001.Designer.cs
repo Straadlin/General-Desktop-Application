@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_001));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
@@ -41,25 +40,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblVersion);
             this.panel1.Location = new System.Drawing.Point(0, 69);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(424, 32);
             this.panel1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(232, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "GNU General Public License";
-            this.label1.Visible = false;
             // 
             // lblVersion
             // 
@@ -82,7 +67,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(424, 72);
             this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "...Straad...";
+            this.lblTitle.Text = "Straad";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timTimer
@@ -113,7 +98,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Timer timTimer;

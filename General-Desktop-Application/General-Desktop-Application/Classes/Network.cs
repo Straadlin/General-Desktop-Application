@@ -9,7 +9,7 @@ using System.Net;//
 
 namespace General_Desktop_Application.Classes
 {
-    public static class NetStraad
+    public static class Network
     {
         public static string GetExternalIP()
         {

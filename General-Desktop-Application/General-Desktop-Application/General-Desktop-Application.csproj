@@ -39,8 +39,17 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,37 +61,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Business.cs" />
-    <Compile Include="Business\B_City.cs" />
-    <Compile Include="Business\B_Session.cs" />
-    <Compile Include="Business\B_State.cs" />
-    <Compile Include="Business\B_User.cs" />
-    <Compile Include="Classes\NetStraad.cs" />
-    <Compile Include="Classes\PreferencesStraad.cs" />
+    <Compile Include="BusinessLayer\Business.cs" />
+    <Compile Include="Classes\Network.cs" />
+    <Compile Include="Classes\Preferences.cs" />
     <Compile Include="Classes\SQLServer.cs" />
     <Compile Include="Classes\Tools.cs" />
-    <Compile Include="Data\Data.cs" />
-    <Compile Include="Data\D_City.cs" />
-    <Compile Include="Data\D_Session.cs" />
-    <Compile Include="Data\D_State.cs" />
-    <Compile Include="Data\D_User.cs" />
+    <Compile Include="DataLayer\Data.cs" />
+    <Compile Include="EF\city.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\coin.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\country.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\date.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\language.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\preference.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\resource.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\session.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\state.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\user.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enumerables\ErrorMessages.cs" />
-    <Compile Include="Models\M_Appointment.cs" />
-    <Compile Include="Models\M_Appointment_User.cs" />
-    <Compile Include="Models\M_BranchOffice.cs" />
-    <Compile Include="Models\M_BranchOffice_User.cs" />
-    <Compile Include="Models\M_City.cs" />
-    <Compile Include="Models\M_Class.cs" />
-    <Compile Include="Models\M_Classroom.cs" />
-    <Compile Include="Models\M_Class_User.cs" />
-    <Compile Include="Models\M_Club.cs" />
-    <Compile Include="Models\M_Club_User.cs" />
-    <Compile Include="Models\M_Date.cs" />
-    <Compile Include="Models\M_File.cs" />
-    <Compile Include="Models\M_Kardex.cs" />
-    <Compile Include="Models\M_Session.cs" />
-    <Compile Include="Models\M_State.cs" />
-    <Compile Include="Models\M_User.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Presentation\Form_001.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +162,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.manifest" />
+    <EntityDeploy Include="EF\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,21 +181,36 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Changes.txt" />
+    <Content Include="EF\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="icon.ico" />
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette - 30.png" />
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette.png" />
     <Content Include="Resources\Background Images\green-cloth-texture-1.jpg" />
     <Content Include="Resources\Icons\icon.ico" />
-    <Content Include="Resources\Scripts\Build_scritp.sql" />
-    <Content Include="Resources\Scripts\Build_scritp_01.sql" />
+    <EmbeddedResource Include="Resources\Scripts\Initializer.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Executables\" />
     <Folder Include="Resources\Libraries\" />
     <Folder Include="Resources\Logos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

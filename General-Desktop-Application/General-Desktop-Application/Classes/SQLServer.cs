@@ -15,7 +15,7 @@ namespace General_Desktop_Application.Classes
         {
             try
             {
-                var ghyt = PreferencesStraad.ArchitectDatabase64 ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+                var ghyt = Preferences.ArchitectDatabase64 ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
                 var wk7 = ghyt.OpenSubKey("SOFTWARE\\Microsoft\\Microsoft SQL Server");
 
                 string[] wpi4l = (String[])wk7.GetValue("InstalledInstances");
@@ -53,7 +53,7 @@ namespace General_Desktop_Application.Classes
             {
                 // It install automatic way
 
-                he4ys.Arguments = @" /QS /IACCEPTSQLSERVERLICENSETERMS /INSTANCEID=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /SAPWD=" + PreferencesStraad.PasswordInstanceSAPWD + " /SECURITYMODE=SQL /INSTANCENAME=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /ACTION=Install /FEATURES=SQLEngine,Replication /ASCOLLATION=Latin1_General_CI_AS /SQLCOLLATION=Latin1_General_CS_AS /ADDCURRENTUSERASSQLADMIN=True /UpdateEnabled=1 /TCPENABLED=1 /NPENABLED=1";
+                he4ys.Arguments = @" /QS /IACCEPTSQLSERVERLICENSETERMS /INSTANCEID=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /SAPWD=" + Preferences.PasswordInstanceSAPWD + " /SECURITYMODE=SQL /INSTANCENAME=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /ACTION=Install /FEATURES=SQLEngine,Replication /ASCOLLATION=Latin1_General_CI_AS /SQLCOLLATION=Latin1_General_CS_AS /ADDCURRENTUSERASSQLADMIN=True /UpdateEnabled=1 /TCPENABLED=1 /NPENABLED=1";
 
                 df56c.StartInfo = he4ys;
             }
@@ -61,7 +61,7 @@ namespace General_Desktop_Application.Classes
             {
                 // Only it load default values on wizard, but not install
 
-                he4ys.Arguments = @" /INSTANCEID=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /SAPWD=" + PreferencesStraad.PasswordInstanceSAPWD + " /SECURITYMODE=SQL /INSTANCENAME=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /ACTION=Install /FEATURES=SQLEngine,Replication /ASCOLLATION=Latin1_General_CI_AS /SQLCOLLATION=Latin1_General_CS_AS /ADDCURRENTUSERASSQLADMIN=True /UpdateEnabled=1 /TCPENABLED=1 /NPENABLED=1";
+                he4ys.Arguments = @" /INSTANCEID=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /SAPWD=" + Preferences.PasswordInstanceSAPWD + " /SECURITYMODE=SQL /INSTANCENAME=STRAAD" + uko + ujlo + e1s2d5 + drme + sei + @" /ACTION=Install /FEATURES=SQLEngine,Replication /ASCOLLATION=Latin1_General_CI_AS /SQLCOLLATION=Latin1_General_CS_AS /ADDCURRENTUSERASSQLADMIN=True /UpdateEnabled=1 /TCPENABLED=1 /NPENABLED=1";
 
                 df56c.StartInfo = he4ys;
             }
