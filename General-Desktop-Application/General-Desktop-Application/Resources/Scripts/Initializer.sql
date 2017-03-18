@@ -35,6 +35,186 @@ CREATE TABLE build_level001.preference (pref_uuid__uniqueidentifier uniqueidenti
 
 GO
 
+CREATE TRIGGER trigger_user_edit
+ON build_level001.[user]
+INSTEAD OF UPDATE
+AS
+	BEGIN
+		SET NOCOUNT ON;--Para impedir que una instrucción de asignación devuelva un resultado
+		-- Inserta aquí las instrucciones
+
+		BEGIN TRY
+			BEGIN TRAN tranOperation
+				--
+				--SELECT * FROM inserted
+
+
+
+				DECLARE @user_uuid__uniqueidentifier___New uniqueidentifier
+				DECLARE @user_username__nvarchar nvarchar(100)
+				DECLARE @user_email__nvarchar nvarchar(100)
+				DECLARE @user_cellphone__nvarchar varchar(10)
+				DECLARE @user_password__nvarchar nvarchar(max)
+				DECLARE @user_firstname__nvarchar nvarchar(max)
+				DECLARE @user_lastname__nvarchar nvarchar(max)
+				DECLARE @user_rol__tinyint tinyint
+				DECLARE @user_extradata__nvarchar nvarchar(max)
+				DECLARE @reso_uuid_picture__uniqueidentifier uniqueidentifier
+				DECLARE @date_uuid_birthdate__uniqueidentifier uniqueidentifier
+				DECLARE @city_uuid__uniqueidentifier uniqueidentifier
+				--DECLARE @sess_uuid_used__uniqueidentifier uniqueidentifier
+				DECLARE @sess_uuid_created__uniqueidentifier uniqueidentifier
+				--DECLARE @user_uuid_root__uniqueidentifier uniqueidentifier
+				DECLARE @sess_uuid_deleted__uniqueidentifier uniqueidentifier
+
+
+
+				SET @user_uuid__uniqueidentifier___New = NEWID()
+				WHILE((SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___New)) > 0)
+				BEGIN
+					SET @user_uuid__uniqueidentifier___New = NEWID()
+				END
+
+
+
+				DECLARE @user_uuid__uniqueidentifier______Current uniqueidentifier
+				SELECT @user_uuid__uniqueidentifier______Current = user_uuid__uniqueidentifier FROM inserted
+
+
+
+				SELECT TOP 1
+					--@@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
+					@user_username__nvarchar = user_username__nvarchar, 
+					@user_email__nvarchar = user_email__nvarchar, 
+					@user_cellphone__nvarchar = user_cellphone__nvarchar, 
+					@user_password__nvarchar = user_password__nvarchar, 
+					@user_firstname__nvarchar = user_firstname__nvarchar, 
+					@user_lastname__nvarchar = user_lastname__nvarchar, 
+					@user_rol__tinyint = user_rol__tinyint, 
+					@user_extradata__nvarchar = user_extradata__nvarchar, 
+					@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
+					@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
+					@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
+					--sess_uuid_used__uniqueidentifier 
+					@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier, 
+					--user_uuid_root__uniqueidentifier
+					@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
+					FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current);
+
+
+
+				--SELECT @user_uuid__uniqueidentifier
+
+
+
+				-- We get last ID of the list (Recursiveness)
+				DECLARE @user_uuid__uniqueidentifier______Last uniqueidentifier
+				EXEC build_level001.proc_user_findLastBranch @user_uuid__uniqueidentifier______Current = @user_uuid__uniqueidentifier______Current,  @user_uuid__uniqueidentifier______Last = @user_uuid__uniqueidentifier______Last OUTPUT;
+				
+
+
+				-- First we store the copy register
+				INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__nvarchar, user_email__nvarchar, user_cellphone__nvarchar, user_password__nvarchar, user_firstname__nvarchar, user_lastname__nvarchar, user_rol__tinyint, user_extradata__nvarchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) 
+					VALUES(
+						@user_uuid__uniqueidentifier___New,
+						@user_username__nvarchar,
+						@user_email__nvarchar,
+						@user_cellphone__nvarchar, 
+						@user_password__nvarchar, 
+						@user_firstname__nvarchar, 
+						@user_lastname__nvarchar, 
+						@user_rol__tinyint, 
+						@user_extradata__nvarchar, 
+						@reso_uuid_picture__uniqueidentifier, 
+						@date_uuid_birthdate__uniqueidentifier, 
+						@city_uuid__uniqueidentifier, 
+						NULL, 
+						@sess_uuid_created__uniqueidentifier, 
+						@user_uuid__uniqueidentifier______Last, 
+						@sess_uuid_deleted__uniqueidentifier
+						);
+
+
+
+				SELECT 
+					--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
+					@user_username__nvarchar = user_username__nvarchar, 
+					@user_email__nvarchar = user_email__nvarchar, 
+					@user_cellphone__nvarchar = user_cellphone__nvarchar, 
+					@user_password__nvarchar = user_password__nvarchar, 
+					@user_firstname__nvarchar = user_firstname__nvarchar, 
+					@user_lastname__nvarchar = user_lastname__nvarchar, 
+					@user_rol__tinyint = user_rol__tinyint, 
+					@user_extradata__nvarchar = user_extradata__nvarchar, 
+					@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
+					@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
+					@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
+					--sess_uuid_used__uniqueidentifier, 
+					@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier,
+					--user_uuid_root__uniqueidentifier 
+					@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
+					FROM inserted
+
+
+
+				UPDATE build_level001.[user] SET  
+					user_username__nvarchar = @user_username__nvarchar, 
+					user_email__nvarchar = @user_email__nvarchar, 
+					user_cellphone__nvarchar = @user_cellphone__nvarchar, 
+					user_password__nvarchar = @user_password__nvarchar, 
+					user_firstname__nvarchar = @user_firstname__nvarchar, 
+					user_lastname__nvarchar = @user_lastname__nvarchar, 
+					user_rol__tinyint = @user_rol__tinyint, 
+					user_extradata__nvarchar = @user_extradata__nvarchar, 
+					reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier, 
+					date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier, 
+					city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier, 
+					sess_uuid_used__uniqueidentifier = NULL, 
+					sess_uuid_created__uniqueidentifier = @sess_uuid_created__uniqueidentifier, 
+					user_uuid_root__uniqueidentifier = NULL, 
+					sess_uuid_deleted__uniqueidentifier = @sess_uuid_deleted__uniqueidentifier
+					WHERE([user].user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current)
+
+
+				--
+			COMMIT TRAN tranOperation
+		END TRY
+
+		BEGIN CATCH
+			ROLLBACK TRAN tranOperation
+		END CATCH
+	END
+
+
+--UPDATE build_level001.[user] SET user_email__nvarchar = 'HOLA3' WHERE(user_uuid__uniqueidentifier = '8B319333-003F-4363-ADD6-043C6FAA320D');
+--SELECT * FROM build_level001.[user];
+
+--DROP TRIGGER [build_level001].[trigger_user_edit]
+
+GO
+
+CREATE PROCEDURE build_level001.proc_user_findLastBranch
+	@user_uuid__uniqueidentifier______Current uniqueidentifier,
+	@user_uuid__uniqueidentifier______Last uniqueidentifier OUTPUT
+	AS
+		WITH EmpCTE ([user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier])
+		AS
+		(
+			SELECT [user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier]
+				FROM build_level001.[user]
+				WHERE [user_uuid__uniqueidentifier] = @user_uuid__uniqueidentifier______Current
+			UNION ALL
+		--RECURSIVIDAD
+			SELECT e.[user_uuid__uniqueidentifier], e.[user_username__nvarchar], e.[user_email__nvarchar], e.[user_cellphone__nvarchar], e.[user_uuid_root__uniqueidentifier]
+				FROM build_level001.[user] AS e JOIN EmpCTE AS m
+					ON e.user_uuid_root__uniqueidentifier = m.[user_uuid__uniqueidentifier]
+		)
+		SELECT @user_uuid__uniqueidentifier______Last = user_uuid__uniqueidentifier FROM EmpCTE
+
+	RETURN 1
+
+GO
+
 DECLARE @countryMexicoUUID uniqueidentifier
 DECLARE @stateDurangoUUID uniqueidentifier
 DECLARE @stateCoahuilaUUID uniqueidentifier

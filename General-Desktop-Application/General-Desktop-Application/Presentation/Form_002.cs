@@ -69,11 +69,11 @@ namespace General_Desktop_Application.Presentation
         {
             if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                var vUser = Business.FindByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
+                var vUser = UserB.FindByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
 
                 if (vUser != null)
                 {
-                    var vSession = Business.CreateSession();
+                    var vSession = SessionB.CreateSession(vUser);
 
                     if (vSession != null)
                     {

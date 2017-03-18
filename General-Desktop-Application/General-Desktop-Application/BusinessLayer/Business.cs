@@ -53,41 +53,5 @@ namespace General_Desktop_Application.BusinessLayer
 
             return 0;
         }
-
-        public static int SelectCountAllUsers()
-        {
-            try
-            {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
-                {
-                    return objContext.users.Count();
-                }
-            }
-            catch
-            {
-                return -1;
-            }
-        }
-
-        public static user FindByUserNameOrEmailOrCellphone(string stUserNameEmailCellphone, string stPassword)
-        {
-            user vUser = null;
-
-            try
-            {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
-                {
-                    vUser = objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_password__nvarchar == stPassword).FirstOrDefault();
-                }
-            }
-            catch { }
-
-            return vUser;
-        }
-
-        public static session CreateSession()
-        {
-            return null;
-        }
     }
 }
