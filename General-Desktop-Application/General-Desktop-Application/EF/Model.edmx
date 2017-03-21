@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="straad_generaldesktopapplication_pcpcpcpc_001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="straad_generaldesktopapplication_pcpcpcpc_001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="city">
           <Key>
             <PropertyRef Name="city_uuid__uniqueidentifier" />
@@ -13,14 +13,6 @@
           <Property Name="city_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="stat_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="coin">
-          <Key>
-            <PropertyRef Name="coin_uuid__uniqueidentifier" />
-          </Key>
-          <Property Name="coin_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="coin_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
-          <Property Name="coin_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="country">
           <Key>
             <PropertyRef Name="coun_uuid__uniqueidentifier" />
@@ -28,14 +20,6 @@
           <Property Name="coun_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
           <Property Name="coun_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="coun_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="language">
-          <Key>
-            <PropertyRef Name="lang_uuid__uniqueidentifier" />
-          </Key>
-          <Property Name="lang_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="lang_code__nvarchar" Type="nvarchar" MaxLength="6" Nullable="false" />
-          <Property Name="lang_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="preference">
           <Key>
@@ -85,7 +69,7 @@
             <PropertyRef Name="date_uuid__uniqueidentifier" />
           </Key>
           <Property Name="date_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="date_value__date" Type="datetime" Nullable="false" />
+          <Property Name="date_value__date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="resource">
           <Key>
@@ -112,6 +96,31 @@
           <Property Name="sess_extradata__nvarchar" Type="nvarchar(max)" />
           <Property Name="date_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
           <Property Name="user_uuid_created__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="principalcompany">
+          <Key>
+            <PropertyRef Name="prco_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="prco_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="prco_rfc__nvarchar" Type="nvarchar" MaxLength="13" />
+          <Property Name="prco_name__nvarchar" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="prco_address__nvarchar" Type="nvarchar" MaxLength="255" />
+          <Property Name="prco_phone__nvarchar" Type="nvarchar" MaxLength="100" />
+          <Property Name="prco_email__nvarchar" Type="nvarchar" MaxLength="100" />
+          <Property Name="prco_facebook__nvarchar" Type="nvarchar" MaxLength="100" />
+          <Property Name="prco_developmentmode__bit" Type="bit" Nullable="false" />
+          <Property Name="prco_timebetweenbackups__timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="city_uuid__uniqueidentifier" Type="uniqueidentifier" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="prco_uuid_root__uniqueidentifier" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="version">
+          <Key>
+            <PropertyRef Name="vers_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="vers_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="vers_name__nvarchar" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="date_uuid__uniqueidentifier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FKcity970084">
           <End Role="state" Type="Self.state" Multiplicity="1" />
@@ -158,6 +167,42 @@
             </Principal>
             <Dependent Role="preference">
               <PropertyRef Name="user_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKprincipalc389657">
+          <End Role="session" Type="Self.session" Multiplicity="1" />
+          <End Role="principalcompany" Type="Self.principalcompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKprincipalc633898">
+          <End Role="principalcompany" Type="Self.principalcompany" Multiplicity="0..1" />
+          <End Role="principalcompany1" Type="Self.principalcompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="principalcompany">
+              <PropertyRef Name="prco_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany1">
+              <PropertyRef Name="prco_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKprincipalc68501">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="principalcompany" Type="Self.principalcompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -281,17 +326,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKversion840117">
+          <End Role="date" Type="Self.date" Multiplicity="1" />
+          <End Role="version" Type="Self.version" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="version">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="straad_generaldesktopapplication_pcpcpcpc_001ModelStoreContainer">
           <EntitySet Name="city" EntityType="Self.city" Schema="build_level001" store:Type="Tables" />
-          <EntitySet Name="coin" EntityType="Self.coin" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="build_level001" store:Type="Tables" />
-          <EntitySet Name="language" EntityType="Self.language" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="preference" EntityType="Self.preference" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="state" EntityType="Self.state" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="date" EntityType="Self.date" Schema="build_level002" store:Type="Tables" />
           <EntitySet Name="resource" EntityType="Self.resource" Schema="build_level002" store:Type="Tables" />
           <EntitySet Name="session" EntityType="Self.session" Schema="build_level002" store:Type="Tables" />
+          <EntitySet Name="principalcompany" EntityType="Self.principalcompany" Schema="build_level003" store:Type="Tables" />
+          <EntitySet Name="version" EntityType="Self.version" Schema="build_level003" store:Type="Tables" />
           <AssociationSet Name="FKcity970084" Association="Self.FKcity970084">
             <End Role="state" EntitySet="state" />
             <End Role="city" EntitySet="city" />
@@ -307,6 +364,18 @@
           <AssociationSet Name="FKpreference627068" Association="Self.FKpreference627068">
             <End Role="user" EntitySet="user" />
             <End Role="preference" EntitySet="preference" />
+          </AssociationSet>
+          <AssociationSet Name="FKprincipalc389657" Association="Self.FKprincipalc389657">
+            <End Role="session" EntitySet="session" />
+            <End Role="principalcompany" EntitySet="principalcompany" />
+          </AssociationSet>
+          <AssociationSet Name="FKprincipalc633898" Association="Self.FKprincipalc633898">
+            <End Role="principalcompany" EntitySet="principalcompany" />
+            <End Role="principalcompany1" EntitySet="principalcompany" />
+          </AssociationSet>
+          <AssociationSet Name="FKprincipalc68501" Association="Self.FKprincipalc68501">
+            <End Role="city" EntitySet="city" />
+            <End Role="principalcompany" EntitySet="principalcompany" />
           </AssociationSet>
           <AssociationSet Name="FKsession541289" Association="Self.FKsession541289">
             <End Role="date" EntitySet="date" />
@@ -348,9 +417,12 @@
             <End Role="date" EntitySet="date" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
+          <AssociationSet Name="FKversion840117" Association="Self.FKversion840117">
+            <End Role="date" EntitySet="date" />
+            <End Role="version" EntitySet="version" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="straad_generaldesktopapplication_pcpcpcpc_001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -363,14 +435,7 @@
           <Property Name="stat_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
           <NavigationProperty Name="state" Relationship="Self.FKcity970084" FromRole="city" ToRole="state" />
           <NavigationProperty Name="users" Relationship="Self.FKuser85024" FromRole="city" ToRole="user" />
-        </EntityType>
-        <EntityType Name="coin">
-          <Key>
-            <PropertyRef Name="coin_uuid__uniqueidentifier" />
-          </Key>
-          <Property Name="coin_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
-          <Property Name="coin_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="coin_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="principalcompanies" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc68501" FromRole="city" ToRole="principalcompany" />
         </EntityType>
         <EntityType Name="country">
           <Key>
@@ -380,14 +445,6 @@
           <Property Name="coun_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="coun_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="states" Relationship="Self.FKstate183298" FromRole="country" ToRole="state" />
-        </EntityType>
-        <EntityType Name="language">
-          <Key>
-            <PropertyRef Name="lang_uuid__uniqueidentifier" />
-          </Key>
-          <Property Name="lang_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
-          <Property Name="lang_code__nvarchar" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lang_name__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="preference">
           <Key>
@@ -453,9 +510,10 @@
             <PropertyRef Name="date_uuid__uniqueidentifier" />
           </Key>
           <Property Name="date_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
-          <Property Name="date_value__date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="date_value__date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="users" Relationship="Self.FKuser954464" FromRole="date" ToRole="user" />
           <NavigationProperty Name="sessions" Relationship="Self.FKsession541289" FromRole="date" ToRole="session" />
+          <NavigationProperty Name="versions" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKversion840117" FromRole="date" ToRole="version" />
         </EntityType>
         <EntityType Name="resource">
           <Key>
@@ -489,6 +547,7 @@
           <NavigationProperty Name="users1" Relationship="Self.FKuser377146" FromRole="session" ToRole="user" />
           <NavigationProperty Name="users2" Relationship="Self.FKuser515892" FromRole="session" ToRole="user" />
           <NavigationProperty Name="date" Relationship="Self.FKsession541289" FromRole="session" ToRole="date" />
+          <NavigationProperty Name="principalcompanies" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc389657" FromRole="session" ToRole="principalcompany" />
         </EntityType>
         <Association Name="FKcity970084">
           <End Role="state" Type="Self.state" Multiplicity="1" />
@@ -660,9 +719,7 @@
         </Association>
         <EntityContainer Name="straad_generaldesktopapplication_pcpcpcpc_001Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cities" EntityType="Self.city" />
-          <EntitySet Name="coins" EntityType="Self.coin" />
           <EntitySet Name="countries" EntityType="Self.country" />
-          <EntitySet Name="languages" EntityType="Self.language" />
           <EntitySet Name="preferences" EntityType="Self.preference" />
           <EntitySet Name="states" EntityType="Self.state" />
           <EntitySet Name="users" EntityType="Self.user" />
@@ -725,7 +782,103 @@
             <End Role="date" EntitySet="dates" />
             <End Role="session" EntitySet="sessions" />
           </AssociationSet>
+          <EntitySet Name="principalcompanies" EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" />
+          <EntitySet Name="versions" EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.version" />
+          <AssociationSet Name="FKprincipalc68501" Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc68501">
+            <End Role="city" EntitySet="cities" />
+            <End Role="principalcompany" EntitySet="principalcompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FKversion840117" Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKversion840117">
+            <End Role="date" EntitySet="dates" />
+            <End Role="version" EntitySet="versions" />
+          </AssociationSet>
+          <AssociationSet Name="FKprincipalc389657" Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc389657">
+            <End Role="session" EntitySet="sessions" />
+            <End Role="principalcompany" EntitySet="principalcompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FKprincipalc633898" Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc633898">
+            <End Role="principalcompany" EntitySet="principalcompanies" />
+            <End Role="principalcompany1" EntitySet="principalcompanies" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="principalcompany">
+          <Key>
+            <PropertyRef Name="prco_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="prco_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="prco_rfc__nvarchar" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="prco_name__nvarchar" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prco_address__nvarchar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="prco_phone__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prco_email__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prco_facebook__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prco_developmentmode__bit" Type="Boolean" Nullable="false" />
+          <Property Name="prco_timebetweenbackups__timestamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="city_uuid__uniqueidentifier" Type="Guid" />
+          <Property Name="sess_uuid_created__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="prco_uuid_root__uniqueidentifier" Type="Guid" />
+          <NavigationProperty Name="city" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc68501" FromRole="principalcompany" ToRole="city" />
+          <NavigationProperty Name="session" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc389657" FromRole="principalcompany" ToRole="session" />
+          <NavigationProperty Name="principalcompany1" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc633898" FromRole="principalcompany" ToRole="principalcompany1" />
+          <NavigationProperty Name="principalcompany2" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc633898" FromRole="principalcompany1" ToRole="principalcompany" />
+        </EntityType>
+        <EntityType Name="version">
+          <Key>
+            <PropertyRef Name="vers_uuid__uniqueidentifier" />
+          </Key>
+          <Property Name="vers_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <Property Name="vers_name__nvarchar" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="date_uuid__uniqueidentifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="date" Relationship="straad_generaldesktopapplication_pcpcpcpc_001Model.FKversion840117" FromRole="version" ToRole="date" />
+        </EntityType>
+        <Association Name="FKprincipalc68501">
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.city" Role="city" Multiplicity="0..1" />
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" Role="principalcompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany">
+              <PropertyRef Name="city_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKversion840117">
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.date" Role="date" Multiplicity="1" />
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.version" Role="version" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="date">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="version">
+              <PropertyRef Name="date_uuid__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKprincipalc389657">
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.session" Role="session" Multiplicity="1" />
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" Role="principalcompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="session">
+              <PropertyRef Name="sess_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany">
+              <PropertyRef Name="sess_uuid_created__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKprincipalc633898">
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" Role="principalcompany" Multiplicity="0..1" />
+          <End Type="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" Role="principalcompany1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="principalcompany">
+              <PropertyRef Name="prco_uuid__uniqueidentifier" />
+            </Principal>
+            <Dependent Role="principalcompany1">
+              <PropertyRef Name="prco_uuid_root__uniqueidentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -741,30 +894,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="coins">
-            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.coin">
-              <MappingFragment StoreEntitySet="coin">
-                <ScalarProperty Name="coin_uuid__uniqueidentifier" ColumnName="coin_uuid__uniqueidentifier" />
-                <ScalarProperty Name="coin_code__nvarchar" ColumnName="coin_code__nvarchar" />
-                <ScalarProperty Name="coin_name__nvarchar" ColumnName="coin_name__nvarchar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="countries">
             <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.country">
               <MappingFragment StoreEntitySet="country">
                 <ScalarProperty Name="coun_uuid__uniqueidentifier" ColumnName="coun_uuid__uniqueidentifier" />
                 <ScalarProperty Name="coun_code__nvarchar" ColumnName="coun_code__nvarchar" />
                 <ScalarProperty Name="coun_name__nvarchar" ColumnName="coun_name__nvarchar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="languages">
-            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.language">
-              <MappingFragment StoreEntitySet="language">
-                <ScalarProperty Name="lang_uuid__uniqueidentifier" ColumnName="lang_uuid__uniqueidentifier" />
-                <ScalarProperty Name="lang_code__nvarchar" ColumnName="lang_code__nvarchar" />
-                <ScalarProperty Name="lang_name__nvarchar" ColumnName="lang_name__nvarchar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -847,6 +982,33 @@
                 <ScalarProperty Name="sess_extradata__nvarchar" ColumnName="sess_extradata__nvarchar" />
                 <ScalarProperty Name="date_uuid__uniqueidentifier" ColumnName="date_uuid__uniqueidentifier" />
                 <ScalarProperty Name="user_uuid_created__uniqueidentifier" ColumnName="user_uuid_created__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="principalcompanies">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany">
+              <MappingFragment StoreEntitySet="principalcompany">
+                <ScalarProperty Name="prco_uuid_root__uniqueidentifier" ColumnName="prco_uuid_root__uniqueidentifier" />
+                <ScalarProperty Name="sess_uuid_created__uniqueidentifier" ColumnName="sess_uuid_created__uniqueidentifier" />
+                <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
+                <ScalarProperty Name="prco_timebetweenbackups__timestamp" ColumnName="prco_timebetweenbackups__timestamp" />
+                <ScalarProperty Name="prco_developmentmode__bit" ColumnName="prco_developmentmode__bit" />
+                <ScalarProperty Name="prco_facebook__nvarchar" ColumnName="prco_facebook__nvarchar" />
+                <ScalarProperty Name="prco_email__nvarchar" ColumnName="prco_email__nvarchar" />
+                <ScalarProperty Name="prco_phone__nvarchar" ColumnName="prco_phone__nvarchar" />
+                <ScalarProperty Name="prco_address__nvarchar" ColumnName="prco_address__nvarchar" />
+                <ScalarProperty Name="prco_name__nvarchar" ColumnName="prco_name__nvarchar" />
+                <ScalarProperty Name="prco_rfc__nvarchar" ColumnName="prco_rfc__nvarchar" />
+                <ScalarProperty Name="prco_uuid__uniqueidentifier" ColumnName="prco_uuid__uniqueidentifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="versions">
+            <EntityTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.version">
+              <MappingFragment StoreEntitySet="version">
+                <ScalarProperty Name="date_uuid__uniqueidentifier" ColumnName="date_uuid__uniqueidentifier" />
+                <ScalarProperty Name="vers_name__nvarchar" ColumnName="vers_name__nvarchar" />
+                <ScalarProperty Name="vers_uuid__uniqueidentifier" ColumnName="vers_uuid__uniqueidentifier" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

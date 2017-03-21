@@ -18,7 +18,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    date objDate = objContext.dates.Where(d => d.date_value__date == DateTime.Now).FirstOrDefault();
+                    date objDate = objContext.dates.Where(d => d.date_value__date == objDateTime.Date).FirstOrDefault();
 
                     if (objDate == null)
                     {
@@ -29,14 +29,22 @@ namespace General_Desktop_Application.BusinessLayer
                         } while (objContext.dates.Where(d => d.date_uuid__uniqueidentifier == objGuid).Count() > 0);
 
                         objContext.dates.Add(new date() { date_uuid__uniqueidentifier = objGuid, date_value__date = objDateTime });
+                        objContext.SaveChanges();
 
-                        return objContext.dates.Where(d => d.date_value__date == DateTime.Now).FirstOrDefault();
+                        return objContext.dates.Where(d => d.date_uuid__uniqueidentifier == objGuid).FirstOrDefault();
                     }
+                    else
+                        return objDate;
                 }
             }
             catch { }
 
             return null;
+        }
+
+        public static DateTime GetServersDateAndTime()// We need to remake it and too this must be using a function
+        {
+            return DateTime.Now;
         }
     }
 }

@@ -12,10 +12,12 @@ namespace General_Desktop_Application.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class coin
+    public partial class version
     {
-        public System.Guid coin_uuid__uniqueidentifier { get; set; }
-        public string coin_code__nvarchar { get; set; }
-        public string coin_name__nvarchar { get; set; }
+        public System.Guid vers_uuid__uniqueidentifier { get; set; }
+        public string vers_name__nvarchar { get; set; }
+        public System.Guid date_uuid__uniqueidentifier { get; set; }
+    
+        public virtual date date { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace General_Desktop_Application.EF
             this.users = new HashSet<user>();
             this.users1 = new HashSet<user>();
             this.users2 = new HashSet<user>();
+            this.principalcompanies = new HashSet<principalcompany>();
         }
     
         public System.Guid sess_uuid__uniqueidentifier { get; set; }
@@ -44,5 +45,7 @@ namespace General_Desktop_Application.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user> users2 { get; set; }
         public virtual date date { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<principalcompany> principalcompanies { get; set; }
     }
 }

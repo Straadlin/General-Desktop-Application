@@ -78,16 +78,10 @@
     <Compile Include="EF\city.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\coin.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF\country.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\date.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\language.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Model.Context.cs">
@@ -108,6 +102,9 @@
     <Compile Include="EF\preference.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\principalcompany.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\resource.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -120,8 +117,10 @@
     <Compile Include="EF\user.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\version.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enumerables\ErrorMessages.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Presentation\Form_001.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +145,12 @@
     <Compile Include="Presentation\Form_004.Designer.cs">
       <DependentUpon>Form_004.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Form_004_001.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Form_004_001.Designer.cs">
+      <DependentUpon>Form_004_001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentation\Form_001.resx">
@@ -159,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Form_004.resx">
       <DependentUpon>Form_004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Form_004_001.resx">
+      <DependentUpon>Form_004_001.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -194,6 +202,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Notes.txt" />
     <Content Include="Changes.txt" />
     <Content Include="EF\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -208,6 +217,7 @@
     <Content Include="icon.ico" />
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette - 30.png" />
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette.png" />
+    <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette_1-83MB.png" />
     <Content Include="Resources\Background Images\green-cloth-texture-1.jpg" />
     <Content Include="Resources\Icons\icon.ico" />
     <EmbeddedResource Include="Resources\Scripts\Initializer.sql" />

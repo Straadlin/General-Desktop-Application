@@ -20,6 +20,9 @@ namespace General_Desktop_Application.Presentation
         Form_003 objForm_003;
         Form_004 objForm_004;
 
+        // Properties
+        public Form_001 ObjForm_001 { get { return objForm_001; } }
+
         public Form_002(Form_001 objForm_001)
         {
             InitializeComponent();
@@ -50,7 +53,7 @@ namespace General_Desktop_Application.Presentation
             if (e.KeyCode == Keys.Escape)
                 Close();
             else if (e.KeyCode == Keys.F1)
-                MessageBox.Show("Versión: " + Preferences.CurrentVersion, Preferences.TitleSoftware);
+                MessageBox.Show(Preferences.InfoMessagesF1, Preferences.TitleSoftware);
             else if (e.KeyCode == Keys.Enter)
             {
                 if (txtUser.Focused && !string.IsNullOrEmpty(txtUser.Text))
@@ -67,6 +70,8 @@ namespace General_Desktop_Application.Presentation
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
                 var vUser = UserB.FindByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
@@ -78,25 +83,30 @@ namespace General_Desktop_Application.Presentation
                     if (vSession != null)
                     {
                         Hide();
-                        objForm_004 = new Form_004(this, vUser, null);
+                        objForm_004 = new Form_004(this, vUser, vSession);
                         objForm_004.Show();
                     }
                     else
                     {
+                        Cursor = Cursors.Default;
                         MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Didn't find any user with these data.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txtUser.Focus();
                 }
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("The user's data aren't incorrect.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtUser.Focus();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void lblSettings_MouseEnter(object sender, EventArgs e)

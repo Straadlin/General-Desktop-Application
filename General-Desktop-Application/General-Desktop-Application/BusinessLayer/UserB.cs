@@ -12,7 +12,7 @@ namespace General_Desktop_Application.BusinessLayer
 {
     class UserB
     {
-        public static int SelectCountAllUsers()
+        public static int GetCountAllUsers()
         {
             try
             {
@@ -29,18 +29,30 @@ namespace General_Desktop_Application.BusinessLayer
 
         public static user FindByUserNameOrEmailOrCellphone(string stUserNameEmailCellphone, string stPassword)
         {
-            user objUser = null;
-
             try
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    objUser = objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_password__nvarchar == stPassword).FirstOrDefault();
+                    return objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_password__nvarchar == stPassword).FirstOrDefault();
                 }
             }
             catch { }
 
-            return objUser;
+            return null;
+        }
+
+        public static List<user> GetAllUsers()
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.users.Where(u => u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).ToList();
+                }
+            }
+            catch { }
+
+            return null;
         }
     }
 }

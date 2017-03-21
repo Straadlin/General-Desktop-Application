@@ -25,6 +25,11 @@ namespace General_Desktop_Application.Presentation
             lblVersion.Text = "Versión " + Preferences.CurrentVersion;
         }
 
+        private void Form_001_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void timTimer_Tick(object sender, EventArgs e)
         {
             timTimer.Enabled = false;

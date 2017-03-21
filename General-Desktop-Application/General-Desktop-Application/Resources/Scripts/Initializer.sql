@@ -27,11 +27,33 @@ CREATE TABLE build_level001.country (coun_uuid__uniqueidentifier uniqueidentifie
 CREATE TABLE build_level001.[user] (user_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_username__nvarchar nvarchar(100) NULL, user_email__nvarchar nvarchar(100) NULL, user_cellphone__nvarchar varchar(10) NULL, user_password__nvarchar nvarchar(max) NOT NULL, user_firstname__nvarchar nvarchar(max) NOT NULL, user_lastname__nvarchar nvarchar(max) NOT NULL, user_rol__tinyint tinyint NOT NULL, user_extradata__nvarchar nvarchar(max) NULL, reso_uuid_picture__uniqueidentifier uniqueidentifier NULL, date_uuid_birthdate__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_root__uniqueidentifier uniqueidentifier NULL, sess_uuid_deleted__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (user_uuid__uniqueidentifier));
 CREATE TABLE build_level001.city (city_uuid__uniqueidentifier uniqueidentifier NOT NULL, city_name__nvarchar nvarchar(100) NOT NULL, stat_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (city_uuid__uniqueidentifier));
 CREATE TABLE build_level002.[session] (sess_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_starttime__time time(0) NOT NULL, sess_lastactivity__time time(0) NOT NULL, sess_ipbatch01__tinyint tinyint NULL, sess_ipbatch02__tinyint tinyint NULL, sess_ipbatch03__tinyint tinyint NULL, sess_ipbatch04__tinyint tinyint NULL, sess_extradata__nvarchar nvarchar(max) NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (sess_uuid__uniqueidentifier));
-CREATE TABLE build_level002.[date] (date_uuid__uniqueidentifier uniqueidentifier NOT NULL, date_value__date datetime NOT NULL, PRIMARY KEY (date_uuid__uniqueidentifier));
+CREATE TABLE build_level002.[date] (date_uuid__uniqueidentifier uniqueidentifier NOT NULL, date_value__date date NOT NULL, PRIMARY KEY (date_uuid__uniqueidentifier));
 CREATE TABLE build_level002.[resource] (reso_uuid__uniqueidentifier uniqueidentifier NOT NULL, reso_name__nvarchar nvarchar(100) NOT NULL, reso_extension__tinyint tinyint NOT NULL, reso_description__nvarchar nvarchar(max) NULL, reso_value__varbinary varbinary(max) NULL, reso_externalurlorname__nvarchar nvarchar(max) NULL, PRIMARY KEY (reso_uuid__uniqueidentifier));
-CREATE TABLE build_level001.[language] (lang_uuid__uniqueidentifier uniqueidentifier NOT NULL, lang_code__nvarchar nvarchar(6) NOT NULL, lang_name__nvarchar nvarchar(100) NOT NULL, PRIMARY KEY (lang_uuid__uniqueidentifier));
-CREATE TABLE build_level001.coin (coin_uuid__uniqueidentifier uniqueidentifier NOT NULL, coin_code__nvarchar nvarchar(6) NOT NULL, coin_name__nvarchar nvarchar(100) NOT NULL, PRIMARY KEY (coin_uuid__uniqueidentifier));
 CREATE TABLE build_level001.preference (pref_uuid__uniqueidentifier uniqueidentifier NOT NULL, pref_type__int int NOT NULL, pref_value__bit bit NULL, pref_value__tinyint tinyint NULL, pref_value__int int NULL, pref_value__nvarchar nvarchar(max) NULL, user_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, pref_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (pref_uuid__uniqueidentifier));
+CREATE TABLE build_level003.principalcompany (prco_uuid__uniqueidentifier uniqueidentifier NOT NULL, prco_rfc__nvarchar nvarchar(13) NULL, prco_name__nvarchar nvarchar(100) NOT NULL, prco_address__nvarchar nvarchar(255) NULL, prco_phone__nvarchar nvarchar(100) NULL, prco_email__nvarchar nvarchar(100) NULL, prco_facebook__nvarchar nvarchar(100) NULL, prco_developmentmode__bit bit NOT NULL, prco_timebetweenbackups__timestamp timestamp NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, prco_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (prco_uuid__uniqueidentifier));
+CREATE TABLE build_level003.[version] (vers_uuid__uniqueidentifier uniqueidentifier NOT NULL, vers_name__nvarchar nvarchar(12) NOT NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (vers_uuid__uniqueidentifier));
+
+GO
+
+CREATE PROCEDURE build_level001.proc_user_findLastBranch
+	@user_uuid__uniqueidentifier______Current uniqueidentifier,
+	@user_uuid__uniqueidentifier______Last uniqueidentifier OUTPUT
+	AS
+		WITH EmpCTE ([user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier])
+		AS
+		(
+			SELECT [user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier]
+				FROM build_level001.[user]
+				WHERE [user_uuid__uniqueidentifier] = @user_uuid__uniqueidentifier______Current
+			UNION ALL
+		--Recursiveness
+			SELECT e.[user_uuid__uniqueidentifier], e.[user_username__nvarchar], e.[user_email__nvarchar], e.[user_cellphone__nvarchar], e.[user_uuid_root__uniqueidentifier]
+				FROM build_level001.[user] AS e JOIN EmpCTE AS m
+					ON e.user_uuid_root__uniqueidentifier = m.[user_uuid__uniqueidentifier]
+		)
+		SELECT @user_uuid__uniqueidentifier______Last = user_uuid__uniqueidentifier FROM EmpCTE
+
+	RETURN 1
 
 GO
 
@@ -69,6 +91,7 @@ AS
 
 
 
+				-- We get a new UUID for the copy register
 				SET @user_uuid__uniqueidentifier___New = NEWID()
 				WHILE((SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___New)) > 0)
 				BEGIN
@@ -83,7 +106,7 @@ AS
 
 
 				SELECT TOP 1
-					--@@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
+					--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
 					@user_username__nvarchar = user_username__nvarchar, 
 					@user_email__nvarchar = user_email__nvarchar, 
 					@user_cellphone__nvarchar = user_cellphone__nvarchar, 
@@ -190,28 +213,6 @@ AS
 --SELECT * FROM build_level001.[user];
 
 --DROP TRIGGER [build_level001].[trigger_user_edit]
-
-GO
-
-CREATE PROCEDURE build_level001.proc_user_findLastBranch
-	@user_uuid__uniqueidentifier______Current uniqueidentifier,
-	@user_uuid__uniqueidentifier______Last uniqueidentifier OUTPUT
-	AS
-		WITH EmpCTE ([user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier])
-		AS
-		(
-			SELECT [user_uuid__uniqueidentifier], [user_username__nvarchar], [user_email__nvarchar], [user_cellphone__nvarchar], [user_uuid_root__uniqueidentifier]
-				FROM build_level001.[user]
-				WHERE [user_uuid__uniqueidentifier] = @user_uuid__uniqueidentifier______Current
-			UNION ALL
-		--RECURSIVIDAD
-			SELECT e.[user_uuid__uniqueidentifier], e.[user_username__nvarchar], e.[user_email__nvarchar], e.[user_cellphone__nvarchar], e.[user_uuid_root__uniqueidentifier]
-				FROM build_level001.[user] AS e JOIN EmpCTE AS m
-					ON e.user_uuid_root__uniqueidentifier = m.[user_uuid__uniqueidentifier]
-		)
-		SELECT @user_uuid__uniqueidentifier______Last = user_uuid__uniqueidentifier FROM EmpCTE
-
-	RETURN 1
 
 GO
 
@@ -1313,6 +1314,10 @@ ALTER TABLE build_level001.[user] ADD CONSTRAINT FKuser951719 FOREIGN KEY (reso_
 ALTER TABLE build_level001.preference ADD CONSTRAINT FKpreference627068 FOREIGN KEY (user_uuid__uniqueidentifier) REFERENCES build_level001.[user] (user_uuid__uniqueidentifier);
 ALTER TABLE build_level001.preference ADD CONSTRAINT FKpreference59225 FOREIGN KEY (sess_uuid_created__uniqueidentifier) REFERENCES build_level002.[session] (sess_uuid__uniqueidentifier);
 ALTER TABLE build_level001.[user] ADD CONSTRAINT FKuser954464 FOREIGN KEY (date_uuid_birthdate__uniqueidentifier) REFERENCES build_level002.[date] (date_uuid__uniqueidentifier);
+ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc68501 FOREIGN KEY (city_uuid__uniqueidentifier) REFERENCES build_level001.city (city_uuid__uniqueidentifier);
+ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc633898 FOREIGN KEY (prco_uuid_root__uniqueidentifier) REFERENCES build_level003.principalcompany (prco_uuid__uniqueidentifier);
+ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc389657 FOREIGN KEY (sess_uuid_created__uniqueidentifier) REFERENCES build_level002.[session] (sess_uuid__uniqueidentifier);
+ALTER TABLE build_level003.[version] ADD CONSTRAINT FKversion840117 FOREIGN KEY (date_uuid__uniqueidentifier) REFERENCES build_level002.[date] (date_uuid__uniqueidentifier);
 
 GO
 
@@ -1324,5 +1329,5 @@ CREATE INDEX user_user_cellphone__nvarchar ON build_level001.[user] (user_cellph
 CREATE INDEX city_city_name__nvarchar ON build_level001.city (city_name__nvarchar);
 CREATE UNIQUE INDEX date_date_value__date ON build_level002.[date] (date_value__date);
 CREATE INDEX resource_reso_name__nvarchar ON build_level002.[resource] (reso_name__nvarchar);
-CREATE UNIQUE INDEX language_lang_code__nvarchar ON build_level001.[language] (lang_code__nvarchar);
-CREATE UNIQUE INDEX coin_coin_code__nvarchar ON build_level001.coin (coin_code__nvarchar);
+
+

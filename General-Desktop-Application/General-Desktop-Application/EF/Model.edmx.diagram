@@ -4,17 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb4c35f12eaa489da937a1eb94b4fc93" Name="Diagram1">
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.city" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.coin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.country" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.language" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.preference" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.state" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.user" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.date" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.resource" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.session" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+      <Diagram DiagramId="fb4c35f12eaa489da937a1eb94b4fc93" Name="Diagram1" ShowGrid="true" ZoomLevel="86">
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.city" Width="2.125" PointX="0.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.country" Width="2.125" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.preference" Width="2.5" PointX="4.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.state" Width="2.125" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.user" Width="2.625" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.date" Width="2.125" PointX="9.875" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.resource" Width="2.5" PointX="6.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.session" Width="2.5" PointX="2.5" PointY="13.5" IsExpanded="true" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKcity970084" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser85024" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKstate183298" ManuallyRouted="false" />
@@ -25,10 +23,16 @@
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser138147" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser373134" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser377146" ManuallyRouted="false" />
-        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser515892" ManuallyRouted="false" />
+        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser515892" ManuallyRouted="false" ></AssociationConnector>
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser951719" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKuser954464" ManuallyRouted="false" />
         <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKsession541289" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.principalcompany" Width="2.75" PointX="1.625" PointY="19.875" />
+        <EntityTypeShape EntityType="straad_generaldesktopapplication_pcpcpcpc_001Model.version" Width="2.125" PointX="10.125" PointY="19.875" />
+        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc68501" />
+        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKversion840117" />
+        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc389657" />
+        <AssociationConnector Association="straad_generaldesktopapplication_pcpcpcpc_001Model.FKprincipalc633898" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

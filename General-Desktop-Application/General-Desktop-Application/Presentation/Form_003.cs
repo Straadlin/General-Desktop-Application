@@ -74,7 +74,7 @@ namespace General_Desktop_Application.Presentation
             if (e.KeyCode == Keys.Escape)
                 Close();
             else if (e.KeyCode == Keys.F1)
-                MessageBox.Show("Versión: " + Preferences.CurrentVersion, Preferences.TitleSoftware);
+                MessageBox.Show(Preferences.InfoMessagesF1, Preferences.TitleSoftware);
             else if (e.KeyCode == Keys.Enter)
             {
                 if (mskIP.Focused)
@@ -112,7 +112,7 @@ namespace General_Desktop_Application.Presentation
                     Settings.Default["Instance"] = cboInstanceConnection.Text;
                     Settings.Default.Save();
 
-                    if (UserB.SelectCountAllUsers() > 0)
+                    if (UserB.GetCountAllUsers() > 0)
                     {
                         MessageBox.Show("The connection test was done successfully.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objForm_002.Show();
@@ -139,7 +139,7 @@ namespace General_Desktop_Application.Presentation
                     Settings.Default.Save();
 
 
-                    if (UserB.SelectCountAllUsers() > 0)
+                    if (UserB.GetCountAllUsers() > 0)
                     {
                         MessageBox.Show("The connection test was done successfully.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objForm_002.Show();

@@ -19,6 +19,7 @@ namespace General_Desktop_Application.EF
         {
             this.users = new HashSet<user>();
             this.sessions = new HashSet<session>();
+            this.versions = new HashSet<version>();
         }
     
         public System.Guid date_uuid__uniqueidentifier { get; set; }
@@ -28,5 +29,7 @@ namespace General_Desktop_Application.EF
         public virtual ICollection<user> users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<session> sessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<version> versions { get; set; }
     }
 }

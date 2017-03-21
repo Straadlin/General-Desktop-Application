@@ -15,29 +15,25 @@ namespace General_Desktop_Application.EF
     
     public partial class straad_generaldesktopapplication_pcpcpcpc_001Entities : DbContext
     {
-        //public straad_generaldesktopapplication_pcpcpcpc_001Entities()
-        //    : base("name=straad_generaldesktopapplication_pcpcpcpc_001Entities")
-        //{
-        //}
         public straad_generaldesktopapplication_pcpcpcpc_001Entities()
-            : base(General_Desktop_Application.Classes.Preferences.Connectionstring)
+            : base("name=straad_generaldesktopapplication_pcpcpcpc_001Entities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<city> cities { get; set; }
-        public virtual DbSet<coin> coins { get; set; }
         public virtual DbSet<country> countries { get; set; }
-        public virtual DbSet<language> languages { get; set; }
         public virtual DbSet<preference> preferences { get; set; }
         public virtual DbSet<state> states { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<date> dates { get; set; }
         public virtual DbSet<resource> resources { get; set; }
         public virtual DbSet<session> sessions { get; set; }
+        public virtual DbSet<principalcompany> principalcompanies { get; set; }
+        public virtual DbSet<version> versions { get; set; }
     }
 }
