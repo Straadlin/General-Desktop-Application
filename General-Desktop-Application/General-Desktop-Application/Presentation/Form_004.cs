@@ -20,20 +20,23 @@ namespace General_Desktop_Application.Presentation
         Form_002 objForm_002;
         Form_004_001 objForm_004_001;
         user objUser;
+        proc_user_select_Result objUserNewModel;
         session objSession;
 
         // Attributes
+        bool boForceToClose = false;
 
         // Properties
         public user ObjUser { get { return objUser; } }
         public session ObjSession { get { return objSession; } }
         public ToolStripStatusLabel ObjToolStripStatusLabelCurrentSection { get { return tsslCurrentSection; } }
 
-        public Form_004(Form_002 objForm_002, user objUser, session objSession)
+        public Form_004(Form_002 objForm_002, user objUser, proc_user_select_Result objUserNewModel, session objSession)
         {
             this.objForm_002 = objForm_002;
             this.objUser = objUser;
             this.objSession = objSession;
+            this.objUserNewModel = objUserNewModel;
 
             InitializeComponent();
 
@@ -46,11 +49,13 @@ namespace General_Desktop_Application.Presentation
 
             Text += " - " + Preferences.TitleSoftware;
 
-            tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__nvarchar) ? objUser.user_username__nvarchar : (!string.IsNullOrEmpty(objUser.user_email__nvarchar) ? objUser.user_email__nvarchar : objUser.user_cellphone__nvarchar)) + " - " + objUser.user_firstname__nvarchar + " " + objUser.user_lastname__nvarchar;
+            tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__varchar) ? objUser.user_username__varchar : (!string.IsNullOrEmpty(objUser.user_email__varchar) ? objUser.user_email__varchar : objUser.user_cellphone__varchar)) + " - " + objUserNewModel.user_firstname__varchar + " " + objUserNewModel.user_lastname__varchar;
         }
 
         private void Form_004_FormClosed(object sender, FormClosedEventArgs e)
         {
+            timClock.Enabled = TimSession.Enabled = false;
+
             SessionB.UpdateLastTimeSession(objSession);
 
             //CloseWindows();
@@ -60,7 +65,7 @@ namespace General_Desktop_Application.Presentation
 
         private void Form_004_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Do you want to exit of application?", Preferences.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (!boForceToClose&&MessageBox.Show("Do you want to exit of application?", Preferences.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 e.Cancel = true;
         }
 
@@ -69,10 +74,24 @@ namespace General_Desktop_Application.Presentation
             Close();
         }
 
-        private void timClock_Tick(object sender, EventArgs e)
+        private async void timClock_Tick(object sender, EventArgs e)
         {
-            DateTime objDateTime = DateB.GetServersDateAndTime();
-            tsslDate.Text = "Server's date and time: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToLongTimeString();
+            timClock.Interval = 40000;
+
+            DateTime objDateTime = await DateB.GetServersDateAndTimeAsync();
+            tsslDate.Text = "Server's date and time: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToShortTimeString();
+            TimeSpan objTimeSpan = DateTime.Now - objDateTime;
+
+            if (objTimeSpan.TotalMinutes > 3)
+            {
+                boForceToClose = true;
+
+                timClock.Enabled = TimSession.Enabled = false;
+
+                MessageBox.Show("The difference of time between server and this device is incorrect, you need to check the clocs in both devices.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Close();
+            }
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

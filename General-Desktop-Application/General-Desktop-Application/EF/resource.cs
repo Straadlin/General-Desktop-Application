@@ -18,16 +18,19 @@ namespace General_Desktop_Application.EF
         public resource()
         {
             this.users = new HashSet<user>();
+            this.principalcompanies = new HashSet<principalcompany>();
         }
     
         public System.Guid reso_uuid__uniqueidentifier { get; set; }
-        public string reso_name__nvarchar { get; set; }
+        public string reso_name__varchar { get; set; }
         public byte reso_extension__tinyint { get; set; }
-        public string reso_description__nvarchar { get; set; }
+        public string reso_description__varchar { get; set; }
         public byte[] reso_value__varbinary { get; set; }
-        public string reso_externalurlorname__nvarchar { get; set; }
+        public string reso_externalurlorname__varchar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user> users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<principalcompany> principalcompanies { get; set; }
     }
 }

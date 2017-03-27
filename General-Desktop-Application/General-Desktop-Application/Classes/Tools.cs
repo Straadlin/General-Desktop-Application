@@ -77,5 +77,19 @@ namespace General_Desktop_Application.Classes
             if (File.Exists(Preferences.PathScriptInitializerFile))
                 File.Delete(Preferences.PathScriptInitializerFile);
         }
+
+        public static string ConvertToStringUtf8(string stValue)
+        {
+            try
+            {
+                byte[] utf8Bytes = Encoding.UTF8.GetBytes(stValue);
+
+                return Encoding.UTF8.GetString(utf8Bytes);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

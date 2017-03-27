@@ -74,22 +74,33 @@ namespace General_Desktop_Application.Presentation
 
             if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                var vUser = UserB.FindByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
+                var vUserNewModel = UserB.FindAndValidateByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
 
-                if (vUser != null)
+                if (vUserNewModel != null)
                 {
-                    var vSession = SessionB.CreateSession(vUser);
+                    var vUser = UserB.FindByUUID(vUserNewModel.user_uuid__uniqueidentifier);
 
-                    if (vSession != null)
+                    if (vUser != null)
                     {
-                        Hide();
-                        objForm_004 = new Form_004(this, vUser, vSession);
-                        objForm_004.Show();
+                        var vSession = SessionB.CreateSession(vUser);
+
+                        if (vSession != null)
+                        {
+                            Hide();
+                            objForm_004 = new Form_004(this, vUser, vUserNewModel, vSession);
+                            objForm_004.Show();
+                        }
+                        else
+                        {
+                            Cursor = Cursors.Default;
+                            MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                     else
                     {
                         Cursor = Cursors.Default;
-                        MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Didn't find any user with these data.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        txtUser.Focus();
                     }
                 }
                 else

@@ -216,7 +216,7 @@
             // timClock
             // 
             this.timClock.Enabled = true;
-            this.timClock.Interval = 1000;
+            this.timClock.Interval = 1;
             this.timClock.Tick += new System.EventHandler(this.timClock_Tick);
             // 
             // TimSession

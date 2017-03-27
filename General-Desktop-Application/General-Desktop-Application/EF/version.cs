@@ -15,7 +15,7 @@ namespace General_Desktop_Application.EF
     public partial class version
     {
         public System.Guid vers_uuid__uniqueidentifier { get; set; }
-        public string vers_name__nvarchar { get; set; }
+        public string vers_name__varchar { get; set; }
         public System.Guid date_uuid__uniqueidentifier { get; set; }
     
         public virtual date date { get; set; }

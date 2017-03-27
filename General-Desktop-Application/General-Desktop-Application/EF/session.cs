@@ -31,7 +31,7 @@ namespace General_Desktop_Application.EF
         public Nullable<byte> sess_ipbatch02__tinyint { get; set; }
         public Nullable<byte> sess_ipbatch03__tinyint { get; set; }
         public Nullable<byte> sess_ipbatch04__tinyint { get; set; }
-        public string sess_extradata__nvarchar { get; set; }
+        public string sess_extradata__varchar { get; set; }
         public System.Guid date_uuid__uniqueidentifier { get; set; }
         public System.Guid user_uuid_created__uniqueidentifier { get; set; }
     

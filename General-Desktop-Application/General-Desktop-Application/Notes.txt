@@ -1,4 +1,5 @@
 ﻿Problems:
+	Need to change type clumns from varchar to Nvarchar, like before
 
 	Form_004:
 		It ocurred an problem at close some subwindows. When I try to close "Form_004" shows me double question message in wich indicates me if I wish to

@@ -17,18 +17,18 @@ namespace General_Desktop_Application.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public city()
         {
-            this.users = new HashSet<user>();
             this.principalcompanies = new HashSet<principalcompany>();
+            this.users = new HashSet<user>();
         }
     
         public System.Guid city_uuid__uniqueidentifier { get; set; }
-        public string city_name__nvarchar { get; set; }
+        public string city_name__varchar { get; set; }
         public System.Guid stat_uuid__uniqueidentifier { get; set; }
     
         public virtual state state { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<principalcompany> principalcompanies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> users { get; set; }
     }
 }

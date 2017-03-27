@@ -25,7 +25,7 @@ namespace General_Desktop_Application.EF
         public Nullable<bool> pref_value__bit { get; set; }
         public Nullable<byte> pref_value__tinyint { get; set; }
         public Nullable<int> pref_value__int { get; set; }
-        public string pref_value__nvarchar { get; set; }
+        public string pref_value__varchar { get; set; }
         public System.Guid user_uuid__uniqueidentifier { get; set; }
         public System.Guid sess_uuid_created__uniqueidentifier { get; set; }
         public Nullable<System.Guid> pref_uuid_root__uniqueidentifier { get; set; }

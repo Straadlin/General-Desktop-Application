@@ -112,6 +112,7 @@ namespace General_Desktop_Application.Classes
         public static string PasswordDatabaseUser { get { return "6[A9$Sd#u-5CHJUsm_5Rxts-CtVa7SmE6"; } }
         public static string PasswordInstanceSAPWD { get { return "a123A45"; } }
         public static bool ArchitectDatabase64 { get { return true; } }
+        public static string EncryptDataPassword { get { return "'d-f5]8T.x6_[s3'"; } }
         //------------------------------------------------------------------------------------------
         public static string InfoMessagesF1 { get { return "Version: " + Preferences.CurrentVersion + "\r\nPC: " + Preferences.ProductCode; } }
     }

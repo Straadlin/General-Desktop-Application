@@ -296,6 +296,7 @@ namespace General_Desktop_Application.Presentation
                             stValue = stValue.Replace("_pspsps_", Preferences.PasswordDatabaseUser);
                             stValue = stValue.Replace("_internal_", Preferences.UserDatabase);
                             stValue = stValue.Replace("_dbname_", Preferences.DatabaseName);
+                            stValue = stValue.Replace("'d-f5]8T.x6_[s3'", Preferences.EncryptDataPassword);
 
                             objStreamReader.Close();
                         }

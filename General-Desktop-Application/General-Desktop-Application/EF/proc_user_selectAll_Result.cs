@@ -10,25 +10,16 @@
 namespace General_Desktop_Application.EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class user
+    public partial class proc_user_selectAll_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
-        {
-            this.preferences = new HashSet<preference>();
-            this.sessions = new HashSet<session>();
-            this.user1 = new HashSet<user>();
-        }
-    
         public System.Guid user_uuid__uniqueidentifier { get; set; }
         public string user_username__varchar { get; set; }
         public string user_email__varchar { get; set; }
         public string user_cellphone__varchar { get; set; }
         public byte[] user_password__varbinary { get; set; }
-        public byte[] user_firstname__varbinary { get; set; }
-        public byte[] user_lastname__varbinary { get; set; }
+        public string user_firstname__varchar { get; set; }
+        public string user_lastname__varchar { get; set; }
         public byte user_roleaccess__tinyint { get; set; }
         public string user_extradata__varchar { get; set; }
         public Nullable<System.Guid> reso_uuid_picture__uniqueidentifier { get; set; }
@@ -38,19 +29,5 @@ namespace General_Desktop_Application.EF
         public System.Guid sess_uuid_created__uniqueidentifier { get; set; }
         public Nullable<System.Guid> user_uuid_root__uniqueidentifier { get; set; }
         public Nullable<System.Guid> sess_uuid_deleted__uniqueidentifier { get; set; }
-    
-        public virtual city city { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preference> preferences { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<session> sessions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user1 { get; set; }
-        public virtual user user2 { get; set; }
-        public virtual session session { get; set; }
-        public virtual session session1 { get; set; }
-        public virtual session session2 { get; set; }
-        public virtual resource resource { get; set; }
-        public virtual date date { get; set; }
     }
 }
