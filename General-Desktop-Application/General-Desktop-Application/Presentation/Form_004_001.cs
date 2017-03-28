@@ -308,6 +308,7 @@ namespace General_Desktop_Application.Presentation
             {
                 case 1:
                     {
+
                         byte[] logo = Tools.ConvertirImagenAByte(pcbPicture.Image);
 
                         btnAccept.Visible = btnCancel.Visible = false;

@@ -152,10 +152,5 @@ namespace General_Desktop_Application.Presentation
         //        existe.Close();
         //    }
         //}
-
-        private void FreeRegistersUsedByThisUser()
-        {
-
-        }
     }
 }

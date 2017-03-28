@@ -119,34 +119,97 @@ namespace General_Desktop_Application.BusinessLayer
 
         public static bool DisableToEdit(Guid objGuid, session objSession)
         {
-            using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+            try
             {
-                user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
-
-                if (objUser != null)
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    objUser.sess_uuid_used__uniqueidentifier = objSession.sess_uuid__uniqueidentifier;
-                    objContext.SaveChanges();
+                    user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
+
+                    if (objUser != null)
+                    {
+                        objUser.sess_uuid_used__uniqueidentifier = objSession.sess_uuid__uniqueidentifier;
+                        objContext.SaveChanges();
+                    }
                 }
             }
+            catch { }
 
             return false;
         }
 
         public static bool EnableToEdit(Guid objGuid)
         {
-            using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+            try
             {
-                user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
-
-                if (objUser != null)
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    objUser.sess_uuid_used__uniqueidentifier = null;
-                    objContext.SaveChanges();
+                    user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
+
+                    if (objUser != null)
+                    {
+                        objUser.sess_uuid_used__uniqueidentifier = null;
+                        objContext.SaveChanges();
+
+                        return true;
+                    }
                 }
             }
+            catch { }
 
             return false;
+        }
+
+        public static user Add(
+            string stUsername,
+            string stEmail,
+            string stCellphone,
+            string stPassword,
+            string stFirstname,
+            string stLastname,
+            byte byRoleAccess,
+            string stExtradata,
+            byte[] byaPicture,
+            DateTime objDate,
+            string stCity,
+            string stState,
+            session objSessionCreator)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    Guid objGuid;
+                    do
+                    {
+                        objGuid = Guid.NewGuid();
+                    } while (objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objGuid).Count() > 0);
+
+                    //objContext.proc_user_insert(objGuid,stUsername,stEmail,stCellphone,stPassword,)
+
+                    //user objUser = new user()
+                    //{
+                    //    user_uuid__uniqueidentifier = objGuid,
+                    //    user_username__varchar = stUsername,
+                    //    user_email__varchar = stEmail,
+                    //    user_cellphone__varchar = stCellphone,
+                    //    user_password__varbinary,
+                    //    user_firstname__varbinary,
+                    //    user_lastname__varbinary,
+                    //    user_roleaccess__tinyint,
+                    //    user_extradata__varchar,
+                    //    reso_uuid_picture__uniqueidentifier,
+                    //    date_uuid_birthdate__uniqueidentifier,
+                    //    city_uuid__uniqueidentifier,
+                    //    sess_uuid_used__uniqueidentifier = null,
+                    //    sess_uuid_created__uniqueidentifier,
+                    //    user_uuid_root__uniqueidentifier = null,
+                    //    sess_uuid_deleted__uniqueidentifier = null
+                    //};
+                }
+            }
+            catch { }
+
+            return null;
         }
     }
 }

@@ -225,6 +225,7 @@
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette.png" />
     <Content Include="Resources\Background Images\desktopwallpaper-horizon-2560x1600-1-1-kvermette_1-83MB.png" />
     <Content Include="Resources\Background Images\green-cloth-texture-1.jpg" />
+    <Content Include="Resources\Diagrams\General-Desktop-Application-001.jpg" />
     <Content Include="Resources\Icons\icon.ico" />
     <EmbeddedResource Include="Resources\Scripts\Initializer.sql" />
   </ItemGroup>
