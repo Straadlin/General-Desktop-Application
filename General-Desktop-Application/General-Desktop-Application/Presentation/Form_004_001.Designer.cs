@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_004_001));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.pcbPicture = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -61,6 +61,8 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lsbUsers = new System.Windows.Forms.ListBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtRePassword = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -69,7 +71,9 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.IndianRed;
-            this.groupBox2.Controls.Add(this.btnUpdate);
+            this.groupBox2.Controls.Add(this.txtRePassword);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.pcbPicture);
             this.groupBox2.Controls.Add(this.btnDelete);
             this.groupBox2.Controls.Add(this.btnAdd);
@@ -103,15 +107,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del usuario";
             // 
-            // btnUpdate
+            // btnEdit
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(88, 280);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 112;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(88, 280);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 112;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // pcbPicture
             // 
@@ -120,11 +125,14 @@
             this.pcbPicture.Location = new System.Drawing.Point(352, 144);
             this.pcbPicture.Name = "pcbPicture";
             this.pcbPicture.Size = new System.Drawing.Size(248, 128);
+            this.pcbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbPicture.TabIndex = 22;
             this.pcbPicture.TabStop = false;
+            this.pcbPicture.DoubleClick += new System.EventHandler(this.pcbPicture_DoubleClick);
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(168, 280);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -164,6 +172,7 @@
             this.cboState.Name = "cboState";
             this.cboState.Size = new System.Drawing.Size(248, 21);
             this.cboState.TabIndex = 109;
+            this.cboState.SelectedIndexChanged += new System.EventHandler(this.cboState_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -269,8 +278,6 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(168, 20);
             this.txtPassword.TabIndex = 104;
-            this.txtPassword.MouseLeave += new System.EventHandler(this.txtPassword_MouseLeave);
-            this.txtPassword.MouseHover += new System.EventHandler(this.txtPassword_MouseHover);
             // 
             // cboRoleAccess
             // 
@@ -278,7 +285,7 @@
             this.cboRoleAccess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRoleAccess.Enabled = false;
             this.cboRoleAccess.FormattingEnabled = true;
-            this.cboRoleAccess.Location = new System.Drawing.Point(104, 120);
+            this.cboRoleAccess.Location = new System.Drawing.Point(104, 144);
             this.cboRoleAccess.Name = "cboRoleAccess";
             this.cboRoleAccess.Size = new System.Drawing.Size(168, 21);
             this.cboRoleAccess.TabIndex = 105;
@@ -306,7 +313,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 120);
+            this.label9.Location = new System.Drawing.Point(16, 144);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 8;
@@ -412,6 +419,26 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // txtRePassword
+            // 
+            this.txtRePassword.BackColor = System.Drawing.Color.RosyBrown;
+            this.txtRePassword.Enabled = false;
+            this.txtRePassword.Location = new System.Drawing.Point(104, 120);
+            this.txtRePassword.MaxLength = 30;
+            this.txtRePassword.Name = "txtRePassword";
+            this.txtRePassword.PasswordChar = '•';
+            this.txtRePassword.Size = new System.Drawing.Size(168, 20);
+            this.txtRePassword.TabIndex = 117;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 116;
+            this.label5.Text = "*RePassword:";
+            // 
             // Form_004_001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,7 +493,7 @@
         private System.Windows.Forms.PictureBox pcbPicture;
         private System.Windows.Forms.ComboBox cboCity;
         private System.Windows.Forms.ComboBox cboState;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClose;
@@ -474,5 +501,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.TextBox txtRePassword;
+        private System.Windows.Forms.Label label5;
     }
 }

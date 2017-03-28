@@ -12,7 +12,7 @@ using General_Desktop_Application.EF;
 
 namespace General_Desktop_Application.BusinessLayer
 {
-    class DateB
+    class BDate
     {
         public static date FindOrAddDate(DateTime objDateTime)
         {

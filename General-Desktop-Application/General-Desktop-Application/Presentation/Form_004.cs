@@ -50,13 +50,16 @@ namespace General_Desktop_Application.Presentation
             Text += " - " + Preferences.TitleSoftware;
 
             tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__varchar) ? objUser.user_username__varchar : (!string.IsNullOrEmpty(objUser.user_email__varchar) ? objUser.user_email__varchar : objUser.user_cellphone__varchar)) + " - " + objUserNewModel.user_firstname__varchar + " " + objUserNewModel.user_lastname__varchar;
+
+            Business.FreeAllRegistersAssociatedWithThisUser(objUser);
         }
 
         private void Form_004_FormClosed(object sender, FormClosedEventArgs e)
         {
             timClock.Enabled = TimSession.Enabled = false;
 
-            SessionB.UpdateLastTimeSession(objSession);
+            Business.FreeAllRegistersAssociatedWithThisUser(objUser);
+            BSession.UpdateLastTimeSession(objSession);
 
             //CloseWindows();
 
@@ -78,7 +81,7 @@ namespace General_Desktop_Application.Presentation
         {
             timClock.Interval = 40000;
 
-            DateTime objDateTime = await DateB.GetServersDateAndTimeAsync();
+            DateTime objDateTime = await BDate.GetServersDateAndTimeAsync();
             tsslDate.Text = "Server's date and time: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToShortTimeString();
             TimeSpan objTimeSpan = DateTime.Now - objDateTime;
 
@@ -131,13 +134,13 @@ namespace General_Desktop_Application.Presentation
 
             if (!string.IsNullOrEmpty(stIP))
             {
-                SessionB.ChangeIpSession(ObjSession, Convert.ToByte(stIP.Split('.')[0]), Convert.ToByte(stIP.Split('.')[1]), Convert.ToByte(stIP.Split('.')[2]), Convert.ToByte(stIP.Split('.')[3]));
+                BSession.ChangeIpSession(ObjSession, Convert.ToByte(stIP.Split('.')[0]), Convert.ToByte(stIP.Split('.')[1]), Convert.ToByte(stIP.Split('.')[2]), Convert.ToByte(stIP.Split('.')[3]));
             }
         }
 
         private async void UpdateDateSession()
         {
-            await SessionB.UpdateLastDateSessionAsync(objSession);
+            await BSession.UpdateLastDateSessionAsync(objSession);
         }
 
         //private void CloseWindows()
@@ -149,5 +152,10 @@ namespace General_Desktop_Application.Presentation
         //        existe.Close();
         //    }
         //}
+
+        private void FreeRegistersUsedByThisUser()
+        {
+
+        }
     }
 }

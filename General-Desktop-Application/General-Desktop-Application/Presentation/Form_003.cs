@@ -112,7 +112,7 @@ namespace General_Desktop_Application.Presentation
                     Settings.Default["Instance"] = cboInstanceConnection.Text;
                     Settings.Default.Save();
 
-                    if (UserB.GetCountAllUsers() > 0)
+                    if (BUser.GetCountAllUsers() > 0)
                     {
                         MessageBox.Show("The connection test was done successfully.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objForm_002.Show();
@@ -139,7 +139,7 @@ namespace General_Desktop_Application.Presentation
                     Settings.Default.Save();
 
 
-                    if (UserB.GetCountAllUsers() > 0)
+                    if (BUser.GetCountAllUsers() > 0)
                     {
                         MessageBox.Show("The connection test was done successfully.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objForm_002.Show();

@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using General_Desktop_Application.Enumerables;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
+
+using General_Desktop_Application.Enumerables;
 
 namespace General_Desktop_Application.Classes
 {
@@ -72,10 +76,18 @@ namespace General_Desktop_Application.Classes
             return null;
         }
 
-        public static void DeleteTemporalFiles()
+        public static bool DeleteTemporalFiles()
         {
-            if (File.Exists(Preferences.PathScriptInitializerFile))
-                File.Delete(Preferences.PathScriptInitializerFile);
+            try
+            {
+                if (File.Exists(Preferences.PathScriptInitializerFile))
+                    File.Delete(Preferences.PathScriptInitializerFile);
+
+                return true;
+            }
+            catch { }
+
+            return false;
         }
 
         public static string ConvertToStringUtf8(string stValue)
@@ -90,6 +102,73 @@ namespace General_Desktop_Application.Classes
             {
                 return null;
             }
+        }
+
+        public static byte[] ConvertirImagenAByte(Image objImagen)
+        {
+            if (objImagen != null)
+            {
+                // Reducimos el tamaño de la imágen para evitar desbordamientos de datos.
+                CambiarTamanoImagen(objImagen, 100, 100);
+
+                // Obtenemos los datos del logo y realizamos la conversión del logo.
+                byte[] logo = null;
+
+                if (objImagen != null)
+                {
+                    try
+                    {
+                        MemoryStream memoriaImagen = new MemoryStream();
+                        objImagen.Save(memoriaImagen, ImageFormat.Jpeg);
+
+                        logo = new byte[memoriaImagen.Length];
+                        memoriaImagen.Position = 0;
+                        memoriaImagen.Read(logo, 0, Convert.ToInt32(memoriaImagen.Length));
+
+                        return logo;
+                    }
+                    catch { }
+                }
+            }
+            return null;
+        }
+
+        public static Image ConvertirByteAImagen(byte[] imagen)
+        {
+            try
+            {
+                return Image.FromStream(new MemoryStream(imagen));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static Image CambiarTamanoImagen(Image objImagen, int ancho, int alto)
+        {
+            //creamos un bitmap con el nuevo tamaño
+
+            Bitmap vBitmap = new Bitmap(ancho, alto);
+
+            //creamos un graphics tomando como base el nuevo Bitmap
+
+            using (Graphics vGraphics = Graphics.FromImage((Image)vBitmap))
+            {
+
+                //especificamos el tipo de transformación, se escoge esta para no perder calidad.
+
+                vGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+                //Se dibuja la nueva imagen
+
+                vGraphics.DrawImage(objImagen, 0, 0, ancho, alto);
+
+            }
+
+            //retornamos la nueva imagen
+
+            return (Image)vBitmap;
         }
     }
 }

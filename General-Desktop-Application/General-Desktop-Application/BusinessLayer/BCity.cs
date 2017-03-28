@@ -10,7 +10,7 @@ using General_Desktop_Application.EF;
 
 namespace General_Desktop_Application.BusinessLayer
 {
-    class CityB
+    class BCity
     {
         public static List<city> GetAll()
         {

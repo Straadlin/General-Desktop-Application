@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace General_Desktop_Application.BusinessLayer
 {
-    class ResourceB
+    class BPreference
     {
     }
 }

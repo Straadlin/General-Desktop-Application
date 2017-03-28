@@ -62,14 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\Business.cs" />
-    <Compile Include="BusinessLayer\CityB.cs" />
-    <Compile Include="BusinessLayer\CountryB.cs" />
-    <Compile Include="BusinessLayer\DateB.cs" />
-    <Compile Include="BusinessLayer\PreferenceB.cs" />
-    <Compile Include="BusinessLayer\ResourceB.cs" />
-    <Compile Include="BusinessLayer\SessionB.cs" />
-    <Compile Include="BusinessLayer\StateB.cs" />
-    <Compile Include="BusinessLayer\UserB.cs" />
+    <Compile Include="BusinessLayer\BCity.cs" />
+    <Compile Include="BusinessLayer\BCountry.cs" />
+    <Compile Include="BusinessLayer\BDate.cs" />
+    <Compile Include="BusinessLayer\BPreference.cs" />
+    <Compile Include="BusinessLayer\BResource.cs" />
+    <Compile Include="BusinessLayer\BSession.cs" />
+    <Compile Include="BusinessLayer\BState.cs" />
+    <Compile Include="BusinessLayer\BUser.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Classes\Preferences.cs" />
     <Compile Include="Classes\SQLServer.cs" />

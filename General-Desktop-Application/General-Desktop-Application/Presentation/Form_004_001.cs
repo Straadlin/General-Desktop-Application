@@ -19,6 +19,7 @@ namespace General_Desktop_Application.Presentation
         // Objects
 
         // Attributes
+        byte byAction;
 
         // Propiedades
         public Form_004 ObjForm_004
@@ -37,6 +38,8 @@ namespace General_Desktop_Application.Presentation
 
         private void Form_004_001_Load(object sender, EventArgs e)
         {
+            byAction = 0;
+
             ObjForm_004.ActivateComponents(false, "Users");
 
             RefreshMainList();
@@ -59,7 +62,7 @@ namespace General_Desktop_Application.Presentation
         {
             lsbUsers.Items.Clear();
 
-            var vUsersNewModel = UserB.GetAllUsersDecrypted().OrderBy(u => u.user_username__varchar).ThenBy(u => u.user_firstname__varchar).ThenBy(u => u.user_lastname__varchar);
+            var vUsersNewModel = BUser.GetAllUsersDecrypted().OrderBy(u => u.user_username__varchar).ThenBy(u => u.user_firstname__varchar).ThenBy(u => u.user_lastname__varchar);
 
             foreach (var vItem in vUsersNewModel)
             {
@@ -69,88 +72,103 @@ namespace General_Desktop_Application.Presentation
             lblQuantity.Text = "[Quantity: " + lsbUsers.Items.Count + "]";
         }
 
-        private void RefreshAccessRoles()
+        private void RefreshRolesAccess()
         {
-            cboRoleAccess.Items.Clear();
-
             cboRoleAccess.Items.Add("1 - Administrator");
         }
 
         private void RefreshStates()
         {
-            cboState.Items.Clear();
-
-            foreach (var vItem in StateB.GetMexicosStates())
-            {
+            foreach (var vItem in BState.GetMexicosStates().OrderBy(s=>s.stat_name__varchar))
                 cboState.Items.Add(vItem.stat_name__varchar);
-            }
         }
 
         private void RefreshCities()
         {
-            cboCity.Items.Clear();
-
             if (cboState.SelectedIndex > 0)
             {
-                var vState = StateB.FindByName(cboState.SelectedItem.ToString());
-                foreach (var vItem in CityB.GetCities(vState))
-                    cboState.Items.Add(vItem.city_name__varchar);
+                var vState = BState.FindByName(cboState.SelectedItem.ToString());
+
+                if (vState != null)
+                {
+                    var vCities = BCity.GetCities(vState);
+
+                    if (vCities != null)
+                        foreach (var vItem in vCities.OrderBy(c => c.city_name__varchar))
+                            cboCity.Items.Add(vItem.city_name__varchar);
+                }
+
+                //foreach (var vItem in BCity.GetCities(vState))
+                //    cboState.Items.Add(vItem.city_name__varchar);
             }
-        }
-
-        private void txtPassword_MouseHover(object sender, EventArgs e)
-        {
-            if (txtPassword.Enabled)
-                txtPassword.PasswordChar = '\0';
-        }
-
-        private void txtPassword_MouseLeave(object sender, EventArgs e)
-        {
-                txtPassword.PasswordChar = '•';
         }
 
         private void lsbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var vUser = UserB.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
-
-            if (vUser != null)
+            if (byAction == 0 && lsbUsers.SelectedIndex > -1)
             {
-                RefreshAccessRoles();
-                RefreshStates();
-                RefreshCities();
+                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
 
-                var vUserNewModel=UserB.FindByUUIDDecrypted(vUser.user_uuid__uniqueidentifier);
-
-                txtUserName.Text = vUser.user_username__varchar;
-                txtEmail.Text = vUser.user_email__varchar;
-                txtCellphone.Text = vUser.user_cellphone__varchar;
-                txtFirstName.Text = vUserNewModel.user_firstname__varchar;
-                txtLastName.Text = vUserNewModel.user_lastname__varchar;
-                dtpBirthdate.Value = vUser.date_uuid_birthdate__uniqueidentifier != null ? vUser.date.date_value__date : new DateTime(2000, 1, 1);
-                if(vUser.city_uuid__uniqueidentifier != null)
+                if (vUser != null)
                 {
-                    cboCity.Text = vUser.city.city_name__varchar;
+                    btnEdit.Enabled = btnDelete.Enabled = true;
 
-                    cboState.Text = vUser.city.state.stat_name__varchar;
+                    cboRoleAccess.Items.Clear();
+                    cboState.Items.Clear();
+                    cboCity.Items.Clear();
+
+                    RefreshRolesAccess();
+                    RefreshStates();
+
+                    var vUserNewModel = BUser.FindByUUIDDecrypted(vUser.user_uuid__uniqueidentifier);
+
+                    txtUserName.Text = vUser.user_username__varchar;
+                    txtEmail.Text = vUser.user_email__varchar;
+                    txtCellphone.Text = vUser.user_cellphone__varchar;
+                    txtFirstName.Text = vUserNewModel.user_firstname__varchar;
+                    txtLastName.Text = vUserNewModel.user_lastname__varchar;
+                    dtpBirthdate.Value = vUser.date_uuid_birthdate__uniqueidentifier != null ? vUser.date.date_value__date : new DateTime(2000, 1, 1);
+
+                    if (vUser.city_uuid__uniqueidentifier != null)
+                    {
+                        cboState.Text = vUser.city.state.stat_name__varchar;
+
+                        RefreshCities();
+
+                        cboCity.Text = vUser.city.city_name__varchar;
+                    }
+
+                    if (vUser.reso_uuid_picture__uniqueidentifier != null)
+                        pcbPicture.Image = Tools.ConvertirByteAImagen(vUser.resource.reso_value__varbinary);
+
+                    btnEdit.Enabled = btnDelete.Enabled = true;
                 }
+                else
+                {
+                    txtUserName.Text = "";
+                    txtEmail.Text = "";
+                    txtCellphone.Text = "";
+                    txtPassword.Text = "";
+                    txtFirstName.Text = "";
+                    txtLastName.Text = "";
+                    dtpBirthdate.Value = new DateTime(2000, 1, 1);
 
-                //picture
-            }
-            else
-            {
-                txtUserName.Text = "";
-                txtEmail.Text = "";
-                txtCellphone.Text = "";
-                txtPassword.Text = "";
-                RefreshAccessRoles();
-                txtFirstName.Text = "";
-                txtLastName.Text = "";
-                dtpBirthdate.Value = new DateTime(2000, 1, 1);
-                RefreshStates();
-                RefreshCities();
-                //pcbPicture.clea
+                    cboRoleAccess.Items.Clear();
+                    cboState.Items.Clear();
+                    cboCity.Items.Clear();
 
-                RefreshMainList();
+                    RefreshRolesAccess();
+                    RefreshStates();
+
+                    pcbPicture.Image = null;
+
+                    RefreshMainList();
+
+                    if (lsbUsers.Items.Count > 0)
+                        lsbUsers.SelectedIndex = 0;
+
+                    btnEdit.Enabled = btnDelete.Enabled = false;
+                }
             }
         }
 
@@ -161,27 +179,330 @@ namespace General_Desktop_Application.Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            txtUserName.Enabled = true;
+            txtEmail.Enabled = true;
+            txtCellphone.Enabled = true;
+            txtPassword.Enabled = true;
+            txtRePassword.Enabled = true;
+            txtFirstName.Enabled = true;
+            txtLastName.Enabled = true;
+            dtpBirthdate.Enabled = true;
+            cboRoleAccess.Enabled = true;
+            cboState.Enabled = true;
+            cboCity.Enabled = true;
+            pcbPicture.Enabled = true;
 
+            txtUserName.Text = "";
+            txtEmail.Text = "";
+            txtCellphone.Text = "";
+            txtPassword.Text = "";
+            txtRePassword.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            dtpBirthdate.Value = new DateTime(2000, 01, 01);
+
+            cboRoleAccess.Items.Clear();
+            cboState.Items.Clear();
+            cboCity.Items.Clear();
+
+            RefreshRolesAccess();
+            RefreshStates();
+
+            pcbPicture.Image = null;
+
+            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
+            btnAccept.Visible = btnCancel.Visible = true;
+
+            byAction = 1;
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (lsbUsers.SelectedIndex > -1)
+            {
+                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
 
+                if (vUser != null)
+                {
+                    if (vUser.sess_uuid_used__uniqueidentifier == null)
+                    {
+                        BUser.DisableToEdit(vUser.user_uuid__uniqueidentifier, ObjForm_004.ObjSession);
+
+                        txtUserName.Enabled = true;
+                        txtEmail.Enabled = true;
+                        txtCellphone.Enabled = true;
+                        txtPassword.Enabled = true;
+                        txtRePassword.Enabled = true;
+                        txtFirstName.Enabled = true;
+                        txtLastName.Enabled = true;
+                        dtpBirthdate.Enabled = true;
+                        cboRoleAccess.Enabled = true;
+                        cboState.Enabled = true;
+                        cboCity.Enabled = true;
+                        pcbPicture.Enabled = true;
+
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
+                        btnAccept.Visible = btnCancel.Visible = true;
+
+                        byAction = 2;
+                    }
+                    else
+                    {
+                        MessageBox.Show("It isn't possible delete this user because in other session some user is editing it.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The user doesn't exist.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select some user in the list.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (lsbUsers.SelectedIndex > -1)
+            {
+                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
 
+                if (vUser != null)
+                {
+                    if (vUser.sess_uuid_used__uniqueidentifier == null)
+                    {
+                        if (vUser.user_uuid__uniqueidentifier != ObjForm_004.ObjUser.user_uuid__uniqueidentifier)
+                        {
+                            BUser.DisableToEdit(vUser.user_uuid__uniqueidentifier, ObjForm_004.ObjSession);
+
+                            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
+                            btnAccept.Visible = btnCancel.Visible = true;
+
+                            byAction = 3;
+                        }
+                        else
+                        {
+                            MessageBox.Show("It isn't possible delete this user because you're using right now.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("It isn't possible delete this user because in other session some user is editing it.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The user doesn't exist.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select some user in the list.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            switch (byAction)
+            {
+                case 1:
+                    {
+                        byte[] logo = Tools.ConvertirImagenAByte(pcbPicture.Image);
 
+                        btnAccept.Visible = btnCancel.Visible = false;
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        byAction = 0;
+                        break;
+                    }
+                case 2:
+                    {
+                        btnAccept.Visible = btnCancel.Visible = false;
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        byAction = 0;
+                        break;
+                    }
+                case 3:
+                    {
+                        btnAccept.Visible = btnCancel.Visible = false;
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        byAction = 0;
+                        break;
+                    }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            switch (byAction)
+            {
+                case 1:
+                    {
+                        txtUserName.Enabled = false;
+                        txtEmail.Enabled = false;
+                        txtCellphone.Enabled = false;
+                        txtPassword.Enabled = false;
+                        txtRePassword.Enabled = false;
+                        txtFirstName.Enabled = false;
+                        txtLastName.Enabled = false;
+                        dtpBirthdate.Enabled = false;
+                        cboRoleAccess.Enabled = false;
+                        cboState.Enabled = false;
+                        cboCity.Enabled = false;
+                        pcbPicture.Enabled = false;
 
+                        txtUserName.Text = "";
+                        txtEmail.Text = "";
+                        txtCellphone.Text = "";
+                        txtPassword.Text = "";
+                        txtRePassword.Text = "";
+                        txtFirstName.Text = "";
+                        txtLastName.Text = "";
+                        dtpBirthdate.Value = new DateTime(2000, 01, 01);
+
+                        cboRoleAccess.Items.Clear();
+                        cboState.Items.Clear();
+                        cboCity.Items.Clear();
+
+                        RefreshRolesAccess();
+                        RefreshStates();
+                        pcbPicture.Image = null;
+
+                        btnEdit.Enabled = btnDelete.Enabled = false;
+
+                        btnAccept.Visible = btnCancel.Visible = false;
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        byAction = 0;
+                        break;
+                    }
+                case 2:
+                    {
+                        var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                        if (vUser != null)
+                        {
+                            BUser.EnableToEdit(vUser.user_uuid__uniqueidentifier);
+
+                            txtUserName.Enabled = false;
+                            txtEmail.Enabled = false;
+                            txtCellphone.Enabled = false;
+                            txtPassword.Enabled = false;
+                            txtRePassword.Enabled = false;
+                            txtFirstName.Enabled = false;
+                            txtLastName.Enabled = false;
+                            dtpBirthdate.Enabled = false;
+                            cboRoleAccess.Enabled = false;
+                            cboState.Enabled = false;
+                            cboCity.Enabled = false;
+                            pcbPicture.Enabled = false;
+
+                            txtUserName.Text = "";
+                            txtEmail.Text = "";
+                            txtCellphone.Text = "";
+                            txtPassword.Text = "";
+                            txtRePassword.Text = "";
+                            txtFirstName.Text = "";
+                            txtLastName.Text = "";
+                            dtpBirthdate.Value = new DateTime(2000, 01, 01);
+
+                            cboRoleAccess.Items.Clear();
+                            cboState.Items.Clear();
+                            cboCity.Items.Clear();
+
+                            RefreshRolesAccess();
+                            RefreshStates();
+                            pcbPicture.Image = null;
+
+                            btnEdit.Enabled = btnDelete.Enabled = false;
+
+                            btnAccept.Visible = btnCancel.Visible = false;
+                            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            byAction = 0;
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                        if (vUser != null)
+                        {
+                            BUser.EnableToEdit(vUser.user_uuid__uniqueidentifier);
+
+                            txtUserName.Text = "";
+                            txtEmail.Text = "";
+                            txtCellphone.Text = "";
+                            txtPassword.Text = "";
+                            txtRePassword.Text = "";
+                            txtFirstName.Text = "";
+                            txtLastName.Text = "";
+                            dtpBirthdate.Value = new DateTime(2000, 01, 01);
+
+                            cboRoleAccess.Items.Clear();
+                            cboState.Items.Clear();
+                            cboCity.Items.Clear();
+
+                            RefreshRolesAccess();
+                            RefreshStates();
+                            pcbPicture.Image = null;
+
+                            btnEdit.Enabled = btnDelete.Enabled = false;
+
+                            btnAccept.Visible = btnCancel.Visible = false;
+                            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            byAction = 0;
+                        }
+                        break;
+                    }
+            }
+        }
+
+        private void pcbPicture_DoubleClick(object sender, EventArgs e)
+        {
+            if (byAction > 0)
+            {
+                OpenFileDialog objOpenFileDialog = new OpenFileDialog();
+                objOpenFileDialog.Filter = "Picture files |*.jpg";
+
+                if (objOpenFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    String direccion = objOpenFileDialog.FileName;
+                    pcbPicture.ImageLocation = direccion;
+                }
+                else
+                {
+                    pcbPicture.Image = null;
+                    MessageBox.Show("The picture hasn't been uploaded.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void cboState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboCity.Items.Clear();
+
+            RefreshCities();
+
+            //var vState = BState.FindByName(cboState.Text.Split(' ')[0]);
+
+            //if (vState != null)
+            //{
+            //    var vCities = BCity.GetCities(vState).OrderBy(c => c.city_name__varchar);
+
+            //    if (vCities != null)
+            //    {
+            //        foreach (var vItem in vCities)
+            //        {
+            //            cboCity.Items.Add(vItem.city_name__varchar);
+            //        }
+            //    }
+            //}
         }
     }
 }

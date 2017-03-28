@@ -450,150 +450,199 @@ ON build_level001.[user]
 INSTEAD OF UPDATE
 AS
 	BEGIN
-		SET NOCOUNT ON;--Para impedir que una instrucción de asignación devuelva un resultado
-		-- Inserta aquí las instrucciones
+		SET NOCOUNT ON;--It's to prevent an assigned instruction returns a result
 
-		BEGIN TRY
-			BEGIN TRAN tranOperation
-				--
-				--SELECT * FROM inserted
+		IF((SELECT COUNT(*) FROM Inserted WHERE(sess_uuid_used__uniqueidentifier IS NULL)) = 1)
+			BEGIN
 
+				--> Here starts part 1
 
+				-- We'll see if in the new values there isn't a value for the used column, and then, we'll see if the previous value was different to
+				-- NULL, in this case, we'll refresh this field with NULL value
 
-				DECLARE @user_uuid__uniqueidentifier___New uniqueidentifier
-				DECLARE @user_username__varchar varchar(100)
-				DECLARE @user_email__varchar varchar(100)
-				DECLARE @user_cellphone__varchar varchar(10)
-				DECLARE @user_password__varbinary varbinary(max)
-				DECLARE @user_firstname__varbinary varbinary(max)
-				DECLARE @user_lastname__varbinary varbinary(max)
-				DECLARE @user_roleaccess__tinyint tinyint
-				DECLARE @user_extradata__varchar varchar(max)
-				DECLARE @reso_uuid_picture__uniqueidentifier uniqueidentifier
-				DECLARE @date_uuid_birthdate__uniqueidentifier uniqueidentifier
-				DECLARE @city_uuid__uniqueidentifier uniqueidentifier
-				--DECLARE @sess_uuid_used__uniqueidentifier uniqueidentifier
-				DECLARE @sess_uuid_created__uniqueidentifier uniqueidentifier
-				--DECLARE @user_uuid_root__uniqueidentifier uniqueidentifier
-				DECLARE @sess_uuid_deleted__uniqueidentifier uniqueidentifier
+				DECLARE @user_uuid__uniqueidentifier___Part1 UNIQUEIDENTIFIER
+				--DECLARE @band BIT
 
+				SELECT @user_uuid__uniqueidentifier___Part1 = user_uuid__uniqueidentifier--, @band = 1
+					FROM Inserted WHERE(sess_uuid_used__uniqueidentifier IS NULL);
 
+				--IF(@band = 1 AND (SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @@user_uuid__uniqueidentifier___Part1 AND sess_uuid_used__uniqueidentifier IS NOT NULL)) > 0)
+				IF(@user_uuid__uniqueidentifier___Part1 IS NOT NULL AND (SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___Part1 AND sess_uuid_used__uniqueidentifier IS NOT NULL)) > 0)
+					BEGIN
+						UPDATE build_level001.[user] SET 
+							sess_uuid_used__uniqueidentifier = NULL 
+							WHERE (user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___Part1);
 
-				-- We get a new UUID for the copy register
-				SET @user_uuid__uniqueidentifier___New = NEWID()
-				WHILE((SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___New)) > 0)
-				BEGIN
-					SET @user_uuid__uniqueidentifier___New = NEWID()
-				END
+					--< Here ends part 1
 
+					END
+				ELSE
+					BEGIN
 
+						--> Here start part 2
 
-				DECLARE @user_uuid__uniqueidentifier______Current uniqueidentifier
-				SELECT @user_uuid__uniqueidentifier______Current = user_uuid__uniqueidentifier FROM inserted
+						-- In this point, it'll mean that we'll insert a historic value to be storage, with all its column values.
 
+						BEGIN TRY
+							BEGIN TRAN tranOperation
 
-
-				SELECT TOP 1
-					--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
-					@user_username__varchar = user_username__varchar, 
-					@user_email__varchar = user_email__varchar, 
-					@user_cellphone__varchar = user_cellphone__varchar, 
-					@user_password__varbinary = user_password__varbinary, 
-					@user_firstname__varbinary = user_firstname__varbinary, 
-					@user_lastname__varbinary = user_lastname__varbinary, 
-					@user_roleaccess__tinyint = user_roleaccess__tinyint, 
-					@user_extradata__varchar = user_extradata__varchar, 
-					@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
-					@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
-					@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
-					--sess_uuid_used__uniqueidentifier 
-					@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier, 
-					--user_uuid_root__uniqueidentifier
-					@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
-					FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current);
+								DECLARE @user_uuid__uniqueidentifier___New uniqueidentifier
+								DECLARE @user_username__varchar varchar(100)
+								DECLARE @user_email__varchar varchar(100)
+								DECLARE @user_cellphone__varchar varchar(10)
+								DECLARE @user_password__varbinary varbinary(max)
+								DECLARE @user_firstname__varbinary varbinary(max)
+								DECLARE @user_lastname__varbinary varbinary(max)
+								DECLARE @user_roleaccess__tinyint tinyint
+								DECLARE @user_extradata__varchar varchar(max)
+								DECLARE @reso_uuid_picture__uniqueidentifier uniqueidentifier
+								DECLARE @date_uuid_birthdate__uniqueidentifier uniqueidentifier
+								DECLARE @city_uuid__uniqueidentifier uniqueidentifier
+								--DECLARE @sess_uuid_used__uniqueidentifier uniqueidentifier
+								DECLARE @sess_uuid_created__uniqueidentifier uniqueidentifier
+								--DECLARE @user_uuid_root__uniqueidentifier uniqueidentifier
+								DECLARE @sess_uuid_deleted__uniqueidentifier uniqueidentifier
 
 
 
-				--SELECT @user_uuid__uniqueidentifier
+								-- We get a new UUID for the copy register
+								SET @user_uuid__uniqueidentifier___New = NEWID()
+								WHILE((SELECT COUNT(*) FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___New)) > 0)
+								BEGIN
+									SET @user_uuid__uniqueidentifier___New = NEWID()
+								END
 
 
 
-				-- We get last ID of the list (Recursiveness)
-				DECLARE @user_uuid__uniqueidentifier______Last uniqueidentifier
-				EXEC build_level001.proc_user_findLastBranch @user_uuid__uniqueidentifier______Current = @user_uuid__uniqueidentifier______Current,  @user_uuid__uniqueidentifier______Last = @user_uuid__uniqueidentifier______Last OUTPUT;
+								DECLARE @user_uuid__uniqueidentifier______Current uniqueidentifier
+								SELECT @user_uuid__uniqueidentifier______Current = user_uuid__uniqueidentifier FROM inserted
+
+
+
+								SELECT TOP 1
+									--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
+									@user_username__varchar = user_username__varchar, 
+									@user_email__varchar = user_email__varchar, 
+									@user_cellphone__varchar = user_cellphone__varchar, 
+									@user_password__varbinary = user_password__varbinary, 
+									@user_firstname__varbinary = user_firstname__varbinary, 
+									@user_lastname__varbinary = user_lastname__varbinary, 
+									@user_roleaccess__tinyint = user_roleaccess__tinyint, 
+									@user_extradata__varchar = user_extradata__varchar, 
+									@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
+									@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
+									@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
+									--sess_uuid_used__uniqueidentifier 
+									@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier, 
+									--user_uuid_root__uniqueidentifier
+									@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
+									FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current);
+
+
+
+								--SELECT @user_uuid__uniqueidentifier
+
+
+
+								-- We get last ID of the list (Recursiveness)
+								DECLARE @user_uuid__uniqueidentifier______Last uniqueidentifier
+								EXEC build_level001.proc_user_findLastBranch @user_uuid__uniqueidentifier______Current = @user_uuid__uniqueidentifier______Current,  @user_uuid__uniqueidentifier______Last = @user_uuid__uniqueidentifier______Last OUTPUT;
 				
 
 
-				-- First we store the copy register
-				INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varbinary, user_firstname__varbinary, user_lastname__varbinary, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) 
-					VALUES(
-						@user_uuid__uniqueidentifier___New,
-						@user_username__varchar,
-						@user_email__varchar,
-						@user_cellphone__varchar, 
-						@user_password__varbinary, 
-						@user_firstname__varbinary, 
-						@user_lastname__varbinary, 
-						@user_roleaccess__tinyint, 
-						@user_extradata__varchar, 
-						@reso_uuid_picture__uniqueidentifier, 
-						@date_uuid_birthdate__uniqueidentifier, 
-						@city_uuid__uniqueidentifier, 
-						NULL, 
-						@sess_uuid_created__uniqueidentifier, 
-						@user_uuid__uniqueidentifier______Last, 
-						@sess_uuid_deleted__uniqueidentifier
-						);
+								-- First we store the copy register
+								INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varbinary, user_firstname__varbinary, user_lastname__varbinary, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) 
+									VALUES(
+										@user_uuid__uniqueidentifier___New,
+										@user_username__varchar,
+										@user_email__varchar,
+										@user_cellphone__varchar, 
+										@user_password__varbinary, 
+										@user_firstname__varbinary, 
+										@user_lastname__varbinary, 
+										@user_roleaccess__tinyint, 
+										@user_extradata__varchar, 
+										@reso_uuid_picture__uniqueidentifier, 
+										@date_uuid_birthdate__uniqueidentifier, 
+										@city_uuid__uniqueidentifier, 
+										NULL, 
+										@sess_uuid_created__uniqueidentifier, 
+										@user_uuid__uniqueidentifier______Last, 
+										@sess_uuid_deleted__uniqueidentifier
+										);
 
 
 
-				SELECT 
-					--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
-					@user_username__varchar = user_username__varchar, 
-					@user_email__varchar = user_email__varchar, 
-					@user_cellphone__varchar = user_cellphone__varchar, 
-					@user_password__varbinary = user_password__varbinary, 
-					@user_firstname__varbinary = user_firstname__varbinary, 
-					@user_lastname__varbinary = user_lastname__varbinary, 
-					@user_roleaccess__tinyint = user_roleaccess__tinyint, 
-					@user_extradata__varchar = user_extradata__varchar, 
-					@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
-					@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
-					@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
-					--sess_uuid_used__uniqueidentifier, 
-					@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier,
-					--user_uuid_root__uniqueidentifier 
-					@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
-					FROM inserted
+								SELECT 
+									--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
+									@user_username__varchar = user_username__varchar, 
+									@user_email__varchar = user_email__varchar, 
+									@user_cellphone__varchar = user_cellphone__varchar, 
+									@user_password__varbinary = user_password__varbinary, 
+									@user_firstname__varbinary = user_firstname__varbinary, 
+									@user_lastname__varbinary = user_lastname__varbinary, 
+									@user_roleaccess__tinyint = user_roleaccess__tinyint, 
+									@user_extradata__varchar = user_extradata__varchar, 
+									@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
+									@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
+									@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
+									--sess_uuid_used__uniqueidentifier, 
+									@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier,
+									--user_uuid_root__uniqueidentifier 
+									@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
+									FROM inserted
 
 
 
-				UPDATE build_level001.[user] SET  
-					user_username__varchar = @user_username__varchar, 
-					user_email__varchar = @user_email__varchar, 
-					user_cellphone__varchar = @user_cellphone__varchar, 
-					user_password__varbinary = @user_password__varbinary, 
-					user_firstname__varbinary = @user_firstname__varbinary, 
-					user_lastname__varbinary = @user_lastname__varbinary, 
-					user_roleaccess__tinyint = @user_roleaccess__tinyint, 
-					user_extradata__varchar = @user_extradata__varchar, 
-					reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier, 
-					date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier, 
-					city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier, 
-					sess_uuid_used__uniqueidentifier = NULL, 
-					sess_uuid_created__uniqueidentifier = @sess_uuid_created__uniqueidentifier, 
-					user_uuid_root__uniqueidentifier = NULL, 
-					sess_uuid_deleted__uniqueidentifier = @sess_uuid_deleted__uniqueidentifier
-					WHERE([user].user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current)
+								UPDATE build_level001.[user] SET  
+									user_username__varchar = @user_username__varchar, 
+									user_email__varchar = @user_email__varchar, 
+									user_cellphone__varchar = @user_cellphone__varchar, 
+									user_password__varbinary = @user_password__varbinary, 
+									user_firstname__varbinary = @user_firstname__varbinary, 
+									user_lastname__varbinary = @user_lastname__varbinary, 
+									user_roleaccess__tinyint = @user_roleaccess__tinyint, 
+									user_extradata__varchar = @user_extradata__varchar, 
+									reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier, 
+									date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier, 
+									city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier, 
+									sess_uuid_used__uniqueidentifier = NULL, 
+									sess_uuid_created__uniqueidentifier = @sess_uuid_created__uniqueidentifier, 
+									user_uuid_root__uniqueidentifier = NULL, 
+									sess_uuid_deleted__uniqueidentifier = @sess_uuid_deleted__uniqueidentifier
+									WHERE([user].user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current)
 
 
-				--
-			COMMIT TRAN tranOperation
-		END TRY
+								--
+							COMMIT TRAN tranOperation
+						END TRY
 
-		BEGIN CATCH
-			ROLLBACK TRAN tranOperation
-		END CATCH
+						BEGIN CATCH
+							ROLLBACK TRAN tranOperation
+						END CATCH
+
+						--< Here ends part 2
+					END
+			END
+		ELSE
+			BEGIN
+				--> Here ends part 3
+
+				-- If the register receives one value, different to NULL, in the used column then, we'll only add the value for this column, the others values will be ignored.
+
+				DECLARE  @user_uuid__uniqueidentifier UNIQUEIDENTIFIER
+				DECLARE  @sess_uuid_used__uniqueidentifier UNIQUEIDENTIFIER
+
+				SELECT @user_uuid__uniqueidentifier = user_uuid__uniqueidentifier, 
+					@sess_uuid_used__uniqueidentifier = sess_uuid_used__uniqueidentifier
+					FROM Inserted;
+
+				UPDATE build_level001.[user] SET 
+					sess_uuid_used__uniqueidentifier = @sess_uuid_used__uniqueidentifier 
+					WHERE (user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier);
+
+				--< Here ends part 3
+			END
 	END
 
 GO

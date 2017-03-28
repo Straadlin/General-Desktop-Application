@@ -10,7 +10,7 @@ using General_Desktop_Application.EF;
 
 namespace General_Desktop_Application.BusinessLayer
 {
-    class UserB
+    class BUser
     {
         public static int GetCountAllUsers()
         {
@@ -115,6 +115,38 @@ namespace General_Desktop_Application.BusinessLayer
             catch { }
 
             return null;
+        }
+
+        public static bool DisableToEdit(Guid objGuid, session objSession)
+        {
+            using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+            {
+                user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
+
+                if (objUser != null)
+                {
+                    objUser.sess_uuid_used__uniqueidentifier = objSession.sess_uuid__uniqueidentifier;
+                    objContext.SaveChanges();
+                }
+            }
+
+            return false;
+        }
+
+        public static bool EnableToEdit(Guid objGuid)
+        {
+            using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+            {
+                user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
+
+                if (objUser != null)
+                {
+                    objUser.sess_uuid_used__uniqueidentifier = null;
+                    objContext.SaveChanges();
+                }
+            }
+
+            return false;
         }
     }
 }

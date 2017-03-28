@@ -10,7 +10,7 @@ using General_Desktop_Application.EF;
 
 namespace General_Desktop_Application.BusinessLayer
 {
-    class CountryB
+    class BCountry
     {
         public static country FindByCode(string stCode)
         {

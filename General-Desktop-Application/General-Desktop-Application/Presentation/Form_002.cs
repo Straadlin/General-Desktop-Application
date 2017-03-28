@@ -74,15 +74,15 @@ namespace General_Desktop_Application.Presentation
 
             if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                var vUserNewModel = UserB.FindAndValidateByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
+                var vUserNewModel = BUser.FindAndValidateByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
 
                 if (vUserNewModel != null)
                 {
-                    var vUser = UserB.FindByUUID(vUserNewModel.user_uuid__uniqueidentifier);
+                    var vUser = BUser.FindByUUID(vUserNewModel.user_uuid__uniqueidentifier);
 
                     if (vUser != null)
                     {
-                        var vSession = SessionB.CreateSession(vUser);
+                        var vSession = BSession.CreateSession(vUser);
 
                         if (vSession != null)
                         {
