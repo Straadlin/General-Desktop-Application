@@ -15,7 +15,7 @@ using General_Desktop_Application.Enumerables;
 
 namespace General_Desktop_Application.Classes
 {
-    class Tools
+    public static class Tools
     {
         public static string GetMessageBox(int iErrorMessage)
         {

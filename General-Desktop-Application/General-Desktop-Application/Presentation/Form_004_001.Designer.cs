@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_004_001));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtRePassword = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pcbPicture = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -61,8 +63,6 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lsbUsers = new System.Windows.Forms.ListBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtRePassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -107,13 +107,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del usuario";
             // 
+            // txtRePassword
+            // 
+            this.txtRePassword.BackColor = System.Drawing.Color.RosyBrown;
+            this.txtRePassword.Enabled = false;
+            this.txtRePassword.Location = new System.Drawing.Point(104, 120);
+            this.txtRePassword.MaxLength = 30;
+            this.txtRePassword.Name = "txtRePassword";
+            this.txtRePassword.PasswordChar = '•';
+            this.txtRePassword.Size = new System.Drawing.Size(168, 20);
+            this.txtRePassword.TabIndex = 105;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 116;
+            this.label5.Text = "*RePassword:";
+            // 
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.Location = new System.Drawing.Point(88, 280);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 112;
+            this.btnEdit.TabIndex = 113;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -124,7 +144,7 @@
             this.pcbPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pcbPicture.Location = new System.Drawing.Point(352, 144);
             this.pcbPicture.Name = "pcbPicture";
-            this.pcbPicture.Size = new System.Drawing.Size(248, 128);
+            this.pcbPicture.Size = new System.Drawing.Size(144, 128);
             this.pcbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbPicture.TabIndex = 22;
             this.pcbPicture.TabStop = false;
@@ -136,7 +156,7 @@
             this.btnDelete.Location = new System.Drawing.Point(168, 280);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 113;
+            this.btnDelete.TabIndex = 114;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -146,7 +166,7 @@
             this.btnAdd.Location = new System.Drawing.Point(8, 280);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 111;
+            this.btnAdd.TabIndex = 112;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -160,7 +180,7 @@
             this.cboCity.Location = new System.Drawing.Point(352, 120);
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(248, 21);
-            this.cboCity.TabIndex = 110;
+            this.cboCity.TabIndex = 111;
             // 
             // cboState
             // 
@@ -171,7 +191,7 @@
             this.cboState.Location = new System.Drawing.Point(352, 96);
             this.cboState.Name = "cboState";
             this.cboState.Size = new System.Drawing.Size(248, 21);
-            this.cboState.TabIndex = 109;
+            this.cboState.TabIndex = 110;
             this.cboState.SelectedIndexChanged += new System.EventHandler(this.cboState_SelectedIndexChanged);
             // 
             // label12
@@ -216,7 +236,7 @@
             this.dtpBirthdate.Location = new System.Drawing.Point(352, 72);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.Size = new System.Drawing.Size(248, 20);
-            this.dtpBirthdate.TabIndex = 108;
+            this.dtpBirthdate.TabIndex = 109;
             // 
             // txtCellphone
             // 
@@ -288,7 +308,7 @@
             this.cboRoleAccess.Location = new System.Drawing.Point(104, 144);
             this.cboRoleAccess.Name = "cboRoleAccess";
             this.cboRoleAccess.Size = new System.Drawing.Size(168, 21);
-            this.cboRoleAccess.TabIndex = 105;
+            this.cboRoleAccess.TabIndex = 106;
             // 
             // txtLastName
             // 
@@ -298,7 +318,7 @@
             this.txtLastName.MaxLength = 30;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(248, 20);
-            this.txtLastName.TabIndex = 107;
+            this.txtLastName.TabIndex = 108;
             // 
             // txtFirstName
             // 
@@ -308,7 +328,7 @@
             this.txtFirstName.MaxLength = 30;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(248, 20);
-            this.txtFirstName.TabIndex = 106;
+            this.txtFirstName.TabIndex = 107;
             // 
             // label9
             // 
@@ -361,7 +381,7 @@
             this.btnCancel.Location = new System.Drawing.Point(128, 280);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 115;
+            this.btnCancel.TabIndex = 116;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Visible = false;
@@ -372,7 +392,7 @@
             this.btnAccept.Location = new System.Drawing.Point(40, 280);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 114;
+            this.btnAccept.TabIndex = 115;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Visible = false;
@@ -418,26 +438,6 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // txtRePassword
-            // 
-            this.txtRePassword.BackColor = System.Drawing.Color.RosyBrown;
-            this.txtRePassword.Enabled = false;
-            this.txtRePassword.Location = new System.Drawing.Point(104, 120);
-            this.txtRePassword.MaxLength = 30;
-            this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.PasswordChar = '•';
-            this.txtRePassword.Size = new System.Drawing.Size(168, 20);
-            this.txtRePassword.TabIndex = 117;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 116;
-            this.label5.Text = "*RePassword:";
             // 
             // Form_004_001
             // 

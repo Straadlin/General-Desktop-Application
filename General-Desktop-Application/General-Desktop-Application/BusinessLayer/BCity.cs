@@ -12,6 +12,20 @@ namespace General_Desktop_Application.BusinessLayer
 {
     class BCity
     {
+        public static city FindByUUID(Guid objUUID)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.cities.Where(c => c.city_uuid__uniqueidentifier == objUUID).FirstOrDefault();
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
         public static List<city> GetAll()
         {
             try
@@ -34,6 +48,20 @@ namespace General_Desktop_Application.BusinessLayer
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
                     return objContext.cities.Where(c => c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).ToList();
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        public static city FindByName(string stName, state objState)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.cities.Where(c => c.city_name__varchar == stName && c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).FirstOrDefault();
                 }
             }
             catch { }

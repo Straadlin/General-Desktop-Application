@@ -47,6 +47,30 @@ namespace General_Desktop_Application.BusinessLayer
             return null;
         }
 
+        public static sbyte FindByUserNameOrEmailOrCellphone(string stUserName, string stEmail, string stCellphone)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stUserName) || !string.IsNullOrEmpty(stEmail) || !string.IsNullOrEmpty(stCellphone))
+                {
+                    using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                    {
+                        if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__varchar == stUserName && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                            return 1;
+                        if (!string.IsNullOrEmpty(stEmail) && objContext.users.Where(u => u.user_email__varchar == stEmail && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                            return 2;
+                        if (!string.IsNullOrEmpty(stCellphone) && objContext.users.Where(u => u.user_cellphone__varchar == stCellphone && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                            return 3;
+                    }
+                }
+                else
+                    return -1;
+            }
+            catch { }
+
+            return 0;
+        }
+
         public static user FindByUserNameOrEmailOrCellphone(string stUserNameEmailCellphone)
         {
             try
@@ -168,43 +192,61 @@ namespace General_Desktop_Application.BusinessLayer
             string stLastname,
             byte byRoleAccess,
             string stExtradata,
+            string stNamePicture,
             byte[] byaPicture,
-            DateTime objDate,
-            string stCity,
+            DateTime objDateBirthday,
             string stState,
+            string stCity,
             session objSessionCreator)
         {
             try
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    Guid objGuid;
+                    // Add Date
+                    Guid? objGuidDate = null;
+                    if (!(objDateBirthday.Year == 2000 && objDateBirthday.Month == 1 && objDateBirthday.Day == 1))
+                        objGuidDate = BDate.FindOrAddDate(objDateBirthday).date_uuid__uniqueidentifier;
+
+                    // Add City
+                    Guid? objGuidCity = null;
+                    if (!string.IsNullOrEmpty(stCity))
+                        objGuidCity = BCity.FindByName(stCity, BState.FindByName(stState, BCountry.FindByCode("MX"))).city_uuid__uniqueidentifier;
+
+                    // Add Resource
+                    Guid? objGuidResource = null;
+                    if (byaPicture != null && !string.IsNullOrEmpty(stNamePicture))
+                        objGuidResource = BResource.Add(stNamePicture, 1, null, byaPicture, null).reso_uuid__uniqueidentifier;
+                    
+                    // Add User
+                    Guid objGuidUser = Guid.Empty;
                     do
                     {
-                        objGuid = Guid.NewGuid();
-                    } while (objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objGuid).Count() > 0);
+                        objGuidUser = Guid.NewGuid();
+                    } while (FindByUUID(objGuidUser) != null);
 
-                    //objContext.proc_user_insert(objGuid,stUsername,stEmail,stCellphone,stPassword,)
+                    objContext.proc_user_insert(
+                        objGuidUser,
+                        stUsername,
+                        stEmail,
+                        stCellphone,
+                        stPassword,
+                        stFirstname,
+                        stLastname,
+                        byRoleAccess,
+                        stExtradata,
+                        objGuidResource,
+                        objGuidDate,
+                        objGuidCity,
+                        null,
+                        objSessionCreator.sess_uuid__uniqueidentifier,
+                        null,
+                        null
+                        );
 
-                    //user objUser = new user()
-                    //{
-                    //    user_uuid__uniqueidentifier = objGuid,
-                    //    user_username__varchar = stUsername,
-                    //    user_email__varchar = stEmail,
-                    //    user_cellphone__varchar = stCellphone,
-                    //    user_password__varbinary,
-                    //    user_firstname__varbinary,
-                    //    user_lastname__varbinary,
-                    //    user_roleaccess__tinyint,
-                    //    user_extradata__varchar,
-                    //    reso_uuid_picture__uniqueidentifier,
-                    //    date_uuid_birthdate__uniqueidentifier,
-                    //    city_uuid__uniqueidentifier,
-                    //    sess_uuid_used__uniqueidentifier = null,
-                    //    sess_uuid_created__uniqueidentifier,
-                    //    user_uuid_root__uniqueidentifier = null,
-                    //    sess_uuid_deleted__uniqueidentifier = null
-                    //};
+                    objContext.SaveChanges();
+
+                    return objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuidUser).FirstOrDefault();
                 }
             }
             catch { }

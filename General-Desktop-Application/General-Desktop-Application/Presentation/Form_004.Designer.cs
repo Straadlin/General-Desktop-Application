@@ -46,7 +46,6 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualDeAyudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stpStatusBar = new System.Windows.Forms.StatusStrip();
             this.tsslDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslUser = new System.Windows.Forms.ToolStripStatusLabel();
@@ -82,7 +81,7 @@
             // closeSesionToolStripMenuItem
             // 
             this.closeSesionToolStripMenuItem.Name = "closeSesionToolStripMenuItem";
-            this.closeSesionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeSesionToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.closeSesionToolStripMenuItem.Text = "Close session";
             this.closeSesionToolStripMenuItem.Click += new System.EventHandler(this.closeSesionToolStripMenuItem_Click);
             // 
@@ -165,8 +164,7 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutDeToolStripMenuItem,
-            this.manualDeAyudaToolStripMenuItem});
+            this.aboutDeToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -176,13 +174,6 @@
             this.aboutDeToolStripMenuItem.Name = "aboutDeToolStripMenuItem";
             this.aboutDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutDeToolStripMenuItem.Text = "About...";
-            // 
-            // manualDeAyudaToolStripMenuItem
-            // 
-            this.manualDeAyudaToolStripMenuItem.Name = "manualDeAyudaToolStripMenuItem";
-            this.manualDeAyudaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manualDeAyudaToolStripMenuItem.Text = "Ver manual";
-            this.manualDeAyudaToolStripMenuItem.Visible = false;
             // 
             // stpStatusBar
             // 
@@ -270,7 +261,6 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutDeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manualDeAyudaToolStripMenuItem;
         private System.Windows.Forms.StatusStrip stpStatusBar;
         private System.Windows.Forms.ToolStripStatusLabel tsslDate;
         private System.Windows.Forms.ToolStripStatusLabel tsslUser;

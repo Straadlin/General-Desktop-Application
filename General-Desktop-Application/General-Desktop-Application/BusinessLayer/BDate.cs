@@ -14,6 +14,20 @@ namespace General_Desktop_Application.BusinessLayer
 {
     class BDate
     {
+        public static date FindByUUID(Guid objUUID)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.dates.Where(d => d.date_uuid__uniqueidentifier == objUUID).FirstOrDefault();
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
         public static date FindOrAddDate(DateTime objDateTime)
         {
             try

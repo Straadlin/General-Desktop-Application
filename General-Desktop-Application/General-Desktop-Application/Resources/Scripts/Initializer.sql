@@ -147,6 +147,77 @@ GO
 
 --GO
 
+--CREATE TRIGGER trigger_user_insert
+--ON build_level001.[user]
+--INSTEAD OF INSERT
+--AS
+--	BEGIN
+--		IF((SELECT COUNT(*) FROM Inserted WHERE(user_uuid_root__uniqueidentifier IS NULL)) > 0)
+--			BEGIN
+				
+--				SELECT 
+--					@user_uuid__uniqueidentifier = user_uuid__uniqueidentifier, 
+--					@user_username__varchar = user_username__varchar, 
+--					@user_email__varchar = user_email__varchar, 
+--					@user_cellphone__varchar = user_cellphone__varchar, 
+--					@user_password__varbinary = user_password__varbinary, 
+--					@user_firstname__varbinary = user_firstname__varbinary, 
+--					@user_lastname__varbinary = user_lastname__varbinary, 
+--					@user_roleaccess__tinyint = user_roleaccess__tinyint, 
+--					@user_extradata__varchar = user_extradata__varchar, 
+--					@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
+--					@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
+--					@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
+--					sess_uuid_used__uniqueidentifier, 
+--					@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier,
+--					user_uuid_root__uniqueidentifier 
+--					@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
+--				FROM inserted
+
+
+--				INSERT INTO build_level001.[user](
+--					user_uuid__uniqueidentifier, 
+--					user_username__varchar, 
+--					user_email__varchar, 
+--					user_cellphone__varchar, 
+--					user_password__varbinary, 
+--					user_firstname__varbinary, 
+--					user_lastname__varbinary, 
+--					user_roleaccess__tinyint, 
+--					user_extradata__varchar, 
+--					reso_uuid_picture__uniqueidentifier, 
+--					date_uuid_birthdate__uniqueidentifier, 
+--					city_uuid__uniqueidentifier, 
+--					sess_uuid_used__uniqueidentifier, 
+--					sess_uuid_created__uniqueidentifier, 
+--					user_uuid_root__uniqueidentifier, 
+--					sess_uuid_deleted__uniqueidentifier) 
+--				VALUES(
+--					@user_uuid__uniqueidentifier, 
+--					@user_username__varchar, 
+--					@user_email__varchar, 
+--					@user_cellphone__varchar, 
+--					build_level000.func_systemserver_generatehashpassword(@user_password__varchar),
+--					build_level000.func_systemserver_encrypt(@user_firstname__varchar),
+--					build_level000.func_systemserver_encrypt(@user_lastname__varchar),
+--					--HASHBYTES('sha2_512', HASHBYTES('sha2_256', @user_password__varbinary)),
+--					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_firstname__varchar), 
+--					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_lastname__varchar), 
+--					@user_roleaccess__tinyint, 
+--					@user_extradata__varchar, 
+--					@reso_uuid_picture__uniqueidentifier, 
+--					@date_uuid_birthdate__uniqueidentifier, 
+--					@city_uuid__uniqueidentifier, 
+--					@sess_uuid_used__uniqueidentifier, 
+--					@sess_uuid_created__uniqueidentifier, 
+--					@user_uuid_root__uniqueidentifier, 
+--					@sess_uuid_deleted__uniqueidentifier
+--				);
+--			END
+--	END
+
+GO
+
 CREATE PROCEDURE build_level001.proc_user_insert 
 	@user_uuid__uniqueidentifier uniqueidentifier, 
 	@user_username__varchar varchar(100), 
@@ -536,7 +607,7 @@ AS
 									@sess_uuid_created__uniqueidentifier = sess_uuid_created__uniqueidentifier, 
 									--user_uuid_root__uniqueidentifier
 									@sess_uuid_deleted__uniqueidentifier = sess_uuid_deleted__uniqueidentifier
-									FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current);
+								FROM build_level001.[user] WHERE(user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier______Current);
 
 
 
@@ -551,25 +622,41 @@ AS
 
 
 								-- First we store the copy register
-								INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varbinary, user_firstname__varbinary, user_lastname__varbinary, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) 
-									VALUES(
-										@user_uuid__uniqueidentifier___New,
-										@user_username__varchar,
-										@user_email__varchar,
-										@user_cellphone__varchar, 
-										@user_password__varbinary, 
-										@user_firstname__varbinary, 
-										@user_lastname__varbinary, 
-										@user_roleaccess__tinyint, 
-										@user_extradata__varchar, 
-										@reso_uuid_picture__uniqueidentifier, 
-										@date_uuid_birthdate__uniqueidentifier, 
-										@city_uuid__uniqueidentifier, 
-										NULL, 
-										@sess_uuid_created__uniqueidentifier, 
-										@user_uuid__uniqueidentifier______Last, 
-										@sess_uuid_deleted__uniqueidentifier
-										);
+								INSERT INTO build_level001.[user](
+									user_uuid__uniqueidentifier, 
+									user_username__varchar, 
+									user_email__varchar, 
+									user_cellphone__varchar, 
+									user_password__varbinary, 
+									user_firstname__varbinary, 
+									user_lastname__varbinary, 
+									user_roleaccess__tinyint, 
+									user_extradata__varchar, 
+									reso_uuid_picture__uniqueidentifier, 
+									date_uuid_birthdate__uniqueidentifier, 
+									city_uuid__uniqueidentifier, 
+									sess_uuid_used__uniqueidentifier, 
+									sess_uuid_created__uniqueidentifier, 
+									user_uuid_root__uniqueidentifier, 
+									sess_uuid_deleted__uniqueidentifier) 
+								VALUES(
+									@user_uuid__uniqueidentifier___New,
+									@user_username__varchar,
+									@user_email__varchar,
+									@user_cellphone__varchar, 
+									@user_password__varbinary, 
+									@user_firstname__varbinary, 
+									@user_lastname__varbinary, 
+									@user_roleaccess__tinyint, 
+									@user_extradata__varchar, 
+									@reso_uuid_picture__uniqueidentifier, 
+									@date_uuid_birthdate__uniqueidentifier, 
+									@city_uuid__uniqueidentifier, 
+									NULL, 
+									@sess_uuid_created__uniqueidentifier, 
+									@user_uuid__uniqueidentifier______Last, 
+									@sess_uuid_deleted__uniqueidentifier
+									);
 
 
 
@@ -1892,7 +1979,7 @@ CREATE INDEX user_user_email__varchar ON build_level001.[user] (user_email__varc
 CREATE INDEX user_user_cellphone__varchar ON build_level001.[user] (user_cellphone__varchar);
 CREATE INDEX city_city_name__varchar ON build_level001.city (city_name__varchar);
 CREATE UNIQUE INDEX date_date_value__date ON build_level002.[date] (date_value__date);
-CREATE INDEX resource_reso_name__varchar ON build_level002.[resource] (reso_name__varchar);
+--CREATE INDEX resource_reso_name__varchar ON build_level002.[resource] (reso_name__varchar);
 
 
 

@@ -12,13 +12,27 @@ namespace General_Desktop_Application.BusinessLayer
 {
     class BState
     {
-        public static state FindByName(string stName)
+        public static state FindByUUID(Guid objUUID)
         {
             try
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    return objContext.states.Where(s=> s.stat_name__varchar == stName).FirstOrDefault();
+                    return objContext.states.Where(s => s.stat_uuid__uniqueidentifier == objUUID).FirstOrDefault();
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        public static state FindByName(string stName, country objCountry)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.states.Where(s => s.stat_name__varchar == stName && s.coun_uuid__uniqueidentifier == objCountry.coun_uuid__uniqueidentifier).FirstOrDefault();
                 }
             }
             catch { }

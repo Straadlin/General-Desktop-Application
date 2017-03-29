@@ -72,6 +72,7 @@
     <Compile Include="BusinessLayer\BUser.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Classes\Preferences.cs" />
+    <Compile Include="Classes\RegularExpressions.cs" />
     <Compile Include="Classes\SQLServer.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="DataLayer\Data.cs" />
