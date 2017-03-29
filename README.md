@@ -11,4 +11,4 @@ https://www.microsoft.com/en-US/download/details.aspx?id=42299
 SQL_Server_2016_Express_64_Bit_ENU:
 http://
 
-You can create an installator using some aditional software or using InstallShield Limited Edition, like is inside of Visual Studio 2015.
+If you like too, you can create an installator using some aditional software or using InstallShield Limited Edition, like is inside of Visual Studio 2015.
