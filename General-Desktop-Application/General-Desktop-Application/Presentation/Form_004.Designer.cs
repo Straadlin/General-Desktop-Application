@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_004));
             this.mnsMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.finishSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,24 +66,24 @@
             this.helpToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Size = new System.Drawing.Size(942, 24);
+            this.mnsMenu.Size = new System.Drawing.Size(960, 24);
             this.mnsMenu.TabIndex = 1;
             this.mnsMenu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.finishSesionToolStripMenuItem});
+            this.closeSesionToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // finishSesionToolStripMenuItem
+            // closeSesionToolStripMenuItem
             // 
-            this.finishSesionToolStripMenuItem.Name = "finishSesionToolStripMenuItem";
-            this.finishSesionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.finishSesionToolStripMenuItem.Text = "Finish session";
-            this.finishSesionToolStripMenuItem.Click += new System.EventHandler(this.finishSesionToolStripMenuItem_Click);
+            this.closeSesionToolStripMenuItem.Name = "closeSesionToolStripMenuItem";
+            this.closeSesionToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.closeSesionToolStripMenuItem.Text = "Close session";
+            this.closeSesionToolStripMenuItem.Click += new System.EventHandler(this.closeSesionToolStripMenuItem_Click);
             // 
             // controlToolStripMenuItem
             // 
@@ -146,20 +146,21 @@
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
+            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -172,18 +173,20 @@
             // aboutDeToolStripMenuItem
             // 
             this.aboutDeToolStripMenuItem.Name = "aboutDeToolStripMenuItem";
-            this.aboutDeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutDeToolStripMenuItem.Text = "About...";
+            this.aboutDeToolStripMenuItem.Click += new System.EventHandler(this.aboutDeToolStripMenuItem_Click);
             // 
             // stpStatusBar
             // 
+            this.stpStatusBar.BackColor = System.Drawing.SystemColors.Control;
             this.stpStatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslDate,
             this.tsslUser,
             this.tsslCurrentSection});
-            this.stpStatusBar.Location = new System.Drawing.Point(0, 522);
+            this.stpStatusBar.Location = new System.Drawing.Point(0, 455);
             this.stpStatusBar.Name = "stpStatusBar";
-            this.stpStatusBar.Size = new System.Drawing.Size(942, 22);
+            this.stpStatusBar.Size = new System.Drawing.Size(960, 22);
             this.stpStatusBar.TabIndex = 2;
             this.stpStatusBar.Text = "statusStrip1";
             // 
@@ -201,9 +204,9 @@
             // 
             // tsslCurrentSection
             // 
+            this.tsslCurrentSection.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.tsslCurrentSection.Name = "tsslCurrentSection";
-            this.tsslCurrentSection.Size = new System.Drawing.Size(22, 17);
-            this.tsslCurrentSection.Text = "     ";
+            this.tsslCurrentSection.Size = new System.Drawing.Size(0, 17);
             // 
             // timClock
             // 
@@ -221,7 +224,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 544);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(960, 477);
             this.Controls.Add(this.stpStatusBar);
             this.Controls.Add(this.mnsMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -247,7 +251,7 @@
 
         private System.Windows.Forms.MenuStrip mnsMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem finishSesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendedoresToolStripMenuItem;

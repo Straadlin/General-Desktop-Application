@@ -19,22 +19,22 @@ namespace General_Desktop_Application.Presentation
         // Objects
         Form_002 objForm_002;
         Form_004_001 objForm_004_001;
-        user objUser;
-        session objSession;
+        Form_004_002 objForm_004_002;
+        Form_004_004 objForm_004_004;
 
         // Attributes
         bool boForceToClose = false;
 
         // Properties
-        public user ObjUser { get { return objUser; } }
-        public session ObjSession { get { return objSession; } }
+        public user ObjUser { set; get; }
+        public session ObjSession { set; get; }
         public ToolStripStatusLabel ObjToolStripStatusLabelCurrentSection { get { return tsslCurrentSection; } }
 
         public Form_004(Form_002 objForm_002, user objUser, session objSession)
         {
             this.objForm_002 = objForm_002;
-            this.objUser = objUser;
-            this.objSession = objSession;
+            ObjUser = objUser;
+            ObjSession = objSession;
 
             InitializeComponent();
 
@@ -43,21 +43,23 @@ namespace General_Desktop_Application.Presentation
 
         private void Form_004_Load(object sender, EventArgs e)
         {
+            BlockUserSectionsByRol();
+
             UpdateIP();
 
             Text += " - " + Preferences.TitleSoftware;
 
-            tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__varchar) ? objUser.user_username__varchar : (!string.IsNullOrEmpty(objUser.user_email__varchar) ? objUser.user_email__varchar : objUser.user_cellphone__varchar)) + " - " + Tools.Decrypt(objUser.user_firstname__varchar) + " " + Tools.Decrypt(objUser.user_lastname__varchar);
+            tsslUser.Text = (!string.IsNullOrEmpty(ObjUser.user_username__varchar) ? ObjUser.user_username__varchar : (!string.IsNullOrEmpty(ObjUser.user_email__varchar) ? ObjUser.user_email__varchar : ObjUser.user_cellphone__varchar)) + " - " + Tools.Decrypt(ObjUser.user_firstname__varchar) + " " + Tools.Decrypt(ObjUser.user_lastname__varchar);
 
-            Business.FreeAllRegistersAssociatedWithThisUser(objUser);
+            Business.FreeAllRegistersAssociatedWithThisUser(ObjUser);
         }
 
         private void Form_004_FormClosed(object sender, FormClosedEventArgs e)
         {
             timClock.Enabled = TimSession.Enabled = false;
 
-            Business.FreeAllRegistersAssociatedWithThisUser(objUser);
-            BSession.UpdateLastTimeSession(objSession);
+            Business.FreeAllRegistersAssociatedWithThisUser(ObjUser);
+            BSession.UpdateLastTimeSession(ObjSession);
 
             //CloseWindows();
 
@@ -66,11 +68,11 @@ namespace General_Desktop_Application.Presentation
 
         private void Form_004_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!boForceToClose&&MessageBox.Show("Do you want to exit of application?", Preferences.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (!boForceToClose && MessageBox.Show("Do you want to exit of application?", Preferences.TitleSoftware, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 e.Cancel = true;
         }
 
-        private void finishSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void closeSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -109,19 +111,18 @@ namespace General_Desktop_Application.Presentation
             UpdateDateSession();
         }
 
-        public void ActivateComponents(bool activate, string stCurrentSection)
+        public void ActivateOrDeactivateComponents(string stCurrentSection)
         {
-            if (activate)
-            {
-                mnsMenu.Enabled = true;
-                stpStatusBar.Enabled = true;
-                if (stCurrentSection != null)
-                    tsslCurrentSection.Text = stCurrentSection;
-            }
-            else
+            if (!string.IsNullOrEmpty(stCurrentSection))
             {
                 mnsMenu.Enabled = false;
                 stpStatusBar.Enabled = false;
+                tsslCurrentSection.Text = stCurrentSection;
+            }
+            else
+            {
+                mnsMenu.Enabled = true;
+                stpStatusBar.Enabled = true;
                 tsslCurrentSection.Text = "";
             }
         }
@@ -138,7 +139,30 @@ namespace General_Desktop_Application.Presentation
 
         private async void UpdateDateSession()
         {
-            await BSession.UpdateLastDateSessionAsync(objSession);
+            await BSession.UpdateLastDateSessionAsync(ObjSession);
+        }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            objForm_004_002 = new Form_004_002(this);
+            objForm_004_002.MdiParent = this;
+            objForm_004_002.Show();
+        }
+
+        private void aboutDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            objForm_004_004 = new Form_004_004(this);
+            objForm_004_004.MdiParent = this;
+            objForm_004_004.Show();
+        }
+
+        private void BlockUserSectionsByRol()
+        {
+
         }
 
         //private void CloseWindows()

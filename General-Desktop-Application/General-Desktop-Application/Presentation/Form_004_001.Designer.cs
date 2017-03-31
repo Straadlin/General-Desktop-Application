@@ -458,6 +458,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_004_001_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_004_001_FormClosed);
             this.Load += new System.EventHandler(this.Form_004_001_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_004_001_KeyPress);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).EndInit();

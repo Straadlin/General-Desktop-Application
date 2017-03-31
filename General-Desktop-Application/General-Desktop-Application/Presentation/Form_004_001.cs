@@ -23,7 +23,7 @@ namespace General_Desktop_Application.Presentation
         byte byAction;
         string stPathPicture;
 
-        // Propiedades
+        // Properties
         public Form_004 ObjForm_004
         { set; get; }
 
@@ -32,8 +32,6 @@ namespace General_Desktop_Application.Presentation
             InitializeComponent();
 
             ObjForm_004 = objForm_004;
-
-            //this.objForm04.Cursor = Cursors.Default;
 
             KeyPreview = true;
         }
@@ -44,16 +42,11 @@ namespace General_Desktop_Application.Presentation
             stPathPicture = null;
             objUserSelectedPrincipalItem = null;
 
-            ObjForm_004.ActivateComponents(false, "Users");
+            ObjForm_004.ActivateOrDeactivateComponents("Users");
 
             RefreshMainList();
 
             ObjForm_004.Cursor = Cursors.Default;
-        }
-
-        private void Form_004_001_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ObjForm_004.ActivateComponents(true, null);
         }
 
         private void Form_004_001_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,12 +55,60 @@ namespace General_Desktop_Application.Presentation
                 e.Cancel = true;
         }
 
+        private void Form_004_001_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ObjForm_004.ActivateOrDeactivateComponents(null);
+        }
+
+        private void Form_004_001_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+                this.Close();
+            else
+            {
+                if (e.KeyChar == 13)
+                {
+                    if (txtUserName.Focused)
+                        if (txtUserName.Text.Length > 0)
+                            txtEmail.Focus();
+                    if (txtEmail.Focused)
+                        if (txtEmail.Text.Length > 0)
+                            txtCellphone.Focus();
+                    if (txtCellphone.Focused)
+                        if (txtCellphone.Text.Length > 0)
+                            txtPassword.Focus();
+                    if (txtPassword.Focused)
+                        if (txtPassword.Text.Length > 0)
+                            txtRePassword.Focus();
+                    if (txtRePassword.Focused)
+                        if (txtRePassword.Text.Length > 0)
+                            cboRoleAccess.Focus();
+                    if (cboRoleAccess.Focused)
+                        if (cboRoleAccess.SelectedIndex>-1)
+                            txtFirstName.Focus();
+                    if (txtFirstName.Focused)
+                        if (txtFirstName.Text.Length > 0)
+                            txtLastName.Focus();
+                    if (txtLastName.Focused)
+                        if (txtLastName.Text.Length > 0)
+                            dtpBirthdate.Focus();
+                    if (dtpBirthdate.Focused)
+                            cboState.Focus();
+                    if (cboState.Focused)
+                        if (cboState.SelectedIndex>-1)
+                            cboCity.Focus();
+                    if (cboCity.Focused)
+                        if (cboCity.SelectedIndex>-1)
+                            btnAccept.Focus();
+                }
+            }
+        }
+
         private void RefreshMainList()
         {
             lsbUsers.Items.Clear();
 
             var vUsers = BUser.GetAllUsers();
-            //var vUsersNewModel = BUser.GetAllUsersDecrypted().OrderBy(u => u.user_username__varchar).ThenBy(u => u.user_firstname__varchar).ThenBy(u => u.user_lastname__varchar);
 
             foreach (var vItem in vUsers)
                 lsbUsers.Items.Add((!string.IsNullOrEmpty(vItem.user_username__varchar) ? vItem.user_username__varchar : (!string.IsNullOrEmpty(vItem.user_email__varchar) ? vItem.user_email__varchar : vItem.user_cellphone__varchar)) + " - " + Tools.Decrypt(vItem.user_firstname__varchar) + " " + Tools.Decrypt(vItem.user_lastname__varchar));
@@ -164,7 +205,6 @@ namespace General_Desktop_Application.Presentation
                     txtFirstName.Text = "";
                     txtLastName.Text = "";
                     dtpBirthdate.Value = DateTime.Now;
-                    //dtpBirthdate.Value = new DateTime(1900, 1, 1);
 
                     cboRoleAccess.Items.Clear();
                     cboState.Items.Clear();
@@ -215,7 +255,6 @@ namespace General_Desktop_Application.Presentation
             txtFirstName.Text = "";
             txtLastName.Text = "";
             dtpBirthdate.Value = DateTime.Now;
-            //dtpBirthdate.Value = new DateTime(2000, 01, 01);
 
             cboRoleAccess.Items.Clear();
             cboState.Items.Clear();
@@ -337,7 +376,7 @@ namespace General_Desktop_Application.Presentation
             {
                 case 1:
                     {
-                        if (string.IsNullOrEmpty(txtUserName.Text)||RegularExpressions.CheckUsername(txtUserName.Text))
+                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckUsername(txtUserName.Text))
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckEmail(txtEmail.Text))
                             {
@@ -347,7 +386,7 @@ namespace General_Desktop_Application.Presentation
                                     {
                                         case 0:
                                             {
-                                                if (RegularExpressions.CheckPassword(txtPassword.Text)&&txtPassword.Text == txtRePassword.Text)
+                                                if (RegularExpressions.CheckPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
@@ -526,8 +565,6 @@ namespace General_Desktop_Application.Presentation
                                                             {
                                                                 if (cboState.SelectedIndex == -1 || cboCity.SelectedIndex > -1)
                                                                 {
-                                                                    //objUserSelectedPrincipalItem = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);// Its is neccesary to work the trigger
-
                                                                     byte[] logo = null;
                                                                     if (pcbPicture.Image != null)
                                                                         logo = Tools.ConvertirImagenAByte(pcbPicture.Image);
@@ -676,9 +713,9 @@ namespace General_Desktop_Application.Presentation
                     {
                         var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
 
-                        if(vUser!=null)
+                        if (vUser != null)
                         {
-                            if(BUser.Remove(vUser, ObjForm_004.ObjSession))
+                            if (BUser.Remove(vUser, ObjForm_004.ObjSession))
                             {
                                 gpbA.Enabled = true;
 
@@ -754,8 +791,7 @@ namespace General_Desktop_Application.Presentation
                         txtRePassword.Text = "";
                         txtFirstName.Text = "";
                         txtLastName.Text = "";
-                        dtpBirthdate.Value= DateTime.Now;
-                        //dtpBirthdate.Value = new DateTime(2000, 01, 01);
+                        dtpBirthdate.Value = DateTime.Now;
 
                         cboRoleAccess.Items.Clear();
                         cboState.Items.Clear();
@@ -803,8 +839,7 @@ namespace General_Desktop_Application.Presentation
                             txtRePassword.Text = "";
                             txtFirstName.Text = "";
                             txtLastName.Text = "";
-                            dtpBirthdate.Value= DateTime.Now;
-                            //dtpBirthdate.Value = new DateTime(2000, 01, 01);
+                            dtpBirthdate.Value = DateTime.Now;
 
                             cboRoleAccess.Items.Clear();
                             cboState.Items.Clear();
@@ -840,8 +875,7 @@ namespace General_Desktop_Application.Presentation
                             txtRePassword.Text = "";
                             txtFirstName.Text = "";
                             txtLastName.Text = "";
-                            dtpBirthdate.Value= DateTime.Now;
-                            //dtpBirthdate.Value = new DateTime(2000, 01, 01);
+                            dtpBirthdate.Value = DateTime.Now;
 
                             cboRoleAccess.Items.Clear();
                             cboState.Items.Clear();
