@@ -20,7 +20,6 @@ namespace General_Desktop_Application.Presentation
         Form_002 objForm_002;
         Form_004_001 objForm_004_001;
         user objUser;
-        proc_user_select_Result objUserNewModel;
         session objSession;
 
         // Attributes
@@ -31,12 +30,11 @@ namespace General_Desktop_Application.Presentation
         public session ObjSession { get { return objSession; } }
         public ToolStripStatusLabel ObjToolStripStatusLabelCurrentSection { get { return tsslCurrentSection; } }
 
-        public Form_004(Form_002 objForm_002, user objUser, proc_user_select_Result objUserNewModel, session objSession)
+        public Form_004(Form_002 objForm_002, user objUser, session objSession)
         {
             this.objForm_002 = objForm_002;
             this.objUser = objUser;
             this.objSession = objSession;
-            this.objUserNewModel = objUserNewModel;
 
             InitializeComponent();
 
@@ -49,7 +47,7 @@ namespace General_Desktop_Application.Presentation
 
             Text += " - " + Preferences.TitleSoftware;
 
-            tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__varchar) ? objUser.user_username__varchar : (!string.IsNullOrEmpty(objUser.user_email__varchar) ? objUser.user_email__varchar : objUser.user_cellphone__varchar)) + " - " + objUserNewModel.user_firstname__varchar + " " + objUserNewModel.user_lastname__varchar;
+            tsslUser.Text = (!string.IsNullOrEmpty(objUser.user_username__varchar) ? objUser.user_username__varchar : (!string.IsNullOrEmpty(objUser.user_email__varchar) ? objUser.user_email__varchar : objUser.user_cellphone__varchar)) + " - " + Tools.Decrypt(objUser.user_firstname__varchar) + " " + Tools.Decrypt(objUser.user_lastname__varchar);
 
             Business.FreeAllRegistersAssociatedWithThisUser(objUser);
         }
@@ -72,7 +70,7 @@ namespace General_Desktop_Application.Presentation
                 e.Cancel = true;
         }
 
-        private void closeSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void finishSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -81,7 +79,7 @@ namespace General_Desktop_Application.Presentation
         {
             timClock.Interval = 40000;
 
-            DateTime objDateTime = await BDate.GetServersDateAndTimeAsync();
+            DateTime objDateTime = await Business.GetServersDateAndTimeAsync();
             tsslDate.Text = "Server's date and time: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToShortTimeString();
             TimeSpan objTimeSpan = DateTime.Now - objDateTime;
 

@@ -51,9 +51,9 @@
           <Property Name="user_username__varchar" Type="varchar" MaxLength="100" />
           <Property Name="user_email__varchar" Type="varchar" MaxLength="100" />
           <Property Name="user_cellphone__varchar" Type="varchar" MaxLength="10" />
-          <Property Name="user_password__varbinary" Type="varbinary(max)" Nullable="false" />
-          <Property Name="user_firstname__varbinary" Type="varbinary(max)" Nullable="false" />
-          <Property Name="user_lastname__varbinary" Type="varbinary(max)" Nullable="false" />
+          <Property Name="user_password__varchar" Type="varchar(max)" Nullable="false" />
+          <Property Name="user_firstname__varchar" Type="varchar(max)" Nullable="false" />
+          <Property Name="user_lastname__varchar" Type="varchar(max)" Nullable="false" />
           <Property Name="user_roleaccess__tinyint" Type="tinyint" Nullable="false" />
           <Property Name="user_extradata__varchar" Type="varchar(max)" />
           <Property Name="reso_uuid_picture__uniqueidentifier" Type="uniqueidentifier" />
@@ -351,35 +351,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="proc_systemserver_getdatetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level000">
+        <Function Name="proc_systemserver_getDatetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level000">
           <Parameter Name="dateTime" Type="varchar" Mode="InOut" />
         </Function>
-        <Function Name="proc_systemserver_verifyloginuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level000">
-          <Parameter Name="userNameEmailOrCellphone" Type="varchar(max)" Mode="In" />
-          <Parameter Name="password" Type="varchar(max)" Mode="In" />
+        <Function Name="proc_user_findAllBranches" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level001">
+          <Parameter Name="user_uuid__uniqueidentifier______Current" Type="uniqueidentifier" Mode="In" />
         </Function>
-        <Function Name="proc_user_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level001">
-          <Parameter Name="user_uuid__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="user_username__varchar" Type="varchar" Mode="In" />
-          <Parameter Name="user_email__varchar" Type="varchar" Mode="In" />
-          <Parameter Name="user_cellphone__varchar" Type="varchar" Mode="In" />
-          <Parameter Name="user_password__varchar" Type="varchar(max)" Mode="In" />
-          <Parameter Name="user_firstname__varchar" Type="varchar(max)" Mode="In" />
-          <Parameter Name="user_lastname__varchar" Type="varchar(max)" Mode="In" />
-          <Parameter Name="user_roleaccess__tinyint" Type="tinyint" Mode="In" />
-          <Parameter Name="user_extradata__varchar" Type="varchar(max)" Mode="In" />
-          <Parameter Name="reso_uuid_picture__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="date_uuid_birthdate__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="city_uuid__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="sess_uuid_used__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="sess_uuid_created__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="user_uuid_root__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="sess_uuid_deleted__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-        </Function>
-        <Function Name="proc_user_select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level001">
-          <Parameter Name="user_uuid__uniqueidentifier" Type="uniqueidentifier" Mode="In" />
-        </Function>
-        <Function Name="proc_user_selectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="build_level001" />
         <EntityContainer Name="straad_generaldesktopapplication_pcpcpcpc_001ModelStoreContainer">
           <EntitySet Name="city" EntityType="Self.city" Schema="build_level001" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="build_level001" store:Type="Tables" />
@@ -559,35 +536,12 @@
             <End Role="principalcompany" EntitySet="principalcompanies" />
             <End Role="principalcompany1" EntitySet="principalcompanies" />
           </AssociationSet>
-          <FunctionImport Name="proc_systemserver_getdatetime" ReturnType="Collection(String)">
-          <Parameter Name="dateTime" Mode="InOut" Type="String" />
+          <FunctionImport Name="proc_systemserver_getDatetime" ReturnType="Collection(String)">
+            <Parameter Name="dateTime" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="proc_systemserver_verifyloginuser" ReturnType="Collection(Guid)">
-            <Parameter Name="userNameEmailOrCellphone" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
+          <FunctionImport Name="proc_user_findAllBranches" ReturnType="Collection(straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_findAllBranches_Result)">
+            <Parameter Name="user_uuid__uniqueidentifier______Current" Mode="In" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="proc_user_insert">
-            <Parameter Name="user_uuid__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="user_username__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_email__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_cellphone__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_password__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_firstname__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_lastname__varchar" Mode="In" Type="String" />
-            <Parameter Name="user_roleaccess__tinyint" Mode="In" Type="Byte" />
-            <Parameter Name="user_extradata__varchar" Mode="In" Type="String" />
-            <Parameter Name="reso_uuid_picture__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="date_uuid_birthdate__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="city_uuid__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="sess_uuid_used__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="sess_uuid_created__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="user_uuid_root__uniqueidentifier" Mode="In" Type="Guid" />
-            <Parameter Name="sess_uuid_deleted__uniqueidentifier" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="proc_user_select" ReturnType="Collection(straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_select_Result)">
-          <Parameter Name="user_uuid__uniqueidentifier" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="proc_user_selectAll" ReturnType="Collection(straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_selectAll_Result)" />
         </EntityContainer>
         <EntityType Name="city">
           <Key>
@@ -645,9 +599,9 @@
           <Property Name="user_username__varchar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="user_email__varchar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="user_cellphone__varchar" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="user_password__varbinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="user_firstname__varbinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="user_lastname__varbinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="user_password__varchar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_firstname__varchar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_lastname__varchar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="user_roleaccess__tinyint" Type="Byte" Nullable="false" />
           <Property Name="user_extradata__varchar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="reso_uuid_picture__uniqueidentifier" Type="Guid" />
@@ -973,41 +927,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="proc_user_select_Result">
-          <Property Type="Guid" Name="user_uuid__uniqueidentifier" Nullable="false" />
-          <Property Type="String" Name="user_username__varchar" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="user_email__varchar" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="user_cellphone__varchar" Nullable="true" MaxLength="10" />
-          <Property Type="Binary" Name="user_password__varbinary" Nullable="false" />
-          <Property Type="String" Name="user_firstname__varchar" Nullable="true" />
-          <Property Type="String" Name="user_lastname__varchar" Nullable="true" />
-          <Property Type="Byte" Name="user_roleaccess__tinyint" Nullable="false" />
-          <Property Type="String" Name="user_extradata__varchar" Nullable="true" />
-          <Property Type="Guid" Name="reso_uuid_picture__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="date_uuid_birthdate__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="city_uuid__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_used__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_created__uniqueidentifier" Nullable="false" />
+        <ComplexType Name="proc_user_findAllBranches_Result">
+          <Property Type="Guid" Name="user_uuid__uniqueidentifier" Nullable="true" />
           <Property Type="Guid" Name="user_uuid_root__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_deleted__uniqueidentifier" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="proc_user_selectAll_Result">
-          <Property Type="Guid" Name="user_uuid__uniqueidentifier" Nullable="false" />
-          <Property Type="String" Name="user_username__varchar" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="user_email__varchar" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="user_cellphone__varchar" Nullable="true" MaxLength="10" />
-          <Property Type="Binary" Name="user_password__varbinary" Nullable="false" />
-          <Property Type="String" Name="user_firstname__varchar" Nullable="true" />
-          <Property Type="String" Name="user_lastname__varchar" Nullable="true" />
-          <Property Type="Byte" Name="user_roleaccess__tinyint" Nullable="false" />
-          <Property Type="String" Name="user_extradata__varchar" Nullable="true" />
-          <Property Type="Guid" Name="reso_uuid_picture__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="date_uuid_birthdate__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="city_uuid__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_used__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_created__uniqueidentifier" Nullable="false" />
-          <Property Type="Guid" Name="user_uuid_root__uniqueidentifier" Nullable="true" />
-          <Property Type="Guid" Name="sess_uuid_deleted__uniqueidentifier" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1069,9 +991,9 @@
                 <ScalarProperty Name="reso_uuid_picture__uniqueidentifier" ColumnName="reso_uuid_picture__uniqueidentifier" />
                 <ScalarProperty Name="user_extradata__varchar" ColumnName="user_extradata__varchar" />
                 <ScalarProperty Name="user_roleaccess__tinyint" ColumnName="user_roleaccess__tinyint" />
-                <ScalarProperty Name="user_lastname__varbinary" ColumnName="user_lastname__varbinary" />
-                <ScalarProperty Name="user_firstname__varbinary" ColumnName="user_firstname__varbinary" />
-                <ScalarProperty Name="user_password__varbinary" ColumnName="user_password__varbinary" />
+                <ScalarProperty Name="user_lastname__varchar" ColumnName="user_lastname__varchar" />
+                <ScalarProperty Name="user_firstname__varchar" ColumnName="user_firstname__varchar" />
+                <ScalarProperty Name="user_password__varchar" ColumnName="user_password__varchar" />
                 <ScalarProperty Name="user_cellphone__varchar" ColumnName="user_cellphone__varchar" />
                 <ScalarProperty Name="user_email__varchar" ColumnName="user_email__varchar" />
                 <ScalarProperty Name="user_username__varchar" ColumnName="user_username__varchar" />
@@ -1143,50 +1065,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="proc_systemserver_getdatetime" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_systemserver_getdatetime" />
-          <FunctionImportMapping FunctionImportName="proc_systemserver_verifyloginuser" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_systemserver_verifyloginuser" />
-          <FunctionImportMapping FunctionImportName="proc_user_insert" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_user_insert" />
-          <FunctionImportMapping FunctionImportName="proc_user_select" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_user_select">
+          <FunctionImportMapping FunctionImportName="proc_systemserver_getDatetime" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_systemserver_getDatetime" />
+          <FunctionImportMapping FunctionImportName="proc_user_findAllBranches" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_user_findAllBranches">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_select_Result">
+              <ComplexTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_findAllBranches_Result">
                 <ScalarProperty Name="user_uuid__uniqueidentifier" ColumnName="user_uuid__uniqueidentifier" />
-                <ScalarProperty Name="user_username__varchar" ColumnName="user_username__varchar" />
-                <ScalarProperty Name="user_email__varchar" ColumnName="user_email__varchar" />
-                <ScalarProperty Name="user_cellphone__varchar" ColumnName="user_cellphone__varchar" />
-                <ScalarProperty Name="user_password__varbinary" ColumnName="user_password__varbinary" />
-                <ScalarProperty Name="user_firstname__varchar" ColumnName="user_firstname__varchar" />
-                <ScalarProperty Name="user_lastname__varchar" ColumnName="user_lastname__varchar" />
-                <ScalarProperty Name="user_roleaccess__tinyint" ColumnName="user_roleaccess__tinyint" />
-                <ScalarProperty Name="user_extradata__varchar" ColumnName="user_extradata__varchar" />
-                <ScalarProperty Name="reso_uuid_picture__uniqueidentifier" ColumnName="reso_uuid_picture__uniqueidentifier" />
-                <ScalarProperty Name="date_uuid_birthdate__uniqueidentifier" ColumnName="date_uuid_birthdate__uniqueidentifier" />
-                <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_used__uniqueidentifier" ColumnName="sess_uuid_used__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_created__uniqueidentifier" ColumnName="sess_uuid_created__uniqueidentifier" />
                 <ScalarProperty Name="user_uuid_root__uniqueidentifier" ColumnName="user_uuid_root__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_deleted__uniqueidentifier" ColumnName="sess_uuid_deleted__uniqueidentifier" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="proc_user_selectAll" FunctionName="straad_generaldesktopapplication_pcpcpcpc_001Model.Store.proc_user_selectAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="straad_generaldesktopapplication_pcpcpcpc_001Model.proc_user_selectAll_Result">
-                <ScalarProperty Name="user_uuid__uniqueidentifier" ColumnName="user_uuid__uniqueidentifier" />
-                <ScalarProperty Name="user_username__varchar" ColumnName="user_username__varchar" />
-                <ScalarProperty Name="user_email__varchar" ColumnName="user_email__varchar" />
-                <ScalarProperty Name="user_cellphone__varchar" ColumnName="user_cellphone__varchar" />
-                <ScalarProperty Name="user_password__varbinary" ColumnName="user_password__varbinary" />
-                <ScalarProperty Name="user_firstname__varchar" ColumnName="user_firstname__varchar" />
-                <ScalarProperty Name="user_lastname__varchar" ColumnName="user_lastname__varchar" />
-                <ScalarProperty Name="user_roleaccess__tinyint" ColumnName="user_roleaccess__tinyint" />
-                <ScalarProperty Name="user_extradata__varchar" ColumnName="user_extradata__varchar" />
-                <ScalarProperty Name="reso_uuid_picture__uniqueidentifier" ColumnName="reso_uuid_picture__uniqueidentifier" />
-                <ScalarProperty Name="date_uuid_birthdate__uniqueidentifier" ColumnName="date_uuid_birthdate__uniqueidentifier" />
-                <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_used__uniqueidentifier" ColumnName="sess_uuid_used__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_created__uniqueidentifier" ColumnName="sess_uuid_created__uniqueidentifier" />
-                <ScalarProperty Name="user_uuid_root__uniqueidentifier" ColumnName="user_uuid_root__uniqueidentifier" />
-                <ScalarProperty Name="sess_uuid_deleted__uniqueidentifier" ColumnName="sess_uuid_deleted__uniqueidentifier" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

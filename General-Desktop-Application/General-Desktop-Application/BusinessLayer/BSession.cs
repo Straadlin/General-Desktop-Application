@@ -75,7 +75,7 @@ namespace General_Desktop_Application.BusinessLayer
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
                     session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExternall.sess_uuid__uniqueidentifier).FirstOrDefault();
-                    DateTime objDateTime = BDate.GetServersDateAndTime();
+                    DateTime objDateTime = Business.GetServersDateAndTime();
                     objSession.sess_lastactivity__time = new TimeSpan(objDateTime.Hour, objDateTime.Minute, objDateTime.Second);
                     objSession.sess_ipbatch01__tinyint = byIpBatch01;
                     objSession.sess_ipbatch02__tinyint = byIpBatch02;
@@ -98,7 +98,7 @@ namespace General_Desktop_Application.BusinessLayer
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
                     session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExtternall.sess_uuid__uniqueidentifier).FirstOrDefault();
-                    DateTime objDateTime = BDate.GetServersDateAndTime();
+                    DateTime objDateTime = Business.GetServersDateAndTime();
                     objSession.sess_lastactivity__time = new TimeSpan(objDateTime.Hour, objDateTime.Minute, objDateTime.Second);
                     objContext.SaveChanges();
 
@@ -119,7 +119,7 @@ namespace General_Desktop_Application.BusinessLayer
                     using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                     {
                         session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExtternall.sess_uuid__uniqueidentifier).FirstOrDefault();
-                        DateTime objDateTime = BDate.GetServersDateAndTime();
+                        DateTime objDateTime = Business.GetServersDateAndTime();
                         objSession.sess_lastactivity__time = new TimeSpan(objDateTime.Hour, objDateTime.Minute, objDateTime.Second);
                         objContext.SaveChanges();
 

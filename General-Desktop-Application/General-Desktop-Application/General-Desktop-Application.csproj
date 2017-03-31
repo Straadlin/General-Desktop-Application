@@ -106,10 +106,7 @@
     <Compile Include="EF\principalcompany.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\proc_user_selectAll_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\proc_user_select_Result.cs">
+    <Compile Include="EF\proc_user_findAllBranches_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\resource.cs">

@@ -74,33 +74,22 @@ namespace General_Desktop_Application.Presentation
 
             if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                var vUserNewModel = BUser.FindAndValidateByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
+                var vUser = BUser.FindAndValidateByUserNameOrEmailOrCellphone(txtUser.Text, txtPassword.Text);
 
-                if (vUserNewModel != null)
+                if (vUser != null)
                 {
-                    var vUser = BUser.FindByUUID(vUserNewModel.user_uuid__uniqueidentifier);
+                    var vSession = BSession.CreateSession(vUser);
 
-                    if (vUser != null)
+                    if (vSession != null)
                     {
-                        var vSession = BSession.CreateSession(vUser);
-
-                        if (vSession != null)
-                        {
-                            Hide();
-                            objForm_004 = new Form_004(this, vUser, vUserNewModel, vSession);
-                            objForm_004.Show();
-                        }
-                        else
-                        {
-                            Cursor = Cursors.Default;
-                            MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        Hide();
+                        objForm_004 = new Form_004(this, vUser, vSession);
+                        objForm_004.Show();
                     }
                     else
                     {
                         Cursor = Cursors.Default;
-                        MessageBox.Show("Didn't find any user with these data.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        txtUser.Focus();
+                        MessageBox.Show("There was an unknown error, try to exit this application and then entry again.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else

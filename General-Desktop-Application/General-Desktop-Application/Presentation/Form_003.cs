@@ -296,7 +296,10 @@ namespace General_Desktop_Application.Presentation
                             stValue = stValue.Replace("_pspsps_", Preferences.PasswordDatabaseUser);
                             stValue = stValue.Replace("_internal_", Preferences.UserDatabase);
                             stValue = stValue.Replace("_dbname_", Preferences.DatabaseName);
-                            stValue = stValue.Replace("'d-f5]8T.x6_[s3'", Preferences.EncryptDataPassword);
+                            stValue = stValue.Replace("_admin_", Preferences.DefaultSystemUser);
+                            stValue = stValue.Replace("_keyhashpassword_", Tools.GetDefaulHash(Preferences.DefaultSystemPassword));
+                            stValue = stValue.Replace("_administrator01_", Tools.Encrypt(Preferences.DefaultFirstNameUserSystem));
+                            stValue = stValue.Replace("_administrator02_", Tools.Encrypt(Preferences.DefaultLastNameUserSystem));
 
                             objStreamReader.Close();
                         }

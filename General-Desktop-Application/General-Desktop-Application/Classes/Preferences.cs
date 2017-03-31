@@ -112,8 +112,17 @@ namespace General_Desktop_Application.Classes
         public static string PasswordDatabaseUser { get { return "6[A9$Sd#u-5CHJUsm_5Rxts-CtVa7SmE6"; } }
         public static string PasswordInstanceSAPWD { get { return "a123A45"; } }
         public static bool ArchitectDatabase64 { get { return true; } }
-        public static string EncryptDataPassword { get { return "'d-f5]8T.x6_[s3'"; } }
+        //------------------------------------------------------------------------------------------
+        public static string DefaultSystemUser { get { return "admin"; } }
+        public static string DefaultSystemPassword { get { return "admin"; } }
+        public static string DefaultFirstNameUserSystem { get { return "Administrator"; } }
+        public static string DefaultLastNameUserSystem { get { return "Administrator"; } }
+        public static string EncryptedDataAndHashPassword { get { return "'d-f5]8T.x6_[s3'"; } }
         //------------------------------------------------------------------------------------------
         public static string InfoMessagesF1 { get { return "Version: " + Preferences.CurrentVersion + "\r\nPC: " + Preferences.ProductCode; } }
+        //------------------------------------------------------------------------------------------
+        public static string GlobalSuccessOperation { get { return "The operation was done successfully."; } }
+        public static string GlobalErrorOperation { get { return "There was a problem when it tryed to do this operation. Try restarting the appplication."; } }
+        public static string GlobalTextToComparePasswords { get { return "Th1sTexCompl3t3lyIrrXD"; } }
     }
 }

@@ -26,9 +26,9 @@ namespace General_Desktop_Application.EF
         public string user_username__varchar { get; set; }
         public string user_email__varchar { get; set; }
         public string user_cellphone__varchar { get; set; }
-        public byte[] user_password__varbinary { get; set; }
-        public byte[] user_firstname__varbinary { get; set; }
-        public byte[] user_lastname__varbinary { get; set; }
+        public string user_password__varchar { get; set; }
+        public string user_firstname__varchar { get; set; }
+        public string user_lastname__varchar { get; set; }
         public byte user_roleaccess__tinyint { get; set; }
         public string user_extradata__varchar { get; set; }
         public Nullable<System.Guid> reso_uuid_picture__uniqueidentifier { get; set; }

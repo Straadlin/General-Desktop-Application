@@ -59,13 +59,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpbA = new System.Windows.Forms.GroupBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lsbUsers = new System.Windows.Forms.ListBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gpbA.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -398,17 +398,17 @@
             this.btnAccept.Visible = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // groupBox1
+            // gpbA
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.IndianRed;
-            this.groupBox1.Controls.Add(this.lblQuantity);
-            this.groupBox1.Controls.Add(this.lsbUsers);
-            this.groupBox1.Location = new System.Drawing.Point(8, 8);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 312);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Usuarios";
+            this.gpbA.BackColor = System.Drawing.Color.IndianRed;
+            this.gpbA.Controls.Add(this.lblQuantity);
+            this.gpbA.Controls.Add(this.lsbUsers);
+            this.gpbA.Location = new System.Drawing.Point(8, 8);
+            this.gpbA.Name = "gpbA";
+            this.gpbA.Size = new System.Drawing.Size(264, 312);
+            this.gpbA.TabIndex = 0;
+            this.gpbA.TabStop = false;
+            this.gpbA.Text = "Usuarios";
             // 
             // lblQuantity
             // 
@@ -447,7 +447,7 @@
             this.ClientSize = new System.Drawing.Size(895, 359);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpbA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -461,8 +461,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gpbA.ResumeLayout(false);
+            this.gpbA.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -478,7 +478,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpbA;
         private System.Windows.Forms.ListBox lsbUsers;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label label12;

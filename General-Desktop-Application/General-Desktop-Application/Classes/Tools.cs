@@ -25,20 +25,6 @@ namespace General_Desktop_Application.Classes
             }
         }
 
-        public static string GetHashMD5(byte[] byaData)
-        {
-            MD5CryptoServiceProvider objMD5CryptoServiceProvider = new MD5CryptoServiceProvider();
-
-            byaData = objMD5CryptoServiceProvider.ComputeHash(byaData);
-
-            string stMd5 = string.Empty;
-
-            for (int i = 0; i < byaData.Length; i++)
-                stMd5 += byaData[i].ToString("x2").ToLower();
-
-            return stMd5;
-        }
-
         static public bool ExtractToFile(Assembly objEnsamblado, string nombreDelArchivoDelRecurso, string nombreDelArchivoDeSalida)
         {
             try
@@ -169,6 +155,131 @@ namespace General_Desktop_Application.Classes
             //retornamos la nueva imagen
 
             return (Image)vBitmap;
+        }
+
+        public static string Encrypt(string stInput)
+        {
+            if (stInput.Length > 0)
+            {
+                // Arreglo de bytes donde guardaremos la clave
+                byte[] claveArreglo;
+                // Arreglo de bytes donde guardaremos el texto que vamos a encriptar
+                byte[] arregloACifrar = UTF8Encoding.UTF8.GetBytes(stInput);
+
+                // Se utilizan las clases de encriptación provistas por el Framework (Algoritmo MD5)
+                MD5CryptoServiceProvider objHasHDM5 = new MD5CryptoServiceProvider();
+                // Se guarda la llave para que se le realice hashing
+                claveArreglo = objHasHDM5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Preferences.EncryptedDataAndHashPassword));
+
+                objHasHDM5.Clear();
+
+                // Algoritmo 3DES
+                TripleDESCryptoServiceProvider objTDESCrypto = new TripleDESCryptoServiceProvider();
+
+                objTDESCrypto.Key = claveArreglo;
+                objTDESCrypto.Mode = CipherMode.ECB;
+                objTDESCrypto.Padding = PaddingMode.PKCS7;
+
+                // Se empieza con la transformación de la cadena
+                ICryptoTransform objICTransform = objTDESCrypto.CreateEncryptor();
+
+                // Arreglo de bytes donde se guarda la cadena cifrada
+                byte[] ArrayResultado = objICTransform.TransformFinalBlock(arregloACifrar, 0, arregloACifrar.Length);
+
+                objTDESCrypto.Clear();
+
+                // Se regresa el resultado en forma de una cadena
+
+                return Convert.ToBase64String(ArrayResultado, 0, ArrayResultado.Length);
+            }
+
+            return null;
+        }
+
+        public static string Decrypt(string stInput)
+        {
+            if (stInput.Length > 0)
+            {
+                try
+                {
+                    byte[] claveArreglo;
+                    // Convierte el texto en una secuencia de bytes
+                    byte[] arregloADescifrar = Convert.FromBase64String(stInput);
+
+                    // Se llama a las clases que tienen los algoritmos de encriptación se le aplica hashing (Algoritmo MD5)
+                    MD5CryptoServiceProvider objHasHDM5 = new MD5CryptoServiceProvider();
+
+                    claveArreglo = objHasHDM5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Preferences.EncryptedDataAndHashPassword));
+
+                    objHasHDM5.Clear();
+
+                    TripleDESCryptoServiceProvider objTDESCrypto = new TripleDESCryptoServiceProvider();
+
+                    objTDESCrypto.Key = claveArreglo;
+                    objTDESCrypto.Mode = CipherMode.ECB;
+                    objTDESCrypto.Padding = PaddingMode.PKCS7;
+
+                    ICryptoTransform objICTransform = objTDESCrypto.CreateDecryptor();
+
+                    byte[] resultArray = objICTransform.TransformFinalBlock(arregloADescifrar, 0, arregloADescifrar.Length);
+
+                    objTDESCrypto.Clear();
+
+                    // Se regresa en forma de cadena
+
+                    return UTF8Encoding.UTF8.GetString(resultArray);
+                }
+                catch { }
+            }
+
+            return null;
+        }
+
+        public static string GetDefaulHash(string stInput)
+        {
+            return GetHash(GetHash(stInput, new SHA256CryptoServiceProvider()), new SHA512CryptoServiceProvider());
+        }
+
+        private static string GetHashMD5(byte[] byaData)
+        {
+            MD5CryptoServiceProvider objMD5CryptoServiceProvider = new MD5CryptoServiceProvider();
+
+            byaData = objMD5CryptoServiceProvider.ComputeHash(byaData);
+
+            string stMd5 = string.Empty;
+
+            for (int i = 0; i < byaData.Length; i++)
+                stMd5 += byaData[i].ToString("x2").ToLower();
+
+            return stMd5;
+        }
+
+        private static string GetMD5Hash(string stInput)
+        {
+            return GetHash(stInput, new MD5CryptoServiceProvider());
+        }
+
+        private static string GetSHA256Hash(string stInput)
+        {
+            return GetHash(stInput, new SHA256CryptoServiceProvider());
+        }
+
+        private static string GetSHA512Hash(string stInput)
+        {
+            return GetHash(stInput, new SHA512CryptoServiceProvider());
+        }
+
+        private static string GetHash(string stInput, HashAlgorithm hashAlgorithm)
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(stInput);
+            byte[] hashedBytes = hashAlgorithm.ComputeHash(inputBytes);
+
+            StringBuilder output = new StringBuilder();
+
+            for (int i = 0; i < hashedBytes.Length; i++)
+                output.Append(hashedBytes[i].ToString("x2").ToLower());
+
+            return output.ToString();
         }
     }
 }
