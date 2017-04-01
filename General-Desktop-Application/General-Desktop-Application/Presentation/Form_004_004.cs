@@ -33,9 +33,11 @@ namespace General_Desktop_Application.Presentation
 
         private void Form_004_004_Load(object sender, EventArgs e)
         {
+            lblCompany.Text = "Company Name:";
             lblProduct.Text = "Product Name: " + Preferences.TitleSoftware;
             lblVersion.Text = "Version: " + Preferences.CurrentVersion;
-            lblCompany.Text = "Company Name:";
+            lblPC.Text = "PC: "+Preferences.ProductCode;
+            lblDesigned.Text = "Designed and Developed by: " + Preferences.DesignedDeveloped;
             txtInfo.Text = Preferences.EnglishLanguage ? 
                 "It authorizes to the previously mentioned company to use of this application, further the installation in different work stations that it needs, respecting ever the same conditions to guaranty and technical assistance." :
                 "Se autoriza a la empresa antes mencionada en el uso de esta aplicación, así como la instalación de este mismo producto en los diferentes equipos que ella desee, respetando siempre las mismas condiciones para validez de garantía y asistencia técnica.";
@@ -54,7 +56,7 @@ namespace General_Desktop_Application.Presentation
         private void Form_004_004_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)
-                this.Close();
+                Close();
         }
 
         private void btnOk_Click(object sender, EventArgs e)

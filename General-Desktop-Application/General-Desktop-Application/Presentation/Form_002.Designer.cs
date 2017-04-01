@@ -89,6 +89,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.BackColor = System.Drawing.Color.Gainsboro;
             this.txtPassword.Location = new System.Drawing.Point(149, 29);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
@@ -97,6 +98,7 @@
             // 
             // txtUser
             // 
+            this.txtUser.BackColor = System.Drawing.Color.Gainsboro;
             this.txtUser.Location = new System.Drawing.Point(149, 5);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(100, 20);

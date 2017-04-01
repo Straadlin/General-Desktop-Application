@@ -1891,41 +1891,23 @@ INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar,
 --INSERT INTO build_general.city(city_value, stat_uuid) VALUES('VILLANUEVA',32); 
 --INSERT INTO build_general.city(city_value, stat_uuid) VALUES('ZACATECAS',32);
 
-
 INSERT INTO build_level002.[date](date_uuid__uniqueidentifier, date_value__date) VALUES(@dateUUID, '2000-01-01');
 
 INSERT INTO build_level002.[session](sess_uuid__uniqueidentifier, sess_starttime__time, sess_lastactivity__time, sess_ipbatch01__tinyint, sess_ipbatch02__tinyint, sess_ipbatch03__tinyint, sess_ipbatch04__tinyint, sess_extradata__varchar, date_uuid__uniqueidentifier, user_uuid_created__uniqueidentifier) VALUES(@sessionStraadUUID, '13:00:00', '13:00:00', NULL, NULL, NULL, NULL, NULL, @dateUUID, @user001UUID);
 
 INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varchar, user_firstname__varchar, user_lastname__varchar, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) VALUES(
-	@user001UUID, '_admin_', NULL, NULL, '_keyhashpassword_', 
-	'_administrator01_', '_administrator02_', 
+	@user001UUID, '_admin_', NULL, NULL, '_keyhashpassword_', '_administrator01_', '_administrator02_', 
 	1, NULL, NULL, NULL, NULL, NULL, @sessionStraadUUID, NULL, NULL);
 
-
---INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varbinary, user_firstname__varbinary, user_lastname__varbinary, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) VALUES(
---	@user001UUID, 'admin', NULL, NULL, 
---	HASHBYTES('sha2_512', HASHBYTES('sha2_256', 'admin')), 
---	ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3','Administrator'), 
---	ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', 'Administrator'), 
---	1, NULL, NULL, NULL, NULL, NULL, @sessionStraadUUID, NULL, NULL);
-
---EXEC build_level001.proc_user_insert 
---	@user_uuid__uniqueidentifier = @user001UUID, 
---	@user_username__varchar = 'admin', 
---	@user_email__varchar = NULL, 
---	@user_cellphone__varchar = NULL, 
---	@user_password__varchar = 'admin', 
---	@user_firstname__varchar = 'Administrator', 
---	@user_lastname__varchar = 'Administrator', 
---	@user_roleaccess__tinyint = 1, 
---	@user_extradata__varchar = NULL, 
---	@reso_uuid_picture__uniqueidentifier = NULL, 
---	@date_uuid_birthdate__uniqueidentifier = NULL, 
---	@city_uuid__uniqueidentifier = NULL, 
---	@sess_uuid_used__uniqueidentifier = NULL, 
---	@sess_uuid_created__uniqueidentifier = @sessionStraadUUID, 
---	@user_uuid_root__uniqueidentifier = NULL, 
---	@sess_uuid_deleted__uniqueidentifier = NULL;
+INSERT INTO build_level003.[version]
+        ( vers_uuid__uniqueidentifier ,
+          vers_name__varchar ,
+          date_uuid__uniqueidentifier
+        )
+VALUES  ( NEWID() , -- vers_uuid__uniqueidentifier - uniqueidentifier
+          '_straadprve_' , -- vers_name__varchar - varchar(12)
+          @dateUUID  -- date_uuid__uniqueidentifier - uniqueidentifier
+        );
 
 GO
 

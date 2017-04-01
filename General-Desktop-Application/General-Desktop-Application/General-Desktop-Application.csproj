@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\BPrincipalCompany.cs" />
     <Compile Include="BusinessLayer\Business.cs" />
     <Compile Include="BusinessLayer\BCity.cs" />
     <Compile Include="BusinessLayer\BCountry.cs" />
@@ -240,7 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Notes.txt" />
-    <Content Include="Changes.txt" />
     <Content Include="EF\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -258,6 +258,9 @@
     <Content Include="Resources\Background Images\green-cloth-texture-1.jpg" />
     <Content Include="Resources\Diagrams\General-Desktop-Application-001.jpg" />
     <Content Include="Resources\Icons\icon.ico" />
+    <Content Include="Resources\Images\Clock_48_00_FF2C7399.png" />
+    <Content Include="Resources\Images\User_48_00_FF2C7399.png" />
+    <Content Include="Resources\Images\Windows-WF_48_00_FF2C7399.png" />
     <EmbeddedResource Include="Resources\Scripts\Initializer.sql" />
   </ItemGroup>
   <ItemGroup>

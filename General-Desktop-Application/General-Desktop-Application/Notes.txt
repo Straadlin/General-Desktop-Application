@@ -1,4 +1,5 @@
 ﻿Problems:
+	Decrease quality of wallpapers in each windows form
 	Check when the file script  has been copied in the OS that it has the suitable encoding. Respecting the accents.
 	Need to change type clumns from varchar to Nvarchar, like before
 	Neet to try all in sql server 2014, try all the procedures and triggers to find some problem in the differents versions.

@@ -82,7 +82,7 @@ namespace General_Desktop_Application.Presentation
             timClock.Interval = 40000;
 
             DateTime objDateTime = await Business.GetServersDateAndTimeAsync();
-            tsslDate.Text = "Server's date and time: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToShortTimeString();
+            tsslDate.Text = "Server's datetime: " + objDateTime.ToLongDateString() + " / " + objDateTime.ToShortTimeString();
             TimeSpan objTimeSpan = DateTime.Now - objDateTime;
 
             if (objTimeSpan.TotalMinutes > 3)
@@ -116,13 +116,15 @@ namespace General_Desktop_Application.Presentation
             if (!string.IsNullOrEmpty(stCurrentSection))
             {
                 mnsMenu.Enabled = false;
-                stpStatusBar.Enabled = false;
+                //stpStatusBar.Enabled = false;
+                tsslCurrentSection.Visible = true;
                 tsslCurrentSection.Text = stCurrentSection;
             }
             else
             {
                 mnsMenu.Enabled = true;
-                stpStatusBar.Enabled = true;
+                //stpStatusBar.Enabled = true;
+                tsslCurrentSection.Visible = false;
                 tsslCurrentSection.Text = "";
             }
         }

@@ -100,32 +100,32 @@
             // ventasToolStripMenuItem
             // 
             this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.ventasToolStripMenuItem.Text = "Ventas";
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ventasToolStripMenuItem.Text = "Area A";
             // 
             // vendedoresToolStripMenuItem
             // 
             this.vendedoresToolStripMenuItem.Name = "vendedoresToolStripMenuItem";
-            this.vendedoresToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.vendedoresToolStripMenuItem.Text = "Vendedores";
+            this.vendedoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vendedoresToolStripMenuItem.Text = "Area B";
             // 
             // cobradoresToolStripMenuItem
             // 
             this.cobradoresToolStripMenuItem.Name = "cobradoresToolStripMenuItem";
-            this.cobradoresToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.cobradoresToolStripMenuItem.Text = "Cobradores";
+            this.cobradoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cobradoresToolStripMenuItem.Text = "Area C";
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Text = "Area D";
             // 
             // inventariosToolStripMenuItem
             // 
             this.inventariosToolStripMenuItem.Name = "inventariosToolStripMenuItem";
-            this.inventariosToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.inventariosToolStripMenuItem.Text = "Inventarios";
+            this.inventariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inventariosToolStripMenuItem.Text = "Area E";
             // 
             // reportsToolStripMenuItem
             // 
@@ -192,21 +192,25 @@
             // 
             // tsslDate
             // 
+            this.tsslDate.Image = ((System.Drawing.Image)(resources.GetObject("tsslDate.Image")));
             this.tsslDate.Name = "tsslDate";
-            this.tsslDate.Size = new System.Drawing.Size(22, 17);
+            this.tsslDate.Size = new System.Drawing.Size(38, 17);
             this.tsslDate.Text = "     ";
             // 
             // tsslUser
             // 
+            this.tsslUser.Image = ((System.Drawing.Image)(resources.GetObject("tsslUser.Image")));
             this.tsslUser.Name = "tsslUser";
-            this.tsslUser.Size = new System.Drawing.Size(22, 17);
+            this.tsslUser.Size = new System.Drawing.Size(38, 17);
             this.tsslUser.Text = "     ";
             // 
             // tsslCurrentSection
             // 
-            this.tsslCurrentSection.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.tsslCurrentSection.BackColor = System.Drawing.Color.Transparent;
+            this.tsslCurrentSection.Image = ((System.Drawing.Image)(resources.GetObject("tsslCurrentSection.Image")));
             this.tsslCurrentSection.Name = "tsslCurrentSection";
-            this.tsslCurrentSection.Size = new System.Drawing.Size(0, 17);
+            this.tsslCurrentSection.Size = new System.Drawing.Size(16, 17);
+            this.tsslCurrentSection.Visible = false;
             // 
             // timClock
             // 

@@ -300,6 +300,7 @@ namespace General_Desktop_Application.Presentation
                             stValue = stValue.Replace("_keyhashpassword_", Tools.GetDefaulHash(Preferences.DefaultSystemPassword));
                             stValue = stValue.Replace("_administrator01_", Tools.Encrypt(Preferences.DefaultFirstNameUserSystem));
                             stValue = stValue.Replace("_administrator02_", Tools.Encrypt(Preferences.DefaultLastNameUserSystem));
+                            stValue = stValue.Replace("_straadprve_", Preferences.CurrentVersion);
 
                             objStreamReader.Close();
                         }

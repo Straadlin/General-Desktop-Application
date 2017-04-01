@@ -294,7 +294,7 @@ namespace General_Desktop_Application.BusinessLayer
                         date_uuid_birthdate__uniqueidentifier = vUserPrincipal.date_uuid_birthdate__uniqueidentifier,
                         city_uuid__uniqueidentifier = vUserPrincipal.city_uuid__uniqueidentifier,
                         sess_uuid_used__uniqueidentifier = null,
-                        sess_uuid_created__uniqueidentifier = objSession.sess_uuid__uniqueidentifier,
+                        sess_uuid_created__uniqueidentifier = vUserPrincipal.sess_uuid_created__uniqueidentifier,
                         user_uuid_root__uniqueidentifier = vLastBranch.user_uuid__uniqueidentifier,
                         sess_uuid_deleted__uniqueidentifier = null
                     };

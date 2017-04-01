@@ -15,6 +15,7 @@ namespace General_Desktop_Application.Classes
         public static string TitleSoftware { get { return "Invalid Company"; } }
         public static string CurrentVersion { get { return "1.001.170303"; } }
         public static string ProductCode { get { return "Ct1x9w3c"; } }
+        public static string DesignedDeveloped { get { return "Straad"; } }
         public static bool EnglishLanguage { get { return true; } }
         public static string PathBackups { get { return "C:\\straad_data\\backups"; } }
         public static string PathTemporalBackupFile { get { return PathBackups + "\\" + DatabaseName + "_temp.bak"; } }
@@ -119,7 +120,7 @@ namespace General_Desktop_Application.Classes
         public static string DefaultLastNameUserSystem { get { return "Administrator"; } }
         public static string EncryptedDataAndHashPassword { get { return "'d-f5]8T.x6_[s3'"; } }
         //------------------------------------------------------------------------------------------
-        public static string InfoMessagesF1 { get { return "Version: " + Preferences.CurrentVersion + "\r\nPC: " + Preferences.ProductCode; } }
+        public static string InfoMessagesF1 { get { return "Version: " + CurrentVersion + "\r\nPC: " + ProductCode; } }
         //------------------------------------------------------------------------------------------
         public static string GlobalSuccessOperation { get { return "The operation was done successfully."; } }
         public static string GlobalErrorOperation { get { return "There was a problem when it tryed to do this operation. Try restarting the appplication."; } }
