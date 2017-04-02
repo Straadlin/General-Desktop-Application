@@ -1,5 +1,7 @@
 ﻿The name format in the backups will be with next format: [produt code]_[versionsystem]_[date]_[time]
 Work with the possiblis and differents roles and sections.
+Enabled to show the logo at begining when the application starts.
+Change the two password textbox when it allows add users. It'll be only one insetead of two.
 
 Problems:
 	Decrease quality of wallpapers in each windows form

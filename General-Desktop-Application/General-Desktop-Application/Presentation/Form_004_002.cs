@@ -108,9 +108,13 @@ namespace General_Desktop_Application.Presentation
                 else if (cboMode.Focused)
                 {
                     if (cboMode.SelectedIndex > -1)
-                        nudLapse.Focus();
+                        nudHoursToBackup.Focus();
                 }
-                else if (nudLapse.Focused)
+                else if (nudHoursToBackup.Focused)
+                {
+                    nudDaysToDelete.Focus();
+                }
+                else if (nudDaysToDelete.Focused)
                 {
                     btnAccept.Focus();
                 }
@@ -142,7 +146,8 @@ namespace General_Desktop_Application.Presentation
                     cboCity.Enabled = true;
                     pcbLogo.Enabled = true;
                     cboMode.Enabled = true;
-                    nudLapse.Enabled = true;
+                    nudHoursToBackup.Enabled = true;
+                    nudDaysToDelete.Enabled = true;
 
                     btnEdit.Visible = false;
                     btnAccept.Visible = btnCancel.Visible = true;
@@ -166,9 +171,9 @@ namespace General_Desktop_Application.Presentation
             {
                 if (RegularExpressions.CheckIsNormalText(txtCompany.Text, 1, 100))
                 {
-                    if (RegularExpressions.CheckIsNormalText(txtAddress.Text, 255))
+                    if (RegularExpressions.CheckIsNormalText(txtAddress.Text,0, 255))
                     {
-                        if (RegularExpressions.CheckIsNumber(txtPhone.Text, 10))
+                        if (RegularExpressions.CheckIsNumber(txtPhone.Text,10, 10))
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
@@ -189,7 +194,8 @@ namespace General_Desktop_Application.Presentation
                                             !string.IsNullOrEmpty(txtEmail.Text) ? txtEmail.Text : null,
                                             !string.IsNullOrEmpty(txtFacebook.Text) ? txtFacebook.Text : null,
                                             cboMode.SelectedIndex == 0 ? true : false,
-                                            nudLapse.Value != 0 ? Convert.ToInt32(nudLapse.Value) : 0,
+                                            Convert.ToInt32(nudHoursToBackup.Value),
+                                            Convert.ToInt32(nudDaysToDelete.Value),
                                             stPathPicture,
                                             logo,
                                             cboState.SelectedIndex > 0 ? cboState.Text : null,
@@ -207,7 +213,8 @@ namespace General_Desktop_Application.Presentation
                                             cboCity.Enabled = false;
                                             pcbLogo.Enabled = false;
                                             cboMode.Enabled = false;
-                                            nudLapse.Enabled = false;
+                                            nudHoursToBackup.Enabled = false;
+                                            nudDaysToDelete.Enabled = false;
                                             pcbLogo.Enabled = false;
 
                                             btnAccept.Visible = btnCancel.Visible = false;
@@ -283,7 +290,8 @@ namespace General_Desktop_Application.Presentation
             cboCity.Enabled = false;
             pcbLogo.Enabled = false;
             cboMode.Enabled = false;
-            nudLapse.Enabled = false;
+            nudHoursToBackup.Enabled = false;
+            nudHoursToBackup.Enabled = false;
 
             txtRFC.Text = objPrincipalCompany.prco_rfc__nvarchar;
             txtCompany.Text = objPrincipalCompany.prco_name__nvarchar;
@@ -310,7 +318,8 @@ namespace General_Desktop_Application.Presentation
 
             pcbLogo.Image = objPrincipalCompany.reso_uuid_logo__uniqueidentifier != null ? Tools.ConvertirByteAImagen(BResource.FindByUUID(objPrincipalCompany.reso_uuid_logo__uniqueidentifier.Value).reso_value__varbinary) : null;
             cboMode.SelectedIndex = objPrincipalCompany.prco_developmentmode__bit == true ? 0 : 1;
-            nudLapse.Value = objPrincipalCompany.prco_timebetweenbackups__int != null ? (decimal)objPrincipalCompany.prco_timebetweenbackups__int : 0;
+            nudHoursToBackup.Value = objPrincipalCompany.prco_hoursbetweenbackups__int;
+            nudDaysToDelete.Value = objPrincipalCompany.prco_daysdeletbackups__int;
 
             btnAccept.Visible = btnCancel.Visible = false;
             btnEdit.Visible = true;
@@ -393,7 +402,8 @@ namespace General_Desktop_Application.Presentation
 
                 pcbLogo.Image = vPrincipalCompany.reso_uuid_logo__uniqueidentifier != null ? Tools.ConvertirByteAImagen(BResource.FindByUUID(vPrincipalCompany.reso_uuid_logo__uniqueidentifier.Value).reso_value__varbinary) : null;
                 cboMode.SelectedIndex = vPrincipalCompany.prco_developmentmode__bit ? 0 : 1;
-                nudLapse.Value = vPrincipalCompany.prco_timebetweenbackups__int != null ? (decimal)vPrincipalCompany.prco_timebetweenbackups__int : 0;
+                nudHoursToBackup.Value = objPrincipalCompany.prco_hoursbetweenbackups__int;
+                nudDaysToDelete.Value = objPrincipalCompany.prco_daysdeletbackups__int;
             }
         }
 

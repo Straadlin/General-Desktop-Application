@@ -28,7 +28,8 @@ namespace General_Desktop_Application.EF
         public string prco_email__nvarchar { get; set; }
         public string prco_facebook__nvarchar { get; set; }
         public bool prco_developmentmode__bit { get; set; }
-        public Nullable<int> prco_timebetweenbackups__int { get; set; }
+        public int prco_hoursbetweenbackups__int { get; set; }
+        public int prco_daysdeletbackups__int { get; set; }
         public Nullable<System.Guid> reso_uuid_logo__uniqueidentifier { get; set; }
         public Nullable<System.Guid> city_uuid__uniqueidentifier { get; set; }
         public Nullable<System.Guid> sess_uuid_used__uniqueidentifier { get; set; }

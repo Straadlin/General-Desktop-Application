@@ -91,7 +91,8 @@ namespace General_Desktop_Application.BusinessLayer
             string stEmail,
             string stFacebookUrl,
             bool boDevelopmentMode,
-            int? inTimeBetweenBackups,
+            int inHoursBetweenBackups,
+            int inDaysDeleteBackups,
             string stNamePicture,
             byte[] byaPicture,
             string stState,
@@ -123,7 +124,8 @@ namespace General_Desktop_Application.BusinessLayer
                         prco_email__nvarchar = vPreferencePrincipal.prco_email__nvarchar,
                         prco_facebook__nvarchar = vPreferencePrincipal.prco_facebook__nvarchar,
                         prco_developmentmode__bit = vPreferencePrincipal.prco_developmentmode__bit,
-                        prco_timebetweenbackups__int = vPreferencePrincipal.prco_timebetweenbackups__int,
+                        prco_hoursbetweenbackups__int = vPreferencePrincipal.prco_hoursbetweenbackups__int,
+                        prco_daysdeletbackups__int = vPreferencePrincipal.prco_daysdeletbackups__int,
                         reso_uuid_logo__uniqueidentifier = vPreferencePrincipal.reso_uuid_logo__uniqueidentifier,
                         city_uuid__uniqueidentifier = vPreferencePrincipal.city_uuid__uniqueidentifier,
                         sess_uuid_used__uniqueidentifier = null,
@@ -149,7 +151,8 @@ namespace General_Desktop_Application.BusinessLayer
                     vPreferencePrincipal.prco_email__nvarchar = stEmail;
                     vPreferencePrincipal.prco_facebook__nvarchar = stFacebookUrl;
                     vPreferencePrincipal.prco_developmentmode__bit = boDevelopmentMode;
-                    vPreferencePrincipal.prco_timebetweenbackups__int = inTimeBetweenBackups > 0 ? inTimeBetweenBackups: null;
+                    vPreferencePrincipal.prco_hoursbetweenbackups__int = inHoursBetweenBackups;
+                    vPreferencePrincipal.prco_daysdeletbackups__int = inDaysDeleteBackups;//vPreferencePrincipal.prco_timebetweenbackups__int = inTimeBetweenBackups > 0 ? inTimeBetweenBackups: null;
                     vPreferencePrincipal.reso_uuid_logo__uniqueidentifier = objGuidResource;
                     vPreferencePrincipal.city_uuid__uniqueidentifier = objGuidCity;
                     vPreferencePrincipal.sess_uuid_used__uniqueidentifier = null;

@@ -254,7 +254,9 @@ namespace General_Desktop_Application.Presentation
         {
             if (lsbUsers.SelectedIndex > -1)
             {
-                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                //var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                var vUser = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);
 
                 if (vUser != null)
                 {
@@ -311,7 +313,9 @@ namespace General_Desktop_Application.Presentation
         {
             if (lsbUsers.SelectedIndex > -1)
             {
-                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                //var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                var vUser = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);
 
                 if (vUser != null)
                 {
@@ -361,23 +365,23 @@ namespace General_Desktop_Application.Presentation
             {
                 case 1:
                     {
-                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsername(txtUserName.Text, 4, 100))
+                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsernameAndLength(txtUserName.Text, 4, 100))
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text, 10))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text,10, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphone(txtUserName.Text, txtEmail.Text, txtCellphone.Text))
                                     {
                                         case 0:
                                             {
-                                                if (RegularExpressions.CheckIsPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
+                                                if (RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text,4,100) && txtPassword.Text == txtRePassword.Text)
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
-                                                        if (RegularExpressions.CheckIsFirstNameOrLastName(txtFirstName.Text, 1, 100))
+                                                        if (RegularExpressions.CheckIsFirstNameOrLastNameAndLength(txtFirstName.Text, 1, 100))
                                                         {
-                                                            if (RegularExpressions.CheckIsFirstNameOrLastName(txtLastName.Text, 1, 100))
+                                                            if (RegularExpressions.CheckIsFirstNameOrLastNameAndLength(txtLastName.Text, 1, 100))
                                                             {
                                                                 if (cboState.SelectedIndex < 1 || cboCity.SelectedIndex > -1)
                                                                 {
@@ -529,23 +533,23 @@ namespace General_Desktop_Application.Presentation
                     }
                 case 2:
                     {
-                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsername(txtUserName.Text, 4, 100))
+                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsernameAndLength(txtUserName.Text, 4, 100))
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text, 10))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text,10, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphoneWithExcludedUser(txtUserName.Text, txtEmail.Text, txtCellphone.Text, objUserSelectedPrincipalItem))
                                     {
                                         case 0:
                                             {
-                                                if (txtPassword.Text == Preferences.GlobalTextToComparePasswords || RegularExpressions.CheckIsPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
+                                                if (txtPassword.Text == Preferences.GlobalTextToComparePasswords || (RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text,4,100) && txtPassword.Text == txtRePassword.Text))
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
-                                                        if (RegularExpressions.CheckIsFirstNameOrLastName(txtFirstName.Text, 1, 100))
+                                                        if (RegularExpressions.CheckIsFirstNameOrLastNameAndLength(txtFirstName.Text, 1, 100))
                                                         {
-                                                            if (RegularExpressions.CheckIsFirstNameOrLastName(txtLastName.Text, 1, 100))
+                                                            if (RegularExpressions.CheckIsFirstNameOrLastNameAndLength(txtLastName.Text, 1, 100))
                                                             {
                                                                 if (cboState.SelectedIndex < 1 || cboCity.SelectedIndex > -1)
                                                                 {
@@ -558,7 +562,7 @@ namespace General_Desktop_Application.Presentation
                                                                         !string.IsNullOrEmpty(txtUserName.Text) ? txtUserName.Text : null,
                                                                         !string.IsNullOrEmpty(txtEmail.Text) ? txtEmail.Text : null,
                                                                         !string.IsNullOrEmpty(txtCellphone.Text) ? txtCellphone.Text : null,
-                                                                        txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__nvarchar,
+                                                                        txtPassword.Text,//txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__nvarchar,
                                                                         txtFirstName.Text,
                                                                         txtLastName.Text,
                                                                         Convert.ToByte(cboRoleAccess.SelectedIndex + 1),
@@ -607,6 +611,9 @@ namespace General_Desktop_Application.Presentation
                                                                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
 
                                                                         btnClose.Enabled = true;
+
+                                                                        lsbUsers.Items.Clear();
+                                                                        RefreshMainList();
 
                                                                         byAction = 0;
 
@@ -695,7 +702,9 @@ namespace General_Desktop_Application.Presentation
                     }
                 case 3:
                     {
-                        var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                        //var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                        var vUser = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);
 
                         if (vUser != null)
                         {
@@ -796,7 +805,9 @@ namespace General_Desktop_Application.Presentation
                     }
                 case 2:
                     {
-                        var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                        //var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                        var vUser = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);
 
                         if (vUser != null)
                         {
@@ -845,7 +856,9 @@ namespace General_Desktop_Application.Presentation
                     }
                 case 3:
                     {
-                        var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                        //var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+
+                        var vUser = BUser.FindByUUID(objUserSelectedPrincipalItem.user_uuid__uniqueidentifier);
 
                         if (vUser != null)
                         {

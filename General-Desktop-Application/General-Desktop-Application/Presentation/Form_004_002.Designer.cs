@@ -53,14 +53,17 @@
             this.btnAccept = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.nudLapse = new System.Windows.Forms.NumericUpDown();
+            this.nudHoursToBackup = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cboMode = new System.Windows.Forms.ComboBox();
+            this.nudDaysToDelete = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLapse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHoursToBackup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDaysToDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRFC
@@ -133,10 +136,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(584, 280);
+            this.btnClose.Location = new System.Drawing.Point(584, 304);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 128;
+            this.btnClose.TabIndex = 150;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -278,20 +281,20 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(16, 280);
+            this.btnEdit.Location = new System.Drawing.Point(16, 304);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 125;
+            this.btnEdit.TabIndex = 130;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(104, 280);
+            this.btnCancel.Location = new System.Drawing.Point(104, 304);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 127;
+            this.btnCancel.TabIndex = 132;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Visible = false;
@@ -299,10 +302,10 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(16, 280);
+            this.btnAccept.Location = new System.Drawing.Point(16, 304);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 126;
+            this.btnAccept.TabIndex = 131;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Visible = false;
@@ -340,56 +343,58 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.nudLapse);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.nudDaysToDelete);
+            this.groupBox2.Controls.Add(this.nudHoursToBackup);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.cboMode);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(8, 200);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(656, 72);
+            this.groupBox2.Size = new System.Drawing.Size(656, 96);
             this.groupBox2.TabIndex = 132;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
             // 
-            // nudLapse
+            // nudHoursToBackup
             // 
-            this.nudLapse.BackColor = System.Drawing.Color.Gainsboro;
-            this.nudLapse.Enabled = false;
-            this.nudLapse.Location = new System.Drawing.Point(328, 40);
-            this.nudLapse.Maximum = new decimal(new int[] {
+            this.nudHoursToBackup.BackColor = System.Drawing.Color.Gainsboro;
+            this.nudHoursToBackup.Enabled = false;
+            this.nudHoursToBackup.Location = new System.Drawing.Point(448, 40);
+            this.nudHoursToBackup.Maximum = new decimal(new int[] {
             168,
             0,
             0,
             0});
-            this.nudLapse.Name = "nudLapse";
-            this.nudLapse.ReadOnly = true;
-            this.nudLapse.Size = new System.Drawing.Size(88, 20);
-            this.nudLapse.TabIndex = 22;
+            this.nudHoursToBackup.Name = "nudHoursToBackup";
+            this.nudHoursToBackup.ReadOnly = true;
+            this.nudHoursToBackup.Size = new System.Drawing.Size(88, 20);
+            this.nudHoursToBackup.TabIndex = 121;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.SlateGray;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(16, 40);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(303, 13);
+            this.label8.Size = new System.Drawing.Size(424, 13);
             this.label8.TabIndex = 21;
-            this.label8.Text = "Lapse of time to do automatically backups, in hours:";
+            this.label8.Text = "Quantity hours, between each backup, to do automatically backups:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.SlateGray;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
             this.label12.Location = new System.Drawing.Point(16, 16);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(264, 13);
+            this.label12.Size = new System.Drawing.Size(424, 13);
             this.label12.TabIndex = 19;
             this.label12.Text = "*Execute this application on developer mode:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cboMode
             // 
@@ -397,17 +402,44 @@
             this.cboMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMode.Enabled = false;
             this.cboMode.FormattingEnabled = true;
-            this.cboMode.Location = new System.Drawing.Point(328, 16);
+            this.cboMode.Location = new System.Drawing.Point(448, 16);
             this.cboMode.Name = "cboMode";
             this.cboMode.Size = new System.Drawing.Size(88, 21);
-            this.cboMode.TabIndex = 4;
+            this.cboMode.TabIndex = 120;
+            // 
+            // nudDaysToDelete
+            // 
+            this.nudDaysToDelete.BackColor = System.Drawing.Color.Gainsboro;
+            this.nudDaysToDelete.Enabled = false;
+            this.nudDaysToDelete.Location = new System.Drawing.Point(448, 64);
+            this.nudDaysToDelete.Maximum = new decimal(new int[] {
+            168,
+            0,
+            0,
+            0});
+            this.nudDaysToDelete.Name = "nudDaysToDelete";
+            this.nudDaysToDelete.ReadOnly = true;
+            this.nudDaysToDelete.Size = new System.Drawing.Size(88, 20);
+            this.nudDaysToDelete.TabIndex = 122;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.SlateGray;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(16, 64);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(424, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Quantity days to keep stored backups, after has done the backup:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Form_004_002
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(671, 309);
+            this.ClientSize = new System.Drawing.Size(671, 336);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.groupBox1);
@@ -429,8 +461,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLapse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHoursToBackup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDaysToDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -463,6 +495,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cboMode;
-        private System.Windows.Forms.NumericUpDown nudLapse;
+        private System.Windows.Forms.NumericUpDown nudHoursToBackup;
+        private System.Windows.Forms.NumericUpDown nudDaysToDelete;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -109,7 +109,8 @@
           <Property Name="prco_email__nvarchar" Type="nvarchar" MaxLength="100" />
           <Property Name="prco_facebook__nvarchar" Type="nvarchar" MaxLength="100" />
           <Property Name="prco_developmentmode__bit" Type="bit" Nullable="false" />
-          <Property Name="prco_timebetweenbackups__int" Type="int" />
+          <Property Name="prco_hoursbetweenbackups__int" Type="int" Nullable="false" />
+          <Property Name="prco_daysdeletbackups__int" Type="int" Nullable="false" />
           <Property Name="reso_uuid_logo__uniqueidentifier" Type="uniqueidentifier" />
           <Property Name="city_uuid__uniqueidentifier" Type="uniqueidentifier" />
           <Property Name="sess_uuid_used__uniqueidentifier" Type="uniqueidentifier" />
@@ -707,7 +708,8 @@
           <Property Name="prco_email__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="prco_facebook__nvarchar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="prco_developmentmode__bit" Type="Boolean" Nullable="false" />
-          <Property Name="prco_timebetweenbackups__int" Type="Int32" />
+          <Property Name="prco_hoursbetweenbackups__int" Type="Int32" Nullable="false" />
+          <Property Name="prco_daysdeletbackups__int" Type="Int32" Nullable="false" />
           <Property Name="reso_uuid_logo__uniqueidentifier" Type="Guid" />
           <Property Name="city_uuid__uniqueidentifier" Type="Guid" />
           <Property Name="sess_uuid_used__uniqueidentifier" Type="Guid" />
@@ -1091,7 +1093,8 @@
                 <ScalarProperty Name="sess_uuid_used__uniqueidentifier" ColumnName="sess_uuid_used__uniqueidentifier" />
                 <ScalarProperty Name="city_uuid__uniqueidentifier" ColumnName="city_uuid__uniqueidentifier" />
                 <ScalarProperty Name="reso_uuid_logo__uniqueidentifier" ColumnName="reso_uuid_logo__uniqueidentifier" />
-                <ScalarProperty Name="prco_timebetweenbackups__int" ColumnName="prco_timebetweenbackups__int" />
+                <ScalarProperty Name="prco_daysdeletbackups__int" ColumnName="prco_daysdeletbackups__int" />
+                <ScalarProperty Name="prco_hoursbetweenbackups__int" ColumnName="prco_hoursbetweenbackups__int" />
                 <ScalarProperty Name="prco_developmentmode__bit" ColumnName="prco_developmentmode__bit" />
                 <ScalarProperty Name="prco_facebook__nvarchar" ColumnName="prco_facebook__nvarchar" />
                 <ScalarProperty Name="prco_email__nvarchar" ColumnName="prco_email__nvarchar" />

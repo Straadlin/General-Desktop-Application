@@ -32,7 +32,7 @@ CREATE TABLE build_level002.[session] (sess_uuid__uniqueidentifier uniqueidentif
 CREATE TABLE build_level002.[date] (date_uuid__uniqueidentifier uniqueidentifier NOT NULL, date_value__date date NOT NULL, PRIMARY KEY (date_uuid__uniqueidentifier));
 CREATE TABLE build_level002.[resource] (reso_uuid__uniqueidentifier uniqueidentifier NOT NULL, reso_name__nvarchar nvarchar(100) NOT NULL, reso_extension__tinyint tinyint NOT NULL, reso_description__nvarchar nvarchar(max) NULL, reso_value__varbinary varbinary(max) NULL, reso_externalurlorname__nvarchar nvarchar(max) NULL, PRIMARY KEY (reso_uuid__uniqueidentifier));
 CREATE TABLE build_level001.preference (pref_uuid__uniqueidentifier uniqueidentifier NOT NULL, pref_type__int int NOT NULL, pref_value__bit bit NULL, pref_value__tinyint tinyint NULL, pref_value__int int NULL, pref_value__nvarchar nvarchar(max) NULL, user_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, pref_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (pref_uuid__uniqueidentifier));
-CREATE TABLE build_level003.principalcompany (prco_uuid__uniqueidentifier uniqueidentifier NOT NULL, prco_rfc__nvarchar nvarchar(13) NULL, prco_name__nvarchar nvarchar(100) NOT NULL, prco_address__nvarchar nvarchar(255) NULL, prco_phone__nvarchar nvarchar(100) NULL, prco_email__nvarchar nvarchar(100) NULL, prco_facebook__nvarchar nvarchar(100) NULL, prco_developmentmode__bit bit NOT NULL, prco_timebetweenbackups__int int NULL, reso_uuid_logo__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, prco_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (prco_uuid__uniqueidentifier));
+CREATE TABLE build_level003.principalcompany (prco_uuid__uniqueidentifier uniqueidentifier NOT NULL, prco_rfc__nvarchar nvarchar(13) NULL, prco_name__nvarchar nvarchar(100) NOT NULL, prco_address__nvarchar nvarchar(255) NULL, prco_phone__nvarchar nvarchar(100) NULL, prco_email__nvarchar nvarchar(100) NULL, prco_facebook__nvarchar nvarchar(100) NULL, prco_developmentmode__bit bit NOT NULL, prco_hoursbetweenbackups__int int NOT NULL, prco_daysdeletbackups__int int NOT NULL, reso_uuid_logo__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, prco_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (prco_uuid__uniqueidentifier));
 CREATE TABLE build_level003.[version] (vers_uuid__uniqueidentifier uniqueidentifier NOT NULL, vers_name__nvarchar nvarchar(12) NOT NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (vers_uuid__uniqueidentifier));
 
 GO
@@ -1937,7 +1937,8 @@ INSERT INTO build_level003.principalcompany
 		    prco_email__nvarchar ,
 		    prco_facebook__nvarchar ,
 		    prco_developmentmode__bit ,
-		    prco_timebetweenbackups__int ,
+		    prco_hoursbetweenbackups__int ,
+			prco_daysdeletbackups__int ,
 		    reso_uuid_logo__uniqueidentifier ,
 		    city_uuid__uniqueidentifier ,
 		    sess_uuid_used__uniqueidentifier ,
@@ -1952,7 +1953,8 @@ VALUES  ( NEWID() , -- prco_uuid__uniqueidentifier - uniqueidentifier
 		    NULL , -- prco_email__nvarchar - nvarchar(100)
 		    NULL , -- prco_facebook__nvarchar - nvarchar(100)
 		    0 , -- prco_developmentmode__bit - bit
-		    24 , -- prco_timebetweenbackups__int - int
+		    24 , -- prco_hoursbetweenbackups__int - int
+			7 , -- prco_daysdeletbackups__int - int
 		    NULL , -- reso_uuid_logo__uniqueidentifier - uniqueidentifier
 		    NULL , -- city_uuid__uniqueidentifier - uniqueidentifier
 		    NULL , -- sess_uuid_used__uniqueidentifier - uniqueidentifier

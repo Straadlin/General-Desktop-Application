@@ -318,7 +318,9 @@ namespace General_Desktop_Application.BusinessLayer
                     vUserPrincipal.user_username__nvarchar = stUsername;
                     vUserPrincipal.user_email__nvarchar = stEmail;
                     vUserPrincipal.user_cellphone__nvarchar = stCellphone;
-                    vUserPrincipal.user_password__nvarchar = Tools.GetDefaulHash(stPassword);
+                    vUserPrincipal.user_password__nvarchar = stPassword!=Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(stPassword) : objUserAux.user_password__nvarchar;
+                    //txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__nvarchar,
+                    //vUserPrincipal.user_password__nvarchar = Tools.GetDefaulHash(stPassword);
                     vUserPrincipal.user_firstname__nvarchar = Tools.Encrypt(stFirstname);
                     vUserPrincipal.user_lastname__nvarchar = Tools.Encrypt(stLastname);
                     vUserPrincipal.user_roleaccess__tinyint = byRoleAccess;
