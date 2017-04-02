@@ -106,20 +106,40 @@ namespace General_Desktop_Application.BusinessLayer
                     //   INNER JOIN[build_level001].[user] AS u ON s.sess_uuid__uniqueidentifier = u.sess_uuid_used__uniqueidentifier
                     //   WHERE s.user_uuid_created__uniqueidentifier = '9C749C38-DD8F-4BAC-898B-896ACAE44A23'
 
-                    var query =
+                    bool boBand = false;
+
+                    var query01 =
                         (from sessionQ in objContext.sessions
                          join userQ in objContext.users on sessionQ.sess_uuid__uniqueidentifier equals userQ.sess_uuid_used__uniqueidentifier
                          where sessionQ.user_uuid_created__uniqueidentifier == objUser.user_uuid__uniqueidentifier
                          select userQ)
                         .ToList();
 
-                    if (query.Count > 0)
+                    if (query01.Count > 0)
                     {
-                        foreach (var vItem in query)
+                        foreach (var vItem in query01)
                             vItem.sess_uuid_used__uniqueidentifier = null;
 
-                        objContext.SaveChanges();
+                        boBand = true;
                     }
+
+                    var query02 =
+                        (from sessionQ in objContext.sessions
+                         join principalcompanyQ in objContext.principalcompanies on sessionQ.sess_uuid__uniqueidentifier equals principalcompanyQ.sess_uuid_used__uniqueidentifier
+                         where sessionQ.user_uuid_created__uniqueidentifier == objUser.user_uuid__uniqueidentifier
+                         select principalcompanyQ)
+                        .ToList();
+
+                    if (query02.Count > 0)
+                    {
+                        foreach (var vItem in query02)
+                            vItem.sess_uuid_used__uniqueidentifier = null;
+
+                        boBand = true;
+                    }
+
+                    if (boBand)
+                        objContext.SaveChanges();
 
                     //objContext.users
                     //    .Where(u => u.sess_uuid_used__uniqueidentifier == objUser.user_uuid__uniqueidentifier)

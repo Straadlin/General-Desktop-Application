@@ -32,7 +32,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    return objContext.resources.Where(r => r.reso_name__varchar == stNameFile).FirstOrDefault();
+                    return objContext.resources.Where(r => r.reso_name__nvarchar == stNameFile).FirstOrDefault();
                 }
             }
             catch { }
@@ -57,11 +57,11 @@ namespace General_Desktop_Application.BusinessLayer
                     objResource = new resource()
                     {
                         reso_uuid__uniqueidentifier = objGuid,
-                        reso_name__varchar = stName,
+                        reso_name__nvarchar = stName,
                         reso_extension__tinyint = byExtension,
-                        reso_description__varchar = stDescription,
+                        reso_description__nvarchar = stDescription,
                         reso_value__varbinary = byaValue,
-                        reso_externalurlorname__varchar = stExternalUrlName,
+                        reso_externalurlorname__nvarchar = stExternalUrlName,
                     };
 
                     objContext.resources.Add(objResource);

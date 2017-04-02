@@ -49,7 +49,7 @@ namespace General_Desktop_Application.Presentation
 
             Text += " - " + Preferences.TitleSoftware;
 
-            tsslUser.Text = (!string.IsNullOrEmpty(ObjUser.user_username__varchar) ? ObjUser.user_username__varchar : (!string.IsNullOrEmpty(ObjUser.user_email__varchar) ? ObjUser.user_email__varchar : ObjUser.user_cellphone__varchar)) + " - " + Tools.Decrypt(ObjUser.user_firstname__varchar) + " " + Tools.Decrypt(ObjUser.user_lastname__varchar);
+            tsslUser.Text = (!string.IsNullOrEmpty(ObjUser.user_username__nvarchar) ? ObjUser.user_username__nvarchar : (!string.IsNullOrEmpty(ObjUser.user_email__nvarchar) ? ObjUser.user_email__nvarchar : ObjUser.user_cellphone__nvarchar)) + " - " + Tools.Decrypt(ObjUser.user_firstname__nvarchar) + " " + Tools.Decrypt(ObjUser.user_lastname__nvarchar);
 
             Business.FreeAllRegistersAssociatedWithThisUser(ObjUser);
         }

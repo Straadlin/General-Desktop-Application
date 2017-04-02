@@ -21,22 +21,24 @@ namespace General_Desktop_Application.EF
         }
     
         public System.Guid prco_uuid__uniqueidentifier { get; set; }
-        public string prco_rfc__varchar { get; set; }
-        public string prco_name__varchar { get; set; }
-        public string prco_address__varchar { get; set; }
-        public string prco_phone__varchar { get; set; }
-        public string prco_email__varchar { get; set; }
-        public string prco_facebook__varchar { get; set; }
+        public string prco_rfc__nvarchar { get; set; }
+        public string prco_name__nvarchar { get; set; }
+        public string prco_address__nvarchar { get; set; }
+        public string prco_phone__nvarchar { get; set; }
+        public string prco_email__nvarchar { get; set; }
+        public string prco_facebook__nvarchar { get; set; }
         public bool prco_developmentmode__bit { get; set; }
-        public byte[] prco_timebetweenbackups__timestamp { get; set; }
+        public Nullable<int> prco_timebetweenbackups__int { get; set; }
         public Nullable<System.Guid> reso_uuid_logo__uniqueidentifier { get; set; }
         public Nullable<System.Guid> city_uuid__uniqueidentifier { get; set; }
+        public Nullable<System.Guid> sess_uuid_used__uniqueidentifier { get; set; }
         public System.Guid sess_uuid_created__uniqueidentifier { get; set; }
         public Nullable<System.Guid> prco_uuid_root__uniqueidentifier { get; set; }
     
         public virtual city city { get; set; }
         public virtual resource resource { get; set; }
         public virtual session session { get; set; }
+        public virtual session session1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<principalcompany> principalcompany1 { get; set; }
         public virtual principalcompany principalcompany2 { get; set; }

@@ -35,7 +35,7 @@ namespace General_Desktop_Application.BusinessLayer
                 {
                     stPassword = Tools.GetDefaulHash(stPassword);
 
-                    return objContext.users.Where(u => (u.user_username__varchar == stUserNameEmailCellphone || u.user_email__varchar == stUserNameEmailCellphone || u.user_cellphone__varchar == stUserNameEmailCellphone) && u.user_password__varchar == stPassword && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault();
+                    return objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_password__nvarchar == stPassword && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault();
                 }
             }
             catch { }
@@ -51,11 +51,11 @@ namespace General_Desktop_Application.BusinessLayer
                 {
                     using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                     {
-                        if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__varchar == stUserName && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__nvarchar == stUserName && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 1;
-                        if (!string.IsNullOrEmpty(stEmail) && objContext.users.Where(u => u.user_email__varchar == stEmail && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stEmail) && objContext.users.Where(u => u.user_email__nvarchar == stEmail && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 2;
-                        if (!string.IsNullOrEmpty(stCellphone) && objContext.users.Where(u => u.user_cellphone__varchar == stCellphone && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stCellphone) && objContext.users.Where(u => u.user_cellphone__nvarchar == stCellphone && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 3;
                     }
                 }
@@ -75,11 +75,11 @@ namespace General_Desktop_Application.BusinessLayer
                 {
                     using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                     {
-                        if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__varchar == stUserName && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__nvarchar == stUserName && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 1;
-                        if (!string.IsNullOrEmpty(stEmail) && objContext.users.Where(u => u.user_email__varchar == stEmail && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stEmail) && objContext.users.Where(u => u.user_email__nvarchar == stEmail && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 2;
-                        if (!string.IsNullOrEmpty(stCellphone) && objContext.users.Where(u => u.user_cellphone__varchar == stCellphone && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
+                        if (!string.IsNullOrEmpty(stCellphone) && objContext.users.Where(u => u.user_cellphone__nvarchar == stCellphone && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 3;
                     }
                 }
@@ -97,7 +97,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    return objContext.users.Where(u => (u.user_username__varchar == stUserNameEmailCellphone || u.user_email__varchar == stUserNameEmailCellphone || u.user_cellphone__varchar == stUserNameEmailCellphone) && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault();
+                    return objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault();
                 }
             }
             catch { }
@@ -163,7 +163,7 @@ namespace General_Desktop_Application.BusinessLayer
 
                     if (objUser != null)
                     {
-                        objUser.sess_uuid_used__uniqueidentifier = null;// This line is very important to work well the trigger
+                        objUser.sess_uuid_used__uniqueidentifier = null;
                         objContext.SaveChanges();
 
                         return true;
@@ -220,14 +220,14 @@ namespace General_Desktop_Application.BusinessLayer
                     objContext.users.Add(new user()
                     {
                         user_uuid__uniqueidentifier = objGuidUser,
-                        user_username__varchar = stUsername,
-                        user_email__varchar = stEmail,
-                        user_cellphone__varchar = stCellphone,
-                        user_password__varchar = Tools.GetDefaulHash(stPassword),
-                        user_firstname__varchar = Tools.Encrypt(stFirstname),
-                        user_lastname__varchar = Tools.Encrypt(stLastname),
+                        user_username__nvarchar = stUsername,
+                        user_email__nvarchar = stEmail,
+                        user_cellphone__nvarchar = stCellphone,
+                        user_password__nvarchar = Tools.GetDefaulHash(stPassword),
+                        user_firstname__nvarchar = Tools.Encrypt(stFirstname),
+                        user_lastname__nvarchar = Tools.Encrypt(stLastname),
                         user_roleaccess__tinyint = byRoleAccess,
-                        user_extradata__varchar = stExtradata,
+                        user_extradata__nvarchar = stExtradata,
                         reso_uuid_picture__uniqueidentifier = objGuidResource,
                         date_uuid_birthdate__uniqueidentifier = objGuidDate,
                         city_uuid__uniqueidentifier = objGuidCity,
@@ -282,14 +282,14 @@ namespace General_Desktop_Application.BusinessLayer
                     user objUserAux = new user()
                     {
                         user_uuid__uniqueidentifier = objGuidUserAux,
-                        user_username__varchar = vUserPrincipal.user_username__varchar,
-                        user_email__varchar = vUserPrincipal.user_email__varchar,
-                        user_cellphone__varchar = vUserPrincipal.user_cellphone__varchar,
-                        user_password__varchar = vUserPrincipal.user_password__varchar,
-                        user_firstname__varchar = vUserPrincipal.user_firstname__varchar,
-                        user_lastname__varchar = vUserPrincipal.user_lastname__varchar,
+                        user_username__nvarchar = vUserPrincipal.user_username__nvarchar,
+                        user_email__nvarchar = vUserPrincipal.user_email__nvarchar,
+                        user_cellphone__nvarchar = vUserPrincipal.user_cellphone__nvarchar,
+                        user_password__nvarchar = vUserPrincipal.user_password__nvarchar,
+                        user_firstname__nvarchar = vUserPrincipal.user_firstname__nvarchar,
+                        user_lastname__nvarchar = vUserPrincipal.user_lastname__nvarchar,
                         user_roleaccess__tinyint = vUserPrincipal.user_roleaccess__tinyint,
-                        user_extradata__varchar = vUserPrincipal.user_extradata__varchar,
+                        user_extradata__nvarchar = vUserPrincipal.user_extradata__nvarchar,
                         reso_uuid_picture__uniqueidentifier = vUserPrincipal.reso_uuid_picture__uniqueidentifier,
                         date_uuid_birthdate__uniqueidentifier = vUserPrincipal.date_uuid_birthdate__uniqueidentifier,
                         city_uuid__uniqueidentifier = vUserPrincipal.city_uuid__uniqueidentifier,
@@ -315,14 +315,14 @@ namespace General_Desktop_Application.BusinessLayer
                     if (byaPicture != null && !string.IsNullOrEmpty(stNamePicture))
                         objGuidResource = BResource.Add(stNamePicture, 1, null, byaPicture, null).reso_uuid__uniqueidentifier;
 
-                    vUserPrincipal.user_username__varchar = stUsername;
-                    vUserPrincipal.user_email__varchar = stEmail;
-                    vUserPrincipal.user_cellphone__varchar = stCellphone;
-                    vUserPrincipal.user_password__varchar = Tools.GetDefaulHash(stPassword);
-                    vUserPrincipal.user_firstname__varchar = Tools.Encrypt(stFirstname);
-                    vUserPrincipal.user_lastname__varchar = Tools.Encrypt(stLastname);
+                    vUserPrincipal.user_username__nvarchar = stUsername;
+                    vUserPrincipal.user_email__nvarchar = stEmail;
+                    vUserPrincipal.user_cellphone__nvarchar = stCellphone;
+                    vUserPrincipal.user_password__nvarchar = Tools.GetDefaulHash(stPassword);
+                    vUserPrincipal.user_firstname__nvarchar = Tools.Encrypt(stFirstname);
+                    vUserPrincipal.user_lastname__nvarchar = Tools.Encrypt(stLastname);
                     vUserPrincipal.user_roleaccess__tinyint = byRoleAccess;
-                    vUserPrincipal.user_extradata__varchar = stExtradata;
+                    vUserPrincipal.user_extradata__nvarchar = stExtradata;
                     vUserPrincipal.reso_uuid_picture__uniqueidentifier = objGuidResource;
                     vUserPrincipal.date_uuid_birthdate__uniqueidentifier = objGuidDate;
                     vUserPrincipal.city_uuid__uniqueidentifier = objGuidCity;

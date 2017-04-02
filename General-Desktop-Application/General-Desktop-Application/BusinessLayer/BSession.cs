@@ -37,7 +37,7 @@ namespace General_Desktop_Application.BusinessLayer
                         sess_ipbatch02__tinyint = null,
                         sess_ipbatch03__tinyint = null,
                         sess_ipbatch04__tinyint = null,
-                        sess_extradata__varchar = null,
+                        sess_extradata__nvarchar = null,
                         date_uuid__uniqueidentifier = objDate.date_uuid__uniqueidentifier,
                         user_uuid_created__uniqueidentifier = objUser.user_uuid__uniqueidentifier
                     };

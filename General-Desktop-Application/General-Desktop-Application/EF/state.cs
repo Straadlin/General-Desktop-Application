@@ -21,7 +21,7 @@ namespace General_Desktop_Application.EF
         }
     
         public System.Guid stat_uuid__uniqueidentifier { get; set; }
-        public string stat_name__varchar { get; set; }
+        public string stat_name__nvarchar { get; set; }
         public System.Guid coun_uuid__uniqueidentifier { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

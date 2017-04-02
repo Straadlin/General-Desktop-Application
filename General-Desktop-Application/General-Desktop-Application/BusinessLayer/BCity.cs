@@ -61,7 +61,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    return objContext.cities.Where(c => c.city_name__varchar == stName && c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).FirstOrDefault();
+                    return objContext.cities.Where(c => c.city_name__nvarchar == stName && c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).FirstOrDefault();
                 }
             }
             catch { }

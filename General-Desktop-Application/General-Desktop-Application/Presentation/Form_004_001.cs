@@ -67,37 +67,59 @@ namespace General_Desktop_Application.Presentation
             else if (e.KeyChar == 13)
             {
                 if (txtUserName.Focused)
+                {
                     if (txtUserName.Text.Length > 0)
                         txtEmail.Focus();
-                if (txtEmail.Focused)
+                }
+                else if (txtEmail.Focused)
+                {
                     if (txtEmail.Text.Length > 0)
                         txtCellphone.Focus();
-                if (txtCellphone.Focused)
+                }
+                else if (txtCellphone.Focused)
+                {
                     if (txtCellphone.Text.Length > 0)
                         txtPassword.Focus();
-                if (txtPassword.Focused)
+                }
+                else if (txtPassword.Focused)
+                {
                     if (txtPassword.Text.Length > 0)
                         txtRePassword.Focus();
-                if (txtRePassword.Focused)
+                }
+                else if (txtRePassword.Focused)
+                {
                     if (txtRePassword.Text.Length > 0)
                         cboRoleAccess.Focus();
-                if (cboRoleAccess.Focused)
+                }
+                else if (cboRoleAccess.Focused)
+                {
                     if (cboRoleAccess.SelectedIndex > -1)
                         txtFirstName.Focus();
-                if (txtFirstName.Focused)
+                }
+                else if (txtFirstName.Focused)
+                {
                     if (txtFirstName.Text.Length > 0)
                         txtLastName.Focus();
-                if (txtLastName.Focused)
+                }
+                else if (txtLastName.Focused)
+                {
                     if (txtLastName.Text.Length > 0)
                         dtpBirthdate.Focus();
-                if (dtpBirthdate.Focused)
+                }
+                else if (dtpBirthdate.Focused)
+                {
                     cboState.Focus();
-                if (cboState.Focused)
-                    if (cboState.SelectedIndex > -1)
-                        cboCity.Focus();
-                if (cboCity.Focused)
-                    if (cboCity.SelectedIndex > -1)
+                }
+                else if (cboState.Focused)
+                {
+                    //if (cboState.SelectedIndex > -1)
+                    cboCity.Focus();
+                }
+                else if (cboCity.Focused)
+                {
+                    if (cboState.SelectedIndex < 1 || cboCity.SelectedIndex > 0)
                         btnAccept.Focus();
+                }
             }
         }
 
@@ -112,7 +134,7 @@ namespace General_Desktop_Application.Presentation
 
             if (byAction == 0 && lsbUsers.SelectedIndex > -1)
             {
-                user vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
+                var vUser = BUser.FindByUserNameOrEmailOrCellphone(!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[0]) ? lsbUsers.SelectedItem.ToString().Split(' ')[0] : (!string.IsNullOrEmpty(lsbUsers.SelectedItem.ToString().Split(' ')[1]) ? lsbUsers.SelectedItem.ToString().Split(' ')[1] : lsbUsers.SelectedItem.ToString().Split(' ')[2]));
 
                 if (vUser != null)
                 {
@@ -127,33 +149,30 @@ namespace General_Desktop_Application.Presentation
                     RefreshRolesAccess();
                     RefreshStates();
 
-                    txtUserName.Text = vUser.user_username__varchar;
-                    txtEmail.Text = vUser.user_email__varchar;
-                    txtCellphone.Text = vUser.user_cellphone__varchar;
+                    txtUserName.Text = vUser.user_username__nvarchar;
+                    txtEmail.Text = vUser.user_email__nvarchar;
+                    txtCellphone.Text = vUser.user_cellphone__nvarchar;
 
                     foreach (var vItem in cboRoleAccess.Items)
                         if (vItem.ToString()[0] == vUser.user_roleaccess__tinyint.ToString()[0])
                             cboRoleAccess.SelectedItem = vItem;
 
-                    txtFirstName.Text = Tools.Decrypt(vUser.user_firstname__varchar);
-                    txtLastName.Text = Tools.Decrypt(vUser.user_lastname__varchar);
+                    txtFirstName.Text = Tools.Decrypt(vUser.user_firstname__nvarchar);
+                    txtLastName.Text = Tools.Decrypt(vUser.user_lastname__nvarchar);
                     dtpBirthdate.Value = vUser.date_uuid_birthdate__uniqueidentifier != null ? BDate.FindByUUID(vUser.date_uuid_birthdate__uniqueidentifier.Value).date_value__date : DateTime.Now;
 
                     if (vUser.city_uuid__uniqueidentifier != null)
                     {
                         var vCity = BCity.FindByUUID(vUser.city_uuid__uniqueidentifier.Value);
 
-                        cboState.Text = BState.FindByUUID(vCity.stat_uuid__uniqueidentifier).stat_name__varchar;
+                        cboState.Text = BState.FindByUUID(vCity.stat_uuid__uniqueidentifier).stat_name__nvarchar;
 
-                        cboCity.Text = vCity.city_name__varchar;
+                        cboCity.Text = vCity.city_name__nvarchar;
 
                         RefreshCities();
                     }
 
-                    if (vUser.reso_uuid_picture__uniqueidentifier != null)
-                        pcbPicture.Image = Tools.ConvertirByteAImagen(BResource.FindByUUID(vUser.reso_uuid_picture__uniqueidentifier.Value).reso_value__varbinary);
-                    else
-                        pcbPicture.Image = null;
+                    pcbPicture.Image = vUser.reso_uuid_picture__uniqueidentifier != null ? Tools.ConvertirByteAImagen(BResource.FindByUUID(vUser.reso_uuid_picture__uniqueidentifier.Value).reso_value__varbinary) : null;
 
                     btnEdit.Enabled = btnDelete.Enabled = true;
                 }
@@ -224,6 +243,8 @@ namespace General_Desktop_Application.Presentation
             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
             btnAccept.Visible = btnCancel.Visible = true;
 
+            btnClose.Enabled = false;
+
             txtUserName.Focus();
 
             byAction = 1;
@@ -262,20 +283,22 @@ namespace General_Desktop_Application.Presentation
                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
                         btnAccept.Visible = btnCancel.Visible = true;
 
+                        btnClose.Enabled = false;
+
                         txtUserName.Focus();
 
                         byAction = 2;
                     }
                     else
                     {
-                        MessageBox.Show("It isn't possible delete this user because in other session some user is editing it.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("It isn't possible edit this user because in other session some user is editing it.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
                     MessageBox.Show("The user doesn't exist.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                    RefreshAllComponents();
+                    ClearAllComponents();
                 }
             }
             else
@@ -303,6 +326,8 @@ namespace General_Desktop_Application.Presentation
                             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
                             btnAccept.Visible = btnCancel.Visible = true;
 
+                            btnClose.Enabled = false;
+
                             btnCancel.Focus();
 
                             byAction = 3;
@@ -321,7 +346,7 @@ namespace General_Desktop_Application.Presentation
                 {
                     MessageBox.Show("The user doesn't exist.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                    RefreshAllComponents();
+                    ClearAllComponents();
                 }
             }
             else
@@ -336,23 +361,23 @@ namespace General_Desktop_Application.Presentation
             {
                 case 1:
                     {
-                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckUsername(txtUserName.Text))
+                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsername(txtUserName.Text, 4, 100))
                         {
-                            if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckEmail(txtEmail.Text))
+                            if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckNumber(txtCellphone.Text))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphone(txtUserName.Text, txtEmail.Text, txtCellphone.Text))
                                     {
                                         case 0:
                                             {
-                                                if (RegularExpressions.CheckPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
+                                                if (RegularExpressions.CheckIsPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
-                                                        if (RegularExpressions.CheckFirstNameOrLastName(txtFirstName.Text))
+                                                        if (RegularExpressions.CheckIsFirstNameOrLastName(txtFirstName.Text, 1, 100))
                                                         {
-                                                            if (RegularExpressions.CheckFirstNameOrLastName(txtLastName.Text))
+                                                            if (RegularExpressions.CheckIsFirstNameOrLastName(txtLastName.Text, 1, 100))
                                                             {
                                                                 if (cboState.SelectedIndex < 1 || cboCity.SelectedIndex > -1)
                                                                 {
@@ -409,10 +434,10 @@ namespace General_Desktop_Application.Presentation
                                                                         RefreshStates();
                                                                         pcbPicture.Image = null;
 
-                                                                        btnEdit.Enabled = btnDelete.Enabled = false;
-
                                                                         btnAccept.Visible = btnCancel.Visible = false;
                                                                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                                                        btnClose.Enabled = true;
 
                                                                         lsbUsers.Items.Clear();
                                                                         RefreshMainList();
@@ -504,23 +529,23 @@ namespace General_Desktop_Application.Presentation
                     }
                 case 2:
                     {
-                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckUsername(txtUserName.Text))
+                        if (string.IsNullOrEmpty(txtUserName.Text) || RegularExpressions.CheckIsUsername(txtUserName.Text, 4, 100))
                         {
-                            if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckEmail(txtEmail.Text))
+                            if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckNumber(txtCellphone.Text))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphoneWithExcludedUser(txtUserName.Text, txtEmail.Text, txtCellphone.Text, objUserSelectedPrincipalItem))
                                     {
                                         case 0:
                                             {
-                                                if (txtPassword.Text == Preferences.GlobalTextToComparePasswords || RegularExpressions.CheckPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
+                                                if (txtPassword.Text == Preferences.GlobalTextToComparePasswords || RegularExpressions.CheckIsPassword(txtPassword.Text) && txtPassword.Text == txtRePassword.Text)
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
-                                                        if (RegularExpressions.CheckFirstNameOrLastName(txtFirstName.Text))
+                                                        if (RegularExpressions.CheckIsFirstNameOrLastName(txtFirstName.Text, 1, 100))
                                                         {
-                                                            if (RegularExpressions.CheckFirstNameOrLastName(txtLastName.Text))
+                                                            if (RegularExpressions.CheckIsFirstNameOrLastName(txtLastName.Text, 1, 100))
                                                             {
                                                                 if (cboState.SelectedIndex < 1 || cboCity.SelectedIndex > -1)
                                                                 {
@@ -533,7 +558,7 @@ namespace General_Desktop_Application.Presentation
                                                                         !string.IsNullOrEmpty(txtUserName.Text) ? txtUserName.Text : null,
                                                                         !string.IsNullOrEmpty(txtEmail.Text) ? txtEmail.Text : null,
                                                                         !string.IsNullOrEmpty(txtCellphone.Text) ? txtCellphone.Text : null,
-                                                                        txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__varchar,
+                                                                        txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__nvarchar,
                                                                         txtFirstName.Text,
                                                                         txtLastName.Text,
                                                                         Convert.ToByte(cboRoleAccess.SelectedIndex + 1),
@@ -578,10 +603,10 @@ namespace General_Desktop_Application.Presentation
                                                                         RefreshStates();
                                                                         pcbPicture.Image = null;
 
-                                                                        btnEdit.Enabled = btnDelete.Enabled = false;
-
                                                                         btnAccept.Visible = btnCancel.Visible = false;
                                                                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                                                        btnClose.Enabled = true;
 
                                                                         byAction = 0;
 
@@ -695,10 +720,10 @@ namespace General_Desktop_Application.Presentation
                                 RefreshStates();
                                 pcbPicture.Image = null;
 
-                                btnEdit.Enabled = btnDelete.Enabled = false;
-
                                 btnAccept.Visible = btnCancel.Visible = false;
                                 btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                btnClose.Enabled = true;
 
                                 lsbUsers.Items.Clear();
                                 RefreshMainList();
@@ -716,7 +741,7 @@ namespace General_Desktop_Application.Presentation
                         {
                             MessageBox.Show("The user doesn't exist.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                            RefreshAllComponents();
+                            ClearAllComponents();
                         }
                         break;
                     }
@@ -761,10 +786,10 @@ namespace General_Desktop_Application.Presentation
                         RefreshStates();
                         pcbPicture.Image = null;
 
-                        btnEdit.Enabled = btnDelete.Enabled = false;
-
                         btnAccept.Visible = btnCancel.Visible = false;
                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        btnClose.Enabled = true;
 
                         byAction = 0;
                         break;
@@ -809,10 +834,10 @@ namespace General_Desktop_Application.Presentation
                             RefreshStates();
                             pcbPicture.Image = null;
 
-                            btnEdit.Enabled = btnDelete.Enabled = false;
-
                             btnAccept.Visible = btnCancel.Visible = false;
                             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            btnClose.Enabled = true;
 
                             byAction = 0;
                         }
@@ -845,10 +870,10 @@ namespace General_Desktop_Application.Presentation
                             RefreshStates();
                             pcbPicture.Image = null;
 
-                            btnEdit.Enabled = btnDelete.Enabled = false;
-
                             btnAccept.Visible = btnCancel.Visible = false;
                             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            btnClose.Enabled = true;
 
                             byAction = 0;
                         }
@@ -902,12 +927,12 @@ namespace General_Desktop_Application.Presentation
             var vUsers = BUser.GetAllUsers();
 
             foreach (var vItem in vUsers)
-                lsbUsers.Items.Add((!string.IsNullOrEmpty(vItem.user_username__varchar) ? vItem.user_username__varchar : (!string.IsNullOrEmpty(vItem.user_email__varchar) ? vItem.user_email__varchar : vItem.user_cellphone__varchar)) + " - " + Tools.Decrypt(vItem.user_firstname__varchar) + " " + Tools.Decrypt(vItem.user_lastname__varchar));
+                lsbUsers.Items.Add((!string.IsNullOrEmpty(vItem.user_username__nvarchar) ? vItem.user_username__nvarchar : (!string.IsNullOrEmpty(vItem.user_email__nvarchar) ? vItem.user_email__nvarchar : vItem.user_cellphone__nvarchar)) + " - " + Tools.Decrypt(vItem.user_firstname__nvarchar) + " " + Tools.Decrypt(vItem.user_lastname__nvarchar));
 
             lblQuantity.Text = "[Quantity: " + lsbUsers.Items.Count + "]";
         }
 
-        private void RefreshAllComponents()
+        private void ClearAllComponents()
         {
             lsbUsers.Items.Clear();
 
@@ -939,8 +964,8 @@ namespace General_Desktop_Application.Presentation
         private void RefreshStates()
         {
             cboState.Items.Add("");
-            foreach (var vItem in BState.GetMexicosStates().OrderBy(s => s.stat_name__varchar))
-                cboState.Items.Add(vItem.stat_name__varchar);
+            foreach (var vItem in BState.GetMexicosStates().OrderBy(s => s.stat_name__nvarchar))
+                cboState.Items.Add(vItem.stat_name__nvarchar);
         }
 
         private void RefreshCities()
@@ -955,8 +980,8 @@ namespace General_Desktop_Application.Presentation
                     var vCities = BCity.GetCities(vState);
 
                     if (vCities != null)
-                        foreach (var vItem in vCities.OrderBy(c => c.city_name__varchar))
-                            cboCity.Items.Add(vItem.city_name__varchar);
+                        foreach (var vItem in vCities.OrderBy(c => c.city_name__nvarchar))
+                            cboCity.Items.Add(vItem.city_name__nvarchar);
                 }
             }
         }

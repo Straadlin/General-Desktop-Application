@@ -10,14 +10,10 @@
 namespace General_Desktop_Application.EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class version
+    public partial class proc_principalcompany_findAllBranches_Result
     {
-        public System.Guid vers_uuid__uniqueidentifier { get; set; }
-        public string vers_name__nvarchar { get; set; }
-        public System.Guid date_uuid__uniqueidentifier { get; set; }
-    
-        public virtual date date { get; set; }
+        public Nullable<System.Guid> prco_uuid__uniqueidentifier { get; set; }
+        public Nullable<System.Guid> prco_uuid_root__uniqueidentifier { get; set; }
     }
 }

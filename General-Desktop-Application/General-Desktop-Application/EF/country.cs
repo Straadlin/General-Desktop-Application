@@ -21,8 +21,8 @@ namespace General_Desktop_Application.EF
         }
     
         public System.Guid coun_uuid__uniqueidentifier { get; set; }
-        public string coun_code__varchar { get; set; }
-        public string coun_name__varchar { get; set; }
+        public string coun_code__nvarchar { get; set; }
+        public string coun_name__nvarchar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<state> states { get; set; }

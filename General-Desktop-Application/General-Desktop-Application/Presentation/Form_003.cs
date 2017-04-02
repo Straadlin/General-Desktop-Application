@@ -282,50 +282,51 @@ namespace General_Desktop_Application.Presentation
             {
                 Cursor = Cursors.WaitCursor;
 
-                if (!File.Exists(Preferences.PathTemporalBackupFile))
-                {
-                    Program.ExtractScript();
-
-                    string stValue;
-
-                    using (FileStream objFileStream = new FileStream(Preferences.PathScriptInitializerFile, FileMode.Open, FileAccess.Read))
-                    {
-                        using (StreamReader objStreamReader = new StreamReader(objFileStream, Encoding.UTF8))
-                        {
-                            stValue = objStreamReader.ReadToEnd();
-                            stValue = stValue.Replace("_pspsps_", Preferences.PasswordDatabaseUser);
-                            stValue = stValue.Replace("_internal_", Preferences.UserDatabase);
-                            stValue = stValue.Replace("_dbname_", Preferences.DatabaseName);
-                            stValue = stValue.Replace("_admin_", Preferences.DefaultSystemUser);
-                            stValue = stValue.Replace("_keyhashpassword_", Tools.GetDefaulHash(Preferences.DefaultSystemPassword));
-                            stValue = stValue.Replace("_administrator01_", Tools.Encrypt(Preferences.DefaultFirstNameUserSystem));
-                            stValue = stValue.Replace("_administrator02_", Tools.Encrypt(Preferences.DefaultLastNameUserSystem));
-                            stValue = stValue.Replace("_straadprve_", Preferences.CurrentVersion);
-
-                            objStreamReader.Close();
-                        }
-                        objFileStream.Close();
-                    }
-
-                    File.Delete(Preferences.PathScriptInitializerFile);
-
-                    using (FileStream objFileStream = new FileStream(Preferences.PathScriptInitializerFile, FileMode.CreateNew, FileAccess.Write))
-                    {
-                        using (StreamWriter objStreamWriter = new StreamWriter(objFileStream, Encoding.UTF8))
-                        {
-                            objStreamWriter.Write(stValue);
-
-                            objStreamWriter.Close();
-                        }
-
-                        objFileStream.Close();
-                    }
-
-                    File.SetAttributes(Preferences.PathScriptInitializerFile, FileAttributes.Hidden);
-                }
-
                 try
                 {
+                    if (!File.Exists(Preferences.PathTemporalBackupFile))
+                    {
+                        Program.ExtractScript();
+
+                        string stValue;
+
+                        using (FileStream objFileStream = new FileStream(Preferences.PathScriptInitializerFile, FileMode.Open, FileAccess.Read))
+                        {
+                            using (StreamReader objStreamReader = new StreamReader(objFileStream, Encoding.UTF8))
+                            {
+                                stValue = objStreamReader.ReadToEnd();
+                                stValue = stValue.Replace("_pspsps_", Preferences.PasswordDatabaseUser);
+                                stValue = stValue.Replace("_internal_", Preferences.UserDatabase);
+                                stValue = stValue.Replace("_dbname_", Preferences.DatabaseName);
+                                stValue = stValue.Replace("_admin_", Preferences.DefaultSystemUser);
+                                stValue = stValue.Replace("_keyhashpassword_", Tools.GetDefaulHash(Preferences.DefaultSystemPassword));
+                                stValue = stValue.Replace("_administrator01_", Tools.Encrypt(Preferences.DefaultFirstNameUserSystem));
+                                stValue = stValue.Replace("_administrator02_", Tools.Encrypt(Preferences.DefaultLastNameUserSystem));
+                                stValue = stValue.Replace("_straadprve_", Preferences.CurrentVersion);
+
+                                objStreamReader.Close();
+                            }
+                            objFileStream.Close();
+                        }
+
+                        File.Delete(Preferences.PathScriptInitializerFile);
+
+                        using (FileStream objFileStream = new FileStream(Preferences.PathScriptInitializerFile, FileMode.CreateNew, FileAccess.Write))
+                        {
+                            using (StreamWriter objStreamWriter = new StreamWriter(objFileStream, Encoding.UTF8))
+                            {
+                                objStreamWriter.Write(stValue);
+
+                                objStreamWriter.Close();
+                            }
+
+                            objFileStream.Close();
+                        }
+
+                        File.SetAttributes(Preferences.PathScriptInitializerFile, FileAttributes.Hidden);
+                    }
+
+
                     ProcessStartInfo objProcessStartInfo = new ProcessStartInfo("sqlcmd", "-S " + cboInstanceMaintenance.SelectedItem.ToString() + " -i " + Preferences.PathScriptInitializerFile);
 
                     objProcessStartInfo.UseShellExecute = false;

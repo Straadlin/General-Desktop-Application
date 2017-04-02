@@ -22,7 +22,7 @@ namespace General_Desktop_Application.EF
         }
     
         public System.Guid city_uuid__uniqueidentifier { get; set; }
-        public string city_name__varchar { get; set; }
+        public string city_name__nvarchar { get; set; }
         public System.Guid stat_uuid__uniqueidentifier { get; set; }
     
         public virtual state state { get; set; }

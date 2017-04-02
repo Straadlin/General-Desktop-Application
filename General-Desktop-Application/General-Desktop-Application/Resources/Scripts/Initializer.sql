@@ -24,28 +24,28 @@ CREATE SCHEMA build_level004;
 
 GO
 
-CREATE TABLE build_level001.[state] (stat_uuid__uniqueidentifier uniqueidentifier NOT NULL, stat_name__varchar varchar(100) NOT NULL, coun_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (stat_uuid__uniqueidentifier));
-CREATE TABLE build_level001.country (coun_uuid__uniqueidentifier uniqueidentifier NOT NULL, coun_code__varchar varchar(6) NOT NULL, coun_name__varchar varchar(100) NOT NULL, PRIMARY KEY (coun_uuid__uniqueidentifier));
-CREATE TABLE build_level001.[user] (user_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_username__varchar varchar(100) NULL, user_email__varchar varchar(100) NULL, user_cellphone__varchar varchar(10) NULL, user_password__varchar varchar(max) NOT NULL, user_firstname__varchar varchar(max) NOT NULL, user_lastname__varchar varchar(max) NOT NULL, user_roleaccess__tinyint tinyint NOT NULL, user_extradata__varchar varchar(max) NULL, reso_uuid_picture__uniqueidentifier uniqueidentifier NULL, date_uuid_birthdate__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_root__uniqueidentifier uniqueidentifier NULL, sess_uuid_deleted__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (user_uuid__uniqueidentifier));
-CREATE TABLE build_level001.city (city_uuid__uniqueidentifier uniqueidentifier NOT NULL, city_name__varchar varchar(100) NOT NULL, stat_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (city_uuid__uniqueidentifier));
-CREATE TABLE build_level002.[session] (sess_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_starttime__time time(0) NOT NULL, sess_lastactivity__time time(0) NOT NULL, sess_ipbatch01__tinyint tinyint NULL, sess_ipbatch02__tinyint tinyint NULL, sess_ipbatch03__tinyint tinyint NULL, sess_ipbatch04__tinyint tinyint NULL, sess_extradata__varchar varchar(max) NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (sess_uuid__uniqueidentifier));
+CREATE TABLE build_level001.[state] (stat_uuid__uniqueidentifier uniqueidentifier NOT NULL, stat_name__nvarchar nvarchar(100) NOT NULL, coun_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (stat_uuid__uniqueidentifier));
+CREATE TABLE build_level001.country (coun_uuid__uniqueidentifier uniqueidentifier NOT NULL, coun_code__nvarchar nvarchar(6) NOT NULL, coun_name__nvarchar nvarchar(100) NOT NULL, PRIMARY KEY (coun_uuid__uniqueidentifier));
+CREATE TABLE build_level001.[user] (user_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_username__nvarchar nvarchar(100) NULL, user_email__nvarchar nvarchar(100) NULL, user_cellphone__nvarchar nvarchar(10) NULL, user_password__nvarchar nvarchar(max) NOT NULL, user_firstname__nvarchar nvarchar(max) NOT NULL, user_lastname__nvarchar nvarchar(max) NOT NULL, user_roleaccess__tinyint tinyint NOT NULL, user_extradata__nvarchar nvarchar(max) NULL, reso_uuid_picture__uniqueidentifier uniqueidentifier NULL, date_uuid_birthdate__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_root__uniqueidentifier uniqueidentifier NULL, sess_uuid_deleted__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (user_uuid__uniqueidentifier));
+CREATE TABLE build_level001.city (city_uuid__uniqueidentifier uniqueidentifier NOT NULL, city_name__nvarchar nvarchar(100) NOT NULL, stat_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (city_uuid__uniqueidentifier));
+CREATE TABLE build_level002.[session] (sess_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_starttime__time time(0) NOT NULL, sess_lastactivity__time time(0) NOT NULL, sess_ipbatch01__tinyint tinyint NULL, sess_ipbatch02__tinyint tinyint NULL, sess_ipbatch03__tinyint tinyint NULL, sess_ipbatch04__tinyint tinyint NULL, sess_extradata__nvarchar nvarchar(max) NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, user_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (sess_uuid__uniqueidentifier));
 CREATE TABLE build_level002.[date] (date_uuid__uniqueidentifier uniqueidentifier NOT NULL, date_value__date date NOT NULL, PRIMARY KEY (date_uuid__uniqueidentifier));
-CREATE TABLE build_level002.[resource] (reso_uuid__uniqueidentifier uniqueidentifier NOT NULL, reso_name__varchar varchar(100) NOT NULL, reso_extension__tinyint tinyint NOT NULL, reso_description__varchar varchar(max) NULL, reso_value__varbinary varbinary(max) NULL, reso_externalurlorname__varchar varchar(max) NULL, PRIMARY KEY (reso_uuid__uniqueidentifier));
-CREATE TABLE build_level001.preference (pref_uuid__uniqueidentifier uniqueidentifier NOT NULL, pref_type__int int NOT NULL, pref_value__bit bit NULL, pref_value__tinyint tinyint NULL, pref_value__int int NULL, pref_value__varchar varchar(max) NULL, user_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, pref_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (pref_uuid__uniqueidentifier));
-CREATE TABLE build_level003.principalcompany (prco_uuid__uniqueidentifier uniqueidentifier NOT NULL, prco_rfc__varchar varchar(13) NULL, prco_name__varchar varchar(100) NOT NULL, prco_address__varchar varchar(255) NULL, prco_phone__varchar varchar(100) NULL, prco_email__varchar varchar(100) NULL, prco_facebook__varchar varchar(100) NULL, prco_developmentmode__bit bit NOT NULL, prco_timebetweenbackups__timestamp timestamp NULL, reso_uuid_logo__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, prco_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (prco_uuid__uniqueidentifier));
-CREATE TABLE build_level003.[version] (vers_uuid__uniqueidentifier uniqueidentifier NOT NULL, vers_name__varchar varchar(12) NOT NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (vers_uuid__uniqueidentifier));
+CREATE TABLE build_level002.[resource] (reso_uuid__uniqueidentifier uniqueidentifier NOT NULL, reso_name__nvarchar nvarchar(100) NOT NULL, reso_extension__tinyint tinyint NOT NULL, reso_description__nvarchar nvarchar(max) NULL, reso_value__varbinary varbinary(max) NULL, reso_externalurlorname__nvarchar nvarchar(max) NULL, PRIMARY KEY (reso_uuid__uniqueidentifier));
+CREATE TABLE build_level001.preference (pref_uuid__uniqueidentifier uniqueidentifier NOT NULL, pref_type__int int NOT NULL, pref_value__bit bit NULL, pref_value__tinyint tinyint NULL, pref_value__int int NULL, pref_value__nvarchar nvarchar(max) NULL, user_uuid__uniqueidentifier uniqueidentifier NOT NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, pref_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (pref_uuid__uniqueidentifier));
+CREATE TABLE build_level003.principalcompany (prco_uuid__uniqueidentifier uniqueidentifier NOT NULL, prco_rfc__nvarchar nvarchar(13) NULL, prco_name__nvarchar nvarchar(100) NOT NULL, prco_address__nvarchar nvarchar(255) NULL, prco_phone__nvarchar nvarchar(100) NULL, prco_email__nvarchar nvarchar(100) NULL, prco_facebook__nvarchar nvarchar(100) NULL, prco_developmentmode__bit bit NOT NULL, prco_timebetweenbackups__int int NULL, reso_uuid_logo__uniqueidentifier uniqueidentifier NULL, city_uuid__uniqueidentifier uniqueidentifier NULL, sess_uuid_used__uniqueidentifier uniqueidentifier NULL, sess_uuid_created__uniqueidentifier uniqueidentifier NOT NULL, prco_uuid_root__uniqueidentifier uniqueidentifier NULL, PRIMARY KEY (prco_uuid__uniqueidentifier));
+CREATE TABLE build_level003.[version] (vers_uuid__uniqueidentifier uniqueidentifier NOT NULL, vers_name__nvarchar nvarchar(12) NOT NULL, date_uuid__uniqueidentifier uniqueidentifier NOT NULL, PRIMARY KEY (vers_uuid__uniqueidentifier));
 
 GO
 
 CREATE PROCEDURE build_level000.proc_systemserver_getDatetime
-	@dateTime VARCHAR OUTPUT
+	@dateTime NVARCHAR OUTPUT
 	AS
-		SELECT CONVERT(VARCHAR(24), GETDATE(), 120) 
+		SELECT CONVERT(NVARCHAR(24), GETDATE(), 120) 
 
 GO
 
 --CREATE FUNCTION build_level000.func_systemserver_generatehashpassword(
---	@value VARCHAR(MAX))
+--	@value NVARCHAR(MAX))
 --	RETURNS VARBINARY(MAX)
 --	AS
 --	BEGIN 
@@ -60,7 +60,7 @@ GO
 
 --CREATE PROCEDURE build_level000.proc_systemserver_comparepassword
 --	@user_uuid__uniqueidentifier UNIQUEIDENTIFIER,
---	@password VARCHAR(MAX)
+--	@password NVARCHAR(MAX)
 --	AS
 --		DECLARE @generatePassword VARBINARY(MAX)
 
@@ -77,30 +77,30 @@ GO
 
 --SELECT * FROM build_level001.[user]
 --EXEC build_level000.proc_systemserver_verifyloginuser 'admin', 'admin'
---SELECT * FROM build_level001.[user] WHERE(user_username__varchar = 'admin' AND user_uuid_root__uniqueidentifier IS NULL AND sess_uuid_deleted__uniqueidentifier IS NULL)
+--SELECT * FROM build_level001.[user] WHERE(user_username__nvarchar = 'admin' AND user_uuid_root__uniqueidentifier IS NULL AND sess_uuid_deleted__uniqueidentifier IS NULL)
 
 GO
 
 --CREATE PROCEDURE build_level000.proc_systemserver_verifyloginuser
---	@userNameEmailOrCellphone VARCHAR(MAX),
---	@password VARCHAR(MAX)
+--	@userNameEmailOrCellphone NVARCHAR(MAX),
+--	@password NVARCHAR(MAX)
 --	AS
 --		DECLARE @generatePassword VARBINARY(MAX)
 --		SELECT @generatePassword = build_level000.func_systemserver_generatehashpassword(@password)
 
 --		DECLARE @userUUID UNIQUEIDENTIFIER	
 --		SET @userUUID = NULL
---		SELECT @userUUID = user_uuid__uniqueidentifier FROM build_level001.[user] WHERE((user_username__varchar = @userNameEmailOrCellphone OR user_email__varchar = @userNameEmailOrCellphone OR user_cellphone__varchar = @userNameEmailOrCellphone) AND user_password__varbinary = @generatePassword AND user_uuid_root__uniqueidentifier IS NULL AND sess_uuid_deleted__uniqueidentifier IS NULL)
+--		SELECT @userUUID = user_uuid__uniqueidentifier FROM build_level001.[user] WHERE((user_username__nvarchar = @userNameEmailOrCellphone OR user_email__nvarchar = @userNameEmailOrCellphone OR user_cellphone__nvarchar = @userNameEmailOrCellphone) AND user_password__varbinary = @generatePassword AND user_uuid_root__uniqueidentifier IS NULL AND sess_uuid_deleted__uniqueidentifier IS NULL)
 --		SELECT @userUUID AS userUUID
 
 GO
 
 --CREATE FUNCTION build_level000.func_systemserver_encrypt(
---	@value VARCHAR(MAX))
+--	@value NVARCHAR(MAX))
 --	RETURNS VARBINARY(MAX)
 --	AS
 --	BEGIN 
---		DECLARE @password VARCHAR(MAX)
+--		DECLARE @password NVARCHAR(MAX)
 --		SET @password = 'd-f5]8T.x6_[s3'
 		
 --		DECLARE @result VARBINARY(MAX)
@@ -112,14 +112,14 @@ GO
 
 --CREATE FUNCTION build_level000.func_systemserver_decrypt(
 --	@value VARBINARY(MAX))
---	RETURNS VARCHAR(MAX)
+--	RETURNS NVARCHAR(MAX)
 --	AS
 --	BEGIN 
---		DECLARE @password VARCHAR(MAX)
+--		DECLARE @password NVARCHAR(MAX)
 --		SET @password = 'd-f5]8T.x6_[s3'
 
---		DECLARE @result VARCHAR(MAX)
---		SELECT @result = CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE(@password, @value));
+--		DECLARE @result NVARCHAR(MAX)
+--		SELECT @result = CONVERT(NVARCHAR(MAX), DECRYPTBYPASSPHRASE(@password, @value));
 --		RETURN @result
 --	END;
 
@@ -131,8 +131,8 @@ GO
 --		SELECT @dateTime = GETDATE()
 --	RETURN 1
 
---SELECT CONVERT(VARCHAR(24),GETDATE(),113) 
---DECLARE @dateTime VARCHAR
+--SELECT CONVERT(NVARCHAR(24),GETDATE(),113) 
+--DECLARE @dateTime NVARCHAR
 --EXEC build_level000.proc_systemserver_getdatetime @dateTime OUTPUT;
 --SELECT @dateTime
 
@@ -140,14 +140,14 @@ GO
 
 --CREATE PROCEDURE build_level001.proc_user_insert 
 --	@user_uuid__uniqueidentifier uniqueidentifier, 
---	@user_username__varchar varchar(100), 
---	@user_email__varchar varchar(100), 
---	@user_cellphone__varchar varchar(10), 
---	@user_password__varchar varchar(max), 
---	@user_firstname__varchar varchar(max), 
---	@user_lastname__varchar varchar(max), 
+--	@user_username__nvarchar varchar(100), 
+--	@user_email__nvarchar varchar(100), 
+--	@user_cellphone__nvarchar varchar(10), 
+--	@user_password__nvarchar varchar(max), 
+--	@user_firstname__nvarchar varchar(max), 
+--	@user_lastname__nvarchar varchar(max), 
 --	@user_roleaccess__tinyint tinyint, 
---	@user_extradata__varchar varchar(max), 
+--	@user_extradata__nvarchar varchar(max), 
 --	@reso_uuid_picture__uniqueidentifier uniqueidentifier, 
 --	@date_uuid_birthdate__uniqueidentifier uniqueidentifier, 
 --	@city_uuid__uniqueidentifier uniqueidentifier, 
@@ -165,14 +165,14 @@ GO
 --			BEGIN TRAN tranOperation
 --				INSERT INTO build_level001.[user](
 --					user_uuid__uniqueidentifier, 
---					user_username__varchar, 
---					user_email__varchar, 
---					user_cellphone__varchar, 
+--					user_username__nvarchar, 
+--					user_email__nvarchar, 
+--					user_cellphone__nvarchar, 
 --					user_password__varbinary, 
 --					user_firstname__varbinary, 
 --					user_lastname__varbinary, 
 --					user_roleaccess__tinyint, 
---					user_extradata__varchar, 
+--					user_extradata__nvarchar, 
 --					reso_uuid_picture__uniqueidentifier, 
 --					date_uuid_birthdate__uniqueidentifier, 
 --					city_uuid__uniqueidentifier, 
@@ -182,17 +182,17 @@ GO
 --					sess_uuid_deleted__uniqueidentifier) 
 --				VALUES(
 --					@user_uuid__uniqueidentifier, 
---					@user_username__varchar, 
---					@user_email__varchar, 
---					@user_cellphone__varchar, 
---					build_level000.func_systemserver_generatehashpassword(@user_password__varchar),
---					build_level000.func_systemserver_encrypt(@user_firstname__varchar),
---					build_level000.func_systemserver_encrypt(@user_lastname__varchar),
+--					@user_username__nvarchar, 
+--					@user_email__nvarchar, 
+--					@user_cellphone__nvarchar, 
+--					build_level000.func_systemserver_generatehashpassword(@user_password__nvarchar),
+--					build_level000.func_systemserver_encrypt(@user_firstname__nvarchar),
+--					build_level000.func_systemserver_encrypt(@user_lastname__nvarchar),
 --					--HASHBYTES('sha2_512', HASHBYTES('sha2_256', @user_password__varbinary)),
---					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_firstname__varchar), 
---					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_lastname__varchar), 
+--					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_firstname__nvarchar), 
+--					--ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @user_lastname__nvarchar), 
 --					@user_roleaccess__tinyint, 
---					@user_extradata__varchar, 
+--					@user_extradata__nvarchar, 
 --					@reso_uuid_picture__uniqueidentifier, 
 --					@date_uuid_birthdate__uniqueidentifier, 
 --					@city_uuid__uniqueidentifier, 
@@ -217,15 +217,15 @@ GO
 
 --CREATE PROCEDURE build_level001.proc_user_update 
 --	@user_uuid__uniqueidentifier uniqueidentifier, 
---	@user_username__varchar varchar(100), 
---	@user_email__varchar varchar(100), 
---	@user_cellphone__varchar varchar(10), 
---	@user_password__varchar varchar(max) NULL, 
+--	@user_username__nvarchar varchar(100), 
+--	@user_email__nvarchar varchar(100), 
+--	@user_cellphone__nvarchar varchar(10), 
+--	@user_password__nvarchar varchar(max) NULL, 
 --	@user_password__varbinary varbinary(max) NULL, 
---	@user_firstname__varchar varchar(max), 
---	@user_lastname__varchar varchar(max), 
+--	@user_firstname__nvarchar varchar(max), 
+--	@user_lastname__nvarchar varchar(max), 
 --	@user_roleaccess__tinyint tinyint, 
---	@user_extradata__varchar varchar(max), 
+--	@user_extradata__nvarchar varchar(max), 
 --	@reso_uuid_picture__uniqueidentifier uniqueidentifier, 
 --	@date_uuid_birthdate__uniqueidentifier uniqueidentifier, 
 --	@city_uuid__uniqueidentifier uniqueidentifier, 
@@ -240,14 +240,14 @@ GO
 
 --				UPDATE build_level001.[user] SET 
 --					--user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier, 
---					user_username__varchar = @user_username__varchar, 
---					user_email__varchar = @user_email__varchar, 
---					user_cellphone__varchar = @user_cellphone__varchar, 
---					user_password__varbinary = case @user_password__varchar when NULL then @user_password__varbinary else build_level000.func_systemserver_generatehashpassword(@user_password__varchar) end, 
---					user_firstname__varbinary = build_level000.func_systemserver_encrypt(@user_firstname__varchar), 
---					user_lastname__varbinary = build_level000.func_systemserver_encrypt(@user_lastname__varchar), 
+--					user_username__nvarchar = @user_username__nvarchar, 
+--					user_email__nvarchar = @user_email__nvarchar, 
+--					user_cellphone__nvarchar = @user_cellphone__nvarchar, 
+--					user_password__varbinary = case @user_password__nvarchar when NULL then @user_password__varbinary else build_level000.func_systemserver_generatehashpassword(@user_password__nvarchar) end, 
+--					user_firstname__varbinary = build_level000.func_systemserver_encrypt(@user_firstname__nvarchar), 
+--					user_lastname__varbinary = build_level000.func_systemserver_encrypt(@user_lastname__nvarchar), 
 --					user_roleaccess__tinyint = @user_roleaccess__tinyint, 
---					user_extradata__varchar = @user_extradata__varchar, 
+--					user_extradata__nvarchar = @user_extradata__nvarchar, 
 --					reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier, 
 --					date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier, 
 --					city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier, 
@@ -270,7 +270,7 @@ GO
 GO
 
 --CREATE PROCEDURE build_level000.proc_systemserver_encrypt
---	@password VARCHAR(MAX)
+--	@password NVARCHAR(MAX)
 --	AS
 --	SELECT build_level000.func_systemserver_generatehashpassword(@password)
 
@@ -280,13 +280,13 @@ GO
 --GO
 
 --CREATE FUNCTION build_level000.func_systemserver_encrypt(
---	@value VARCHAR(MAX)
+--	@value NVARCHAR(MAX)
 --	)
---	RETURNS VARCHAR(MAX)
+--	RETURNS NVARCHAR(MAX)
 --	AS
 --	BEGIN 
---		DECLARE @password VARCHAR(MAX)
---		DECLARE @result VARCHAR(MAX)
+--		DECLARE @password NVARCHAR(MAX)
+--		DECLARE @result NVARCHAR(MAX)
 
 --		SELECT @result = ENCRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', @value);
 
@@ -303,8 +303,8 @@ GO
 --SELECT CONVERT(varchar(max),@varbinaryField,2), 
 --@varbinaryField
 
---SELECT CONVERT(VARCHAR(MAX), user_password__varbinary) FROM build_level001.[user]
---SELECT build_level000.func_systemserver_encrypt((SELECT u.user_firstname__varchar FROM build_level001.[user] AS u WHERE(u.user_uuid__uniqueidentifier = 'A1637AF8-4BD3-4821-A1E3-94C24469C626')), 0);
+--SELECT CONVERT(NVARCHAR(MAX), user_password__varbinary) FROM build_level001.[user]
+--SELECT build_level000.func_systemserver_encrypt((SELECT u.user_firstname__nvarchar FROM build_level001.[user] AS u WHERE(u.user_uuid__uniqueidentifier = 'A1637AF8-4BD3-4821-A1E3-94C24469C626')), 0);
 --EXEC build_level001.proc_user_select 'A1637AF8-4BD3-4821-A1E3-94C24469C626'
 --SELECT * FROM build_level001.[user]
 
@@ -315,18 +315,18 @@ GO
 --	AS
 --		SELECT
 --			user_uuid__uniqueidentifier, 
---			user_username__varchar, 
---			user_email__varchar, 
---			user_cellphone__varchar, 
+--			user_username__nvarchar, 
+--			user_email__nvarchar, 
+--			user_cellphone__nvarchar, 
 --			user_password__varbinary, 
 --			--user_firstname__varbinary, 
 --			--user_lastname__varbinary, 
---			--CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3',user_firstname__varbinary)) AS user_firstname__varbinary, --It works
---			--CAST(DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', user_lastname__varbinary) AS VARCHAR(MAX)) AS user_lastname__varbinary, --It works 
---			build_level000.func_systemserver_decrypt(user_firstname__varbinary) AS user_firstname__varchar, 
---			build_level000.func_systemserver_decrypt(user_lastname__varbinary) AS user_lastname__varchar, 
+--			--CONVERT(NVARCHAR(MAX), DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3',user_firstname__varbinary)) AS user_firstname__varbinary, --It works
+--			--CAST(DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', user_lastname__varbinary) AS NVARCHAR(MAX)) AS user_lastname__varbinary, --It works 
+--			build_level000.func_systemserver_decrypt(user_firstname__varbinary) AS user_firstname__nvarchar, 
+--			build_level000.func_systemserver_decrypt(user_lastname__varbinary) AS user_lastname__nvarchar, 
 --			user_roleaccess__tinyint, 
---			user_extradata__varchar, 
+--			user_extradata__nvarchar, 
 --			reso_uuid_picture__uniqueidentifier, 
 --			date_uuid_birthdate__uniqueidentifier, 
 --			city_uuid__uniqueidentifier, 
@@ -342,18 +342,18 @@ GO
 --	AS
 --		SELECT
 --			user_uuid__uniqueidentifier, 
---			user_username__varchar, 
---			user_email__varchar, 
---			user_cellphone__varchar, 
+--			user_username__nvarchar, 
+--			user_email__nvarchar, 
+--			user_cellphone__nvarchar, 
 --			user_password__varbinary, 
 --			--user_firstname__varbinary, 
 --			--user_lastname__varbinary, 
---			--CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3',user_firstname__varbinary)) AS user_firstname__varbinary, --It works
---			--CAST(DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', user_lastname__varbinary) AS VARCHAR(MAX)) AS user_lastname__varbinary, --It works 
---			build_level000.func_systemserver_decrypt(user_firstname__varbinary) AS user_firstname__varchar, 
---			build_level000.func_systemserver_decrypt(user_lastname__varbinary) AS user_lastname__varchar, 
+--			--CONVERT(NVARCHAR(MAX), DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3',user_firstname__varbinary)) AS user_firstname__varbinary, --It works
+--			--CAST(DECRYPTBYPASSPHRASE('d-f5]8T.x6_[s3', user_lastname__varbinary) AS NVARCHAR(MAX)) AS user_lastname__varbinary, --It works 
+--			build_level000.func_systemserver_decrypt(user_firstname__varbinary) AS user_firstname__nvarchar, 
+--			build_level000.func_systemserver_decrypt(user_lastname__varbinary) AS user_lastname__nvarchar, 
 --			user_roleaccess__tinyint, 
---			user_extradata__varchar, 
+--			user_extradata__nvarchar, 
 --			reso_uuid_picture__uniqueidentifier, 
 --			date_uuid_birthdate__uniqueidentifier, 
 --			city_uuid__uniqueidentifier, 
@@ -362,14 +362,14 @@ GO
 --			user_uuid_root__uniqueidentifier, 
 --			sess_uuid_deleted__uniqueidentifier
 --		FROM [build_level001].[user] WHERE(user_uuid_root__uniqueidentifier IS NULL AND sess_uuid_deleted__uniqueidentifier IS NULL)
---		ORDER BY user_username__varchar, user_email__varchar, user_cellphone__varchar;
+--		ORDER BY user_username__nvarchar, user_email__nvarchar, user_cellphone__nvarchar;
 
 GO
 
 CREATE PROCEDURE build_level001.proc_user_findAllBranches
 	@user_uuid__uniqueidentifier______Current uniqueidentifier
 	AS
-		WITH EmpCTE ([user_uuid__uniqueidentifier], [user_uuid_root__uniqueidentifier])
+		WITH EntityCTE ([user_uuid__uniqueidentifier], [user_uuid_root__uniqueidentifier])
 		AS
 		(
 			SELECT [user_uuid__uniqueidentifier], [user_uuid_root__uniqueidentifier]
@@ -378,10 +378,29 @@ CREATE PROCEDURE build_level001.proc_user_findAllBranches
 			UNION ALL
 		--Recursiveness
 			SELECT e.[user_uuid__uniqueidentifier], e.[user_uuid_root__uniqueidentifier]
-				FROM build_level001.[user] AS e JOIN EmpCTE AS m
+				FROM build_level001.[user] AS e JOIN EntityCTE AS m
 					ON e.user_uuid_root__uniqueidentifier = m.[user_uuid__uniqueidentifier]
 		)
-		SELECT * FROM EmpCTE
+		SELECT * FROM EntityCTE
+
+GO
+
+CREATE PROCEDURE build_level001.proc_principalcompany_findAllBranches
+	@prco_uuid__uniqueidentifier______Current uniqueidentifier
+	AS
+		WITH EntityCTE ([prco_uuid__uniqueidentifier], [prco_uuid_root__uniqueidentifier])
+		AS
+		(
+			SELECT [prco_uuid__uniqueidentifier], [prco_uuid_root__uniqueidentifier]
+				FROM build_level003.principalcompany
+				WHERE [prco_uuid__uniqueidentifier] = @prco_uuid__uniqueidentifier______Current
+			UNION ALL
+		--Recursiveness
+			SELECT e.[prco_uuid__uniqueidentifier], e.[prco_uuid_root__uniqueidentifier]
+				FROM build_level003.principalcompany AS e JOIN EntityCTE AS m
+					ON e.prco_uuid_root__uniqueidentifier = m.[prco_uuid__uniqueidentifier]
+		)
+		SELECT * FROM EntityCTE
 
 GO
 
@@ -439,14 +458,14 @@ GO
 --				EXEC xp_cmdshell 'bcp "SELECT 3" queryout "C:\DELET\Results03.csv" -c -t, -T -S PC-DELL-STRAAD\STRAAD1703162325';
 
 --				DECLARE @user_uuid__uniqueidentifier___Part1 UNIQUEIDENTIFIER
---				DECLARE @user_username__varchar___Part1 varchar(100)
---				DECLARE @user_email__varchar___Part1 varchar(100)
---				DECLARE @user_cellphone__varchar___Part1 varchar(10)
+--				DECLARE @user_username__nvarchar___Part1 varchar(100)
+--				DECLARE @user_email__nvarchar___Part1 varchar(100)
+--				DECLARE @user_cellphone__nvarchar___Part1 varchar(10)
 --				DECLARE @user_password__varbinary___Part1 varbinary(max)
 --				DECLARE @user_firstname__varbinary___Part1 varbinary(max)
 --				DECLARE @user_lastname__varbinary___Part1 varbinary(max)
 --				DECLARE @user_roleaccess__tinyint___Part1 tinyint
---				DECLARE @user_extradata__varchar___Part1 varchar(max)
+--				DECLARE @user_extradata__nvarchar___Part1 varchar(max)
 --				DECLARE @reso_uuid_picture__uniqueidentifier___Part1 UNIQUEIDENTIFIER
 --				DECLARE @date_uuid_birthdate__uniqueidentifier___Part1 UNIQUEIDENTIFIER
 --				DECLARE @city_uuid__uniqueidentifier___Part1 UNIQUEIDENTIFIER
@@ -457,14 +476,14 @@ GO
 
 --				SELECT 
 --					@user_uuid__uniqueidentifier___Part1 = user_uuid__uniqueidentifier, 
---					@user_username__varchar___Part1 = user_username__varchar, 
---					@user_email__varchar___Part1 = user_email__varchar, 
---					@user_cellphone__varchar___Part1 = user_cellphone__varchar, 
+--					@user_username__nvarchar___Part1 = user_username__nvarchar, 
+--					@user_email__nvarchar___Part1 = user_email__nvarchar, 
+--					@user_cellphone__nvarchar___Part1 = user_cellphone__nvarchar, 
 --					@user_password__varbinary___Part1 = user_password__varbinary, 
 --					@user_firstname__varbinary___Part1 = user_firstname__varbinary, 
 --					@user_lastname__varbinary___Part1 = user_lastname__varbinary, 
 --					@user_roleaccess__tinyint___Part1 = user_roleaccess__tinyint, 
---					@user_extradata__varchar___Part1 = user_extradata__varchar, 
+--					@user_extradata__nvarchar___Part1 = user_extradata__nvarchar, 
 --					@reso_uuid_picture__uniqueidentifier___Part1 = reso_uuid_picture__uniqueidentifier, 
 --					@date_uuid_birthdate__uniqueidentifier___Part1 = date_uuid_birthdate__uniqueidentifier, 
 --					@city_uuid__uniqueidentifier___Part1 = city_uuid__uniqueidentifier, 
@@ -479,14 +498,14 @@ GO
 --				INSERT build_level001.[copy] SELECT * FROM INSERTED;
 --				INSERT build_level001.[copy](
 --				user_uuid__uniqueidentifier, 
---				user_username__varchar, 
---				user_email__varchar, 
---				user_cellphone__varchar, 
+--				user_username__nvarchar, 
+--				user_email__nvarchar, 
+--				user_cellphone__nvarchar, 
 --				user_password__varbinary, 
 --				user_firstname__varbinary, 
 --				user_lastname__varbinary, 
 --				user_roleaccess__tinyint, 
---				user_extradata__varchar, 
+--				user_extradata__nvarchar, 
 --				reso_uuid_picture__uniqueidentifier, 
 --				date_uuid_birthdate__uniqueidentifier, 
 --				city_uuid__uniqueidentifier, 
@@ -495,14 +514,14 @@ GO
 --				user_uuid_root__uniqueidentifier, 
 --				sess_uuid_deleted__uniqueidentifier) VALUES(
 --				@user_uuid__uniqueidentifier___Part1, 
---				@user_username__varchar___Part1, 
---				@user_email__varchar___Part1, 
---				@user_cellphone__varchar___Part1, 
+--				@user_username__nvarchar___Part1, 
+--				@user_email__nvarchar___Part1, 
+--				@user_cellphone__nvarchar___Part1, 
 --				@user_password__varbinary___Part1 , 
 --				@user_firstname__varbinary___Part1, 
 --				@user_lastname__varbinary___Part1, 
 --				@user_roleaccess__tinyint___Part1, 
---				@user_extradata__varchar___Part1, 
+--				@user_extradata__nvarchar___Part1, 
 --				@reso_uuid_picture__uniqueidentifier___Part1, 
 --				@date_uuid_birthdate__uniqueidentifier___Part1, 
 --				@city_uuid__uniqueidentifier___Part1, 
@@ -525,14 +544,14 @@ GO
 --				--)) > 0)
 --				IF(@user_uuid__uniqueidentifier___Part1 IS NOT NULL AND (SELECT COUNT(*) FROM build_level001.[user] WHERE(
 --					user_uuid__uniqueidentifier = @user_uuid__uniqueidentifier___Part1 AND 
---					user_username__varchar = @user_username__varchar___Part1 AND 
---					user_email__varchar = @user_email__varchar___Part1 AND 
---					user_cellphone__varchar = @user_cellphone__varchar___Part1 AND 
+--					user_username__nvarchar = @user_username__nvarchar___Part1 AND 
+--					user_email__nvarchar = @user_email__nvarchar___Part1 AND 
+--					user_cellphone__nvarchar = @user_cellphone__nvarchar___Part1 AND 
 --					user_password__varbinary = @user_password__varbinary___Part1 AND 
 --					user_firstname__varbinary = @user_firstname__varbinary___Part1 AND 
 --					user_lastname__varbinary = @user_lastname__varbinary___Part1 AND 
 --					user_roleaccess__tinyint = @user_roleaccess__tinyint___Part1 AND 
---					user_extradata__varchar = @user_extradata__varchar___Part1 AND 
+--					user_extradata__nvarchar = @user_extradata__nvarchar___Part1 AND 
 --					reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier___Part1 AND 
 --					date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier___Part1 AND 
 --					city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier___Part1 AND 
@@ -559,14 +578,14 @@ GO
 --							BEGIN TRAN tranOperation
 
 --								DECLARE @user_uuid__uniqueidentifier___New uniqueidentifier
---								DECLARE @user_username__varchar varchar(100)
---								DECLARE @user_email__varchar varchar(100)
---								DECLARE @user_cellphone__varchar varchar(10)
+--								DECLARE @user_username__nvarchar varchar(100)
+--								DECLARE @user_email__nvarchar varchar(100)
+--								DECLARE @user_cellphone__nvarchar varchar(10)
 --								DECLARE @user_password__varbinary varbinary(max)
 --								DECLARE @user_firstname__varbinary varbinary(max)
 --								DECLARE @user_lastname__varbinary varbinary(max)
 --								DECLARE @user_roleaccess__tinyint tinyint
---								DECLARE @user_extradata__varchar varchar(max)
+--								DECLARE @user_extradata__nvarchar varchar(max)
 --								DECLARE @reso_uuid_picture__uniqueidentifier uniqueidentifier
 --								DECLARE @date_uuid_birthdate__uniqueidentifier uniqueidentifier
 --								DECLARE @city_uuid__uniqueidentifier uniqueidentifier
@@ -593,14 +612,14 @@ GO
 
 --								SELECT TOP 1
 --									--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
---									@user_username__varchar = user_username__varchar, 
---									@user_email__varchar = user_email__varchar, 
---									@user_cellphone__varchar = user_cellphone__varchar, 
+--									@user_username__nvarchar = user_username__nvarchar, 
+--									@user_email__nvarchar = user_email__nvarchar, 
+--									@user_cellphone__nvarchar = user_cellphone__nvarchar, 
 --									@user_password__varbinary = user_password__varbinary, 
 --									@user_firstname__varbinary = user_firstname__varbinary, 
 --									@user_lastname__varbinary = user_lastname__varbinary, 
 --									@user_roleaccess__tinyint = user_roleaccess__tinyint, 
---									@user_extradata__varchar = user_extradata__varchar, 
+--									@user_extradata__nvarchar = user_extradata__nvarchar, 
 --									@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
 --									@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
 --									@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
@@ -625,14 +644,14 @@ GO
 --								-- First we store the copy register
 --								INSERT INTO build_level001.[user](
 --									user_uuid__uniqueidentifier, 
---									user_username__varchar, 
---									user_email__varchar, 
---									user_cellphone__varchar, 
+--									user_username__nvarchar, 
+--									user_email__nvarchar, 
+--									user_cellphone__nvarchar, 
 --									user_password__varbinary, 
 --									user_firstname__varbinary, 
 --									user_lastname__varbinary, 
 --									user_roleaccess__tinyint, 
---									user_extradata__varchar, 
+--									user_extradata__nvarchar, 
 --									reso_uuid_picture__uniqueidentifier, 
 --									date_uuid_birthdate__uniqueidentifier, 
 --									city_uuid__uniqueidentifier, 
@@ -642,14 +661,14 @@ GO
 --									sess_uuid_deleted__uniqueidentifier) 
 --								VALUES(
 --									@user_uuid__uniqueidentifier___New,
---									@user_username__varchar,
---									@user_email__varchar,
---									@user_cellphone__varchar, 
+--									@user_username__nvarchar,
+--									@user_email__nvarchar,
+--									@user_cellphone__nvarchar, 
 --									@user_password__varbinary, 
 --									@user_firstname__varbinary, 
 --									@user_lastname__varbinary, 
 --									@user_roleaccess__tinyint, 
---									@user_extradata__varchar, 
+--									@user_extradata__nvarchar, 
 --									@reso_uuid_picture__uniqueidentifier, 
 --									@date_uuid_birthdate__uniqueidentifier, 
 --									@city_uuid__uniqueidentifier, 
@@ -663,14 +682,14 @@ GO
 
 --								SELECT 
 --									--@user_uuid__uniqueidentifier_New = user_uuid__uniqueidentifier, 
---									@user_username__varchar = user_username__varchar, 
---									@user_email__varchar = user_email__varchar, 
---									@user_cellphone__varchar = user_cellphone__varchar, 
+--									@user_username__nvarchar = user_username__nvarchar, 
+--									@user_email__nvarchar = user_email__nvarchar, 
+--									@user_cellphone__nvarchar = user_cellphone__nvarchar, 
 --									@user_password__varbinary = user_password__varbinary, 
 --									@user_firstname__varbinary = user_firstname__varbinary, 
 --									@user_lastname__varbinary = user_lastname__varbinary, 
 --									@user_roleaccess__tinyint = user_roleaccess__tinyint, 
---									@user_extradata__varchar = user_extradata__varchar, 
+--									@user_extradata__nvarchar = user_extradata__nvarchar, 
 --									@reso_uuid_picture__uniqueidentifier = reso_uuid_picture__uniqueidentifier, 
 --									@date_uuid_birthdate__uniqueidentifier = date_uuid_birthdate__uniqueidentifier, 
 --									@city_uuid__uniqueidentifier = city_uuid__uniqueidentifier, 
@@ -683,14 +702,14 @@ GO
 
 
 --								UPDATE build_level001.[user] SET  
---									user_username__varchar = @user_username__varchar, 
---									user_email__varchar = @user_email__varchar, 
---									user_cellphone__varchar = @user_cellphone__varchar, 
+--									user_username__nvarchar = @user_username__nvarchar, 
+--									user_email__nvarchar = @user_email__nvarchar, 
+--									user_cellphone__nvarchar = @user_cellphone__nvarchar, 
 --									user_password__varbinary = @user_password__varbinary, 
 --									user_firstname__varbinary = @user_firstname__varbinary, 
 --									user_lastname__varbinary = @user_lastname__varbinary, 
 --									user_roleaccess__tinyint = @user_roleaccess__tinyint, 
---									user_extradata__varchar = @user_extradata__varchar, 
+--									user_extradata__nvarchar = @user_extradata__nvarchar, 
 --									reso_uuid_picture__uniqueidentifier = @reso_uuid_picture__uniqueidentifier, 
 --									date_uuid_birthdate__uniqueidentifier = @date_uuid_birthdate__uniqueidentifier, 
 --									city_uuid__uniqueidentifier = @city_uuid__uniqueidentifier, 
@@ -834,367 +853,367 @@ SET @dateUUID = NEWID()
 SET @sessionStraadUUID = NEWID()
 SET @user001UUID = NEWID()
 
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AF', 'Afganistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AL', 'Albania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DE', 'Alemania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AD', 'Andorra');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AO', 'Angola');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AI', 'Anguila');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AQ', 'Antártida');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AG', 'Antigua y Barbuda');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SA', 'Arabia Saudita');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DZ', 'Argelia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AR', 'Argentina');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AM', 'Armenia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AW', 'Aruba');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AU', 'Australia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AT', 'Austria');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AZ', 'Azerbaiyán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BS', 'Bahamas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BD', 'Bangladés');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BB', 'Barbados');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BH', 'Baréin');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BE', 'Bélgica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BZ', 'Belice');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BJ', 'Benín');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BM', 'Bermudas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BY', 'Bielorrusia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BO', 'Bolivia, Estado Plurinacional de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BQ', 'Bonaire, San Eustaquio y Saba');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BA', 'Bosnia y Herzegovina');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BW', 'Botsuana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BR', 'Brasil');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BN', 'Brunéi Darussalam');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BG', 'Bulgaria');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BF', 'Burkina Faso');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BI', 'Burundi');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BT', 'Bután');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CV', 'Cabo Verde');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KH', 'Camboya');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CM', 'Camerún');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CA', 'Canadá');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TD', 'Chad');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CL', 'Chile');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CN', 'China, República Popular');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CY', 'Chipre');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CO', 'Colombia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KM', 'Comoras');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CD', 'Congo, La República Democrática del');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CG', 'Congo');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KR', 'Corea, República de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KP', 'Corea, República Democrática Popular de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CI', 'Costa de Marfil');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CR', 'Costa Rica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HR', 'Croacia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CU', 'Cuba');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CW', 'Curazao');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DK', 'Dinamarca');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DM', 'Dominica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'EC', 'Ecuador');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'EG', 'Egipto');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SV', 'El Salvador');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AE', 'Emiratos Árabes Unidos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ER', 'Eritrea');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SK', 'Eslovaquia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SI', 'Eslovenia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ES', 'España');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'US', 'Estados Unidos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'EE', 'Estonia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ET', 'Etiopía');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'RU', 'Federacion Rusa');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PH', 'Filipinas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FI', 'Finlandia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FJ', 'Fiyi');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FR', 'Francia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GA', 'Gabón');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GM', 'Gambia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GE', 'Georgia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GH', 'Ghana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GI', 'Gibraltar');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GD', 'Granada');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GR', 'Grecia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GL', 'Groenlandia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GP', 'Guadalupe');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GU', 'Guam');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GT', 'Guatemala');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GF', 'Guayana Francesa');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GG', 'Guernsey');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GW', 'Guinea-Bisáu');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GQ', 'Guinea Ecuatorial');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GN', 'Guinea');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GY', 'Guyana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HT', 'Haití');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HN', 'Honduras');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HK', 'Hong Kong');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HU', 'Hungría');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IN', 'India');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ID', 'Indonesia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IQ', 'Irak');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IR', 'Irán, República Islámica de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IE', 'Irlanda');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BV', 'Isla Bouvet');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IM', 'Isla de Man');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CX', 'Isla de Navidad');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NF', 'Isla Norfolk');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IS', 'Islandia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AX', 'Islas Åland');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KY', 'Islas Caimán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CC', 'Islas Cocos (Keeling)');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CK', 'Islas Cook');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FK', 'Islas Falkland (Malvinas)');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FO', 'Islas Feroe');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GS', 'Islas Georgias del Sur y Sandwich del Sur');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'HM', 'Islas Heard y Mcdonald');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MP', 'Islas Marianas del Norte');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MH', 'Islas Marshall');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SB', 'Islas Salomón');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TC', 'Islas Turcas y Caicos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'UM', 'Islas Ultramarinas Menores de Estados Unidos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VG', 'Islas Virgenes Británicas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VI', 'Islas Virgenes de Los Estados Unidos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IL', 'Israel');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IT', 'Italia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'JM', 'Jamaica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'JP', 'Japón');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'JE', 'Jersey');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'JO', 'Jordania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KZ', 'Kazajistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KE', 'Kenia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KG', 'Kirguistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KI', 'Kiribati');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KW', 'Kuwait');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LS', 'Lesoto');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LV', 'Letonia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LB', 'Líbano');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LR', 'Liberia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LY', 'Libia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LI', 'Liechtenstein');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LT', 'Lituania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LU', 'Luxemburgo');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MO', 'Macao');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MK', 'Macedonia, La Antigua República Yugoslava de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MG', 'Madagascar');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MY', 'Malasia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MW', 'Malaui');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MV', 'Maldivas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ML', 'Malí');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MT', 'Malta');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MA', 'Marruecos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MQ', 'Martinica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MU', 'Mauricio');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MR', 'Mauritania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'YT', 'Mayotte');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(@countryMexicoUUID, 'MX', 'México');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'FM', 'Micronesia, Estados Federados de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MD', 'Moldavia, República de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MC', 'Mónaco');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MN', 'Mongolia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ME', 'Montenegro');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MS', 'Montserrat');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MZ', 'Mozambique');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MM', 'Myanmar');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NA', 'Nabimia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NR', 'Nauru');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NP', 'Nepal');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NI', 'Nicaragua');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NG', 'Nigeria');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NE', 'Níger');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NU', 'Niue');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NO', 'Noruega');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NC', 'Nueva Caledonia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NZ', 'Nueva Zelanda');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'OM', 'Omán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'NL', 'Países Bajos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PK', 'Pakistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PW', 'Palaos');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PS', 'Palestina');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PA', 'Panamá');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PG', 'Papúa Nueva Guinea');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PY', 'Paraguay');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PE', 'Perú');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PN', 'Pitcairn');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PF', 'Polinesia Francesa');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PL', 'Polonia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PT', 'Portugal');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PR', 'Puerto Rico');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'QA', 'Qatar');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'GB', 'Reino Unido');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CF', 'República Centroafricana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CZ', 'República Checa');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LA', 'República Democrática Popular Lao');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DO', 'República Dominicana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'RE', 'Reunión');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'RW', 'Ruanda');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'RO', 'Rumania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'EH', 'Sahara Occidental');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'AS', 'Samoa Americana');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'WS', 'Samoa');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'BL', 'San Bartolomé');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'KN', 'San Cristóbal y Nieves');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SM', 'San Marino');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'MF', 'San Martín (Parte Francesa)');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'PM', 'San Pedro y Miquelón');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VC', 'San Vicente y Las Granadinas');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SH', 'Santa Helena, Ascensión y Tristán de Acuña');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LC', 'Santa Lucía');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VA', 'Santa Sede (Ciudad Estado Vaticano)');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ST', 'Santo Tomé y Principe');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SN', 'Senegal');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'RS', 'Serbia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SC', 'Seychelles');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SL', 'Sierra Leona');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SG', 'Singapur');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SX', 'Sint Maarten (Parte Neerlandesa)');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SY', 'Siria, República Arabe de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SO', 'Somalia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'LK', 'Sri Lanka');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SZ', 'Suazilandia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ZA', 'Sudáfrica');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SS', 'Sudán del Sur');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SD', 'Sudán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SE', 'Suecia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'CH', 'Suiza');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SR', 'Surinam');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'SJ', 'Svalbard y Jan Mayen');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TH', 'Tailandia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TW', 'Taiwán, Provincia de China');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TZ', 'Tanzania, República Unida de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TJ', 'Tayikistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'IO', 'Territorio Británico del Océano Índico');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TF', 'Territorios Australes Franceses');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TL', 'Timor-Leste');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TG', 'Togo');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TK', 'Tokelau');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TO', 'Tonga');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TT', 'Trinidad y Tobago');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TN', 'Túnez');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TM', 'Turkmenistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TR', 'Turquía');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'TV', 'Tuvalu');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'UA', 'Ucrania');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'UG', 'Uganda');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'UY', 'Uruguay');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'UZ', 'Uzbekistán');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VU', 'Vanuatu');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VE', 'Venezuela, República Bolivariana de');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'VN', 'Viet Nam');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'WF', 'Wallis y Futuna');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'YE', 'Yemen');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'DJ', 'Yibuti');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ZM', 'Zambia');
-INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__varchar, coun_name__varchar) VALUES(NEWID(), 'ZW', 'Zimbabue');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AF', 'Afganistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AL', 'Albania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DE', 'Alemania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AD', 'Andorra');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AO', 'Angola');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AI', 'Anguila');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AQ', 'Antártida');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AG', 'Antigua y Barbuda');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SA', 'Arabia Saudita');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DZ', 'Argelia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AR', 'Argentina');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AM', 'Armenia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AW', 'Aruba');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AU', 'Australia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AT', 'Austria');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AZ', 'Azerbaiyán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BS', 'Bahamas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BD', 'Bangladés');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BB', 'Barbados');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BH', 'Baréin');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BE', 'Bélgica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BZ', 'Belice');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BJ', 'Benín');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BM', 'Bermudas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BY', 'Bielorrusia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BO', 'Bolivia, Estado Plurinacional de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BQ', 'Bonaire, San Eustaquio y Saba');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BA', 'Bosnia y Herzegovina');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BW', 'Botsuana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BR', 'Brasil');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BN', 'Brunéi Darussalam');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BG', 'Bulgaria');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BF', 'Burkina Faso');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BI', 'Burundi');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BT', 'Bután');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CV', 'Cabo Verde');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KH', 'Camboya');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CM', 'Camerún');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CA', 'Canadá');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TD', 'Chad');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CL', 'Chile');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CN', 'China, República Popular');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CY', 'Chipre');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CO', 'Colombia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KM', 'Comoras');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CD', 'Congo, La República Democrática del');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CG', 'Congo');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KR', 'Corea, República de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KP', 'Corea, República Democrática Popular de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CI', 'Costa de Marfil');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CR', 'Costa Rica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HR', 'Croacia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CU', 'Cuba');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CW', 'Curazao');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DK', 'Dinamarca');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DM', 'Dominica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'EC', 'Ecuador');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'EG', 'Egipto');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SV', 'El Salvador');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AE', 'Emiratos Árabes Unidos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ER', 'Eritrea');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SK', 'Eslovaquia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SI', 'Eslovenia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ES', 'España');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'US', 'Estados Unidos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'EE', 'Estonia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ET', 'Etiopía');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'RU', 'Federacion Rusa');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PH', 'Filipinas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FI', 'Finlandia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FJ', 'Fiyi');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FR', 'Francia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GA', 'Gabón');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GM', 'Gambia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GE', 'Georgia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GH', 'Ghana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GI', 'Gibraltar');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GD', 'Granada');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GR', 'Grecia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GL', 'Groenlandia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GP', 'Guadalupe');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GU', 'Guam');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GT', 'Guatemala');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GF', 'Guayana Francesa');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GG', 'Guernsey');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GW', 'Guinea-Bisáu');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GQ', 'Guinea Ecuatorial');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GN', 'Guinea');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GY', 'Guyana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HT', 'Haití');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HN', 'Honduras');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HK', 'Hong Kong');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HU', 'Hungría');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IN', 'India');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ID', 'Indonesia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IQ', 'Irak');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IR', 'Irán, República Islámica de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IE', 'Irlanda');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BV', 'Isla Bouvet');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IM', 'Isla de Man');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CX', 'Isla de Navidad');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NF', 'Isla Norfolk');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IS', 'Islandia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AX', 'Islas Åland');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KY', 'Islas Caimán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CC', 'Islas Cocos (Keeling)');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CK', 'Islas Cook');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FK', 'Islas Falkland (Malvinas)');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FO', 'Islas Feroe');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GS', 'Islas Georgias del Sur y Sandwich del Sur');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'HM', 'Islas Heard y Mcdonald');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MP', 'Islas Marianas del Norte');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MH', 'Islas Marshall');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SB', 'Islas Salomón');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TC', 'Islas Turcas y Caicos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'UM', 'Islas Ultramarinas Menores de Estados Unidos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VG', 'Islas Virgenes Británicas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VI', 'Islas Virgenes de Los Estados Unidos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IL', 'Israel');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IT', 'Italia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'JM', 'Jamaica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'JP', 'Japón');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'JE', 'Jersey');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'JO', 'Jordania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KZ', 'Kazajistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KE', 'Kenia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KG', 'Kirguistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KI', 'Kiribati');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KW', 'Kuwait');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LS', 'Lesoto');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LV', 'Letonia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LB', 'Líbano');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LR', 'Liberia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LY', 'Libia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LI', 'Liechtenstein');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LT', 'Lituania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LU', 'Luxemburgo');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MO', 'Macao');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MK', 'Macedonia, La Antigua República Yugoslava de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MG', 'Madagascar');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MY', 'Malasia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MW', 'Malaui');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MV', 'Maldivas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ML', 'Malí');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MT', 'Malta');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MA', 'Marruecos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MQ', 'Martinica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MU', 'Mauricio');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MR', 'Mauritania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'YT', 'Mayotte');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(@countryMexicoUUID, 'MX', 'México');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'FM', 'Micronesia, Estados Federados de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MD', 'Moldavia, República de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MC', 'Mónaco');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MN', 'Mongolia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ME', 'Montenegro');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MS', 'Montserrat');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MZ', 'Mozambique');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MM', 'Myanmar');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NA', 'Nabimia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NR', 'Nauru');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NP', 'Nepal');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NI', 'Nicaragua');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NG', 'Nigeria');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NE', 'Níger');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NU', 'Niue');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NO', 'Noruega');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NC', 'Nueva Caledonia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NZ', 'Nueva Zelanda');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'OM', 'Omán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'NL', 'Países Bajos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PK', 'Pakistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PW', 'Palaos');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PS', 'Palestina');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PA', 'Panamá');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PG', 'Papúa Nueva Guinea');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PY', 'Paraguay');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PE', 'Perú');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PN', 'Pitcairn');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PF', 'Polinesia Francesa');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PL', 'Polonia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PT', 'Portugal');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PR', 'Puerto Rico');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'QA', 'Qatar');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'GB', 'Reino Unido');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CF', 'República Centroafricana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CZ', 'República Checa');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LA', 'República Democrática Popular Lao');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DO', 'República Dominicana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'RE', 'Reunión');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'RW', 'Ruanda');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'RO', 'Rumania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'EH', 'Sahara Occidental');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'AS', 'Samoa Americana');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'WS', 'Samoa');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'BL', 'San Bartolomé');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'KN', 'San Cristóbal y Nieves');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SM', 'San Marino');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'MF', 'San Martín (Parte Francesa)');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'PM', 'San Pedro y Miquelón');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VC', 'San Vicente y Las Granadinas');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SH', 'Santa Helena, Ascensión y Tristán de Acuña');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LC', 'Santa Lucía');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VA', 'Santa Sede (Ciudad Estado Vaticano)');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ST', 'Santo Tomé y Principe');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SN', 'Senegal');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'RS', 'Serbia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SC', 'Seychelles');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SL', 'Sierra Leona');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SG', 'Singapur');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SX', 'Sint Maarten (Parte Neerlandesa)');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SY', 'Siria, República Arabe de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SO', 'Somalia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'LK', 'Sri Lanka');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SZ', 'Suazilandia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ZA', 'Sudáfrica');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SS', 'Sudán del Sur');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SD', 'Sudán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SE', 'Suecia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'CH', 'Suiza');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SR', 'Surinam');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'SJ', 'Svalbard y Jan Mayen');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TH', 'Tailandia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TW', 'Taiwán, Provincia de China');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TZ', 'Tanzania, República Unida de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TJ', 'Tayikistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'IO', 'Territorio Británico del Océano Índico');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TF', 'Territorios Australes Franceses');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TL', 'Timor-Leste');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TG', 'Togo');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TK', 'Tokelau');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TO', 'Tonga');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TT', 'Trinidad y Tobago');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TN', 'Túnez');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TM', 'Turkmenistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TR', 'Turquía');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'TV', 'Tuvalu');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'UA', 'Ucrania');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'UG', 'Uganda');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'UY', 'Uruguay');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'UZ', 'Uzbekistán');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VU', 'Vanuatu');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VE', 'Venezuela, República Bolivariana de');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'VN', 'Viet Nam');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'WF', 'Wallis y Futuna');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'YE', 'Yemen');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'DJ', 'Yibuti');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ZM', 'Zambia');
+INSERT INTO build_level001.country(coun_uuid__uniqueidentifier, coun_code__nvarchar, coun_name__nvarchar) VALUES(NEWID(), 'ZW', 'Zimbabue');
 
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Aguascalientes', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Baja California', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Baja California Sur', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Campeche', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Chiapas', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Chihuahua', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(@stateCoahuilaUUID, 'Coahuila', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Colima', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Distrito Federal', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(@stateDurangoUUID, 'Durango', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Estado de México', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Guanajuato', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Guerrero', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Jalisco', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Michoacán', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Morelos', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Nayarit', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Nuevo León', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Oaxaca', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Puebla', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Querétaro', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Quintana Roo', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'San Luis Potosí', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Sinaloa', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Sonora', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tabasco', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tamaulipas', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tlaxcala', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Veracruz', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Yucatán', @countryMexicoUUID);
-INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__varchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Zacatecas', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Aguascalientes', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Baja California', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Baja California Sur', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Campeche', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Chiapas', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Chihuahua', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(@stateCoahuilaUUID, 'Coahuila', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Colima', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Distrito Federal', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(@stateDurangoUUID, 'Durango', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Estado de México', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Guanajuato', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Guerrero', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Jalisco', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Michoacán', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Morelos', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Nayarit', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Nuevo León', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Oaxaca', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Puebla', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Querétaro', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Quintana Roo', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'San Luis Potosí', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Sinaloa', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Sonora', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tabasco', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tamaulipas', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Tlaxcala', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Veracruz', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Yucatán', @countryMexicoUUID);
+INSERT INTO build_level001.[state](stat_uuid__uniqueidentifier, stat_name__nvarchar, coun_uuid__uniqueidentifier) VALUES(NEWID(), 'Zacatecas', @countryMexicoUUID);
 
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Canatlán', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Canelas', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Coneto de Comonfort', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Cuencamé', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Durango', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'El Oro', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(@cityGomezPalacioUUID, 'Gómez Palacio', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Gral. Simón Boívar', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guadalupe Victoria', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guanaceví', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Indé', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Lerdo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Mapimí', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Mezquital', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nazas', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nombre de Dios', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nuevo Ideal', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ocampo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Otáez', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Pánuco de Coronado', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Peñón Blanco', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Poanas', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Pueblo Nuevo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Rodeo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Bernardo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Dimas', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan de Guadalupe', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan del Río', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Luis del Cordero', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Pedro del Gallo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Santa Clara', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Santiago Papasquiaro', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Súchil', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tamazula', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tepehuanes', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tlahualilo', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Topia', @stateDurangoUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Vicente Guerrero', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Canatlán', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Canelas', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Coneto de Comonfort', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Cuencamé', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Durango', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'El Oro', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(@cityGomezPalacioUUID, 'Gómez Palacio', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Gral. Simón Boívar', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guadalupe Victoria', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guanaceví', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Indé', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Lerdo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Mapimí', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Mezquital', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nazas', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nombre de Dios', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nuevo Ideal', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ocampo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Otáez', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Pánuco de Coronado', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Peñón Blanco', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Poanas', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Pueblo Nuevo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Rodeo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Bernardo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Dimas', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan de Guadalupe', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan del Río', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Luis del Cordero', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Pedro del Gallo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Santa Clara', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Santiago Papasquiaro', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Súchil', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tamazula', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tepehuanes', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Tlahualilo', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Topia', @stateDurangoUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Vicente Guerrero', @stateDurangoUUID);
 
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Abasolo', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Acuña', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Allende', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Arteaga', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Candela', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Castaños', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Cuatrociénegas', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Escobedo', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Francisco I. Madero', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Frontera', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'General Cepeda', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guerrero', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Jiménez', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Juárez', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Lamadrid', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Matamoros', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Monclova', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Morelos', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Múzquiz', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nadadores', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nava', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ocampo', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Parras', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Piedras Negras', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Progreso', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ramos Arizpe', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sabinas', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sacramento', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Saltillo', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Buenaventura', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan de Sabinas', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Pedro', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sierra Mojada', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(@cityTorreonUUID, 'Torreón', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Viesca', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Villa Unión', @stateCoahuilaUUID);
-INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Zaragoza', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Abasolo', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Acuña', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Allende', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Arteaga', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Candela', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Castaños', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Cuatrociénegas', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Escobedo', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Francisco I. Madero', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Frontera', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'General Cepeda', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Guerrero', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Hidalgo', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Jiménez', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Juárez', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Lamadrid', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Matamoros', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Monclova', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Morelos', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Múzquiz', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nadadores', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Nava', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ocampo', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Parras', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Piedras Negras', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Progreso', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Ramos Arizpe', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sabinas', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sacramento', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Saltillo', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Buenaventura', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Juan de Sabinas', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'San Pedro', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Sierra Mojada', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(@cityTorreonUUID, 'Torreón', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Viesca', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Villa Unión', @stateCoahuilaUUID);
+INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__nvarchar, stat_uuid__uniqueidentifier) VALUES(NEWID(), 'Zaragoza', @stateCoahuilaUUID);
 
 
 --INSERT INTO build_general.[state](stat_uuid, stat_value) VALUES('', 'AGUASCALIENTES')
@@ -1893,21 +1912,53 @@ INSERT INTO build_level001.city(city_uuid__uniqueidentifier, city_name__varchar,
 
 INSERT INTO build_level002.[date](date_uuid__uniqueidentifier, date_value__date) VALUES(@dateUUID, '2000-01-01');
 
-INSERT INTO build_level002.[session](sess_uuid__uniqueidentifier, sess_starttime__time, sess_lastactivity__time, sess_ipbatch01__tinyint, sess_ipbatch02__tinyint, sess_ipbatch03__tinyint, sess_ipbatch04__tinyint, sess_extradata__varchar, date_uuid__uniqueidentifier, user_uuid_created__uniqueidentifier) VALUES(@sessionStraadUUID, '13:00:00', '13:00:00', NULL, NULL, NULL, NULL, NULL, @dateUUID, @user001UUID);
+INSERT INTO build_level002.[session](sess_uuid__uniqueidentifier, sess_starttime__time, sess_lastactivity__time, sess_ipbatch01__tinyint, sess_ipbatch02__tinyint, sess_ipbatch03__tinyint, sess_ipbatch04__tinyint, sess_extradata__nvarchar, date_uuid__uniqueidentifier, user_uuid_created__uniqueidentifier) VALUES(@sessionStraadUUID, '13:00:00', '13:00:00', NULL, NULL, NULL, NULL, NULL, @dateUUID, @user001UUID);
 
-INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__varchar, user_email__varchar, user_cellphone__varchar, user_password__varchar, user_firstname__varchar, user_lastname__varchar, user_roleaccess__tinyint, user_extradata__varchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) VALUES(
+INSERT INTO build_level001.[user](user_uuid__uniqueidentifier, user_username__nvarchar, user_email__nvarchar, user_cellphone__nvarchar, user_password__nvarchar, user_firstname__nvarchar, user_lastname__nvarchar, user_roleaccess__tinyint, user_extradata__nvarchar, reso_uuid_picture__uniqueidentifier, date_uuid_birthdate__uniqueidentifier, city_uuid__uniqueidentifier, sess_uuid_used__uniqueidentifier, sess_uuid_created__uniqueidentifier, user_uuid_root__uniqueidentifier, sess_uuid_deleted__uniqueidentifier) VALUES(
 	@user001UUID, '_admin_', NULL, NULL, '_keyhashpassword_', '_administrator01_', '_administrator02_', 
 	1, NULL, NULL, NULL, NULL, NULL, @sessionStraadUUID, NULL, NULL);
 
 INSERT INTO build_level003.[version]
         ( vers_uuid__uniqueidentifier ,
-          vers_name__varchar ,
+          vers_name__nvarchar ,
           date_uuid__uniqueidentifier
         )
 VALUES  ( NEWID() , -- vers_uuid__uniqueidentifier - uniqueidentifier
-          '_straadprve_' , -- vers_name__varchar - varchar(12)
+          '_straadprve_' , -- vers_name__nvarchar - varchar(12)
           @dateUUID  -- date_uuid__uniqueidentifier - uniqueidentifier
         );
+
+INSERT INTO build_level003.principalcompany
+		( prco_uuid__uniqueidentifier ,
+		    prco_rfc__nvarchar ,
+		    prco_name__nvarchar ,
+		    prco_address__nvarchar ,
+		    prco_phone__nvarchar ,
+		    prco_email__nvarchar ,
+		    prco_facebook__nvarchar ,
+		    prco_developmentmode__bit ,
+		    prco_timebetweenbackups__int ,
+		    reso_uuid_logo__uniqueidentifier ,
+		    city_uuid__uniqueidentifier ,
+		    sess_uuid_used__uniqueidentifier ,
+		    sess_uuid_created__uniqueidentifier ,
+		    prco_uuid_root__uniqueidentifier
+		)
+VALUES  ( NEWID() , -- prco_uuid__uniqueidentifier - uniqueidentifier
+		    NULL , -- prco_rfc__nvarchar - nvarchar(13)
+		    N'Invalid Company' , -- prco_name__nvarchar - nvarchar(100)
+		    NULL , -- prco_address__nvarchar - nvarchar(255)
+		    NULL , -- prco_phone__nvarchar - nvarchar(100)
+		    NULL , -- prco_email__nvarchar - nvarchar(100)
+		    NULL , -- prco_facebook__nvarchar - nvarchar(100)
+		    0 , -- prco_developmentmode__bit - bit
+		    24 , -- prco_timebetweenbackups__int - int
+		    NULL , -- reso_uuid_logo__uniqueidentifier - uniqueidentifier
+		    NULL , -- city_uuid__uniqueidentifier - uniqueidentifier
+		    NULL , -- sess_uuid_used__uniqueidentifier - uniqueidentifier
+		    @sessionStraadUUID , -- sess_uuid_created__uniqueidentifier - uniqueidentifier
+		    NULL  -- prco_uuid_root__uniqueidentifier - uniqueidentifier
+		);
 
 GO
 
@@ -1930,15 +1981,16 @@ ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc633898 FO
 ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc389657 FOREIGN KEY (sess_uuid_created__uniqueidentifier) REFERENCES build_level002.[session] (sess_uuid__uniqueidentifier);
 ALTER TABLE build_level003.[version] ADD CONSTRAINT FKversion840117 FOREIGN KEY (date_uuid__uniqueidentifier) REFERENCES build_level002.[date] (date_uuid__uniqueidentifier);
 ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc114089 FOREIGN KEY (reso_uuid_logo__uniqueidentifier) REFERENCES build_level002.[resource] (reso_uuid__uniqueidentifier);
+ALTER TABLE build_level003.principalcompany ADD CONSTRAINT FKprincipalc532415 FOREIGN KEY (sess_uuid_used__uniqueidentifier) REFERENCES build_level002.[session] (sess_uuid__uniqueidentifier);
 
 GO
 
-CREATE INDEX state_stat_name__varchar ON build_level001.[state] (stat_name__varchar);
-CREATE UNIQUE INDEX country_coun_code__varchar ON build_level001.country (coun_code__varchar);
-CREATE INDEX user_user_username__varchar ON build_level001.[user] (user_username__varchar);
-CREATE INDEX user_user_email__varchar ON build_level001.[user] (user_email__varchar);
-CREATE INDEX user_user_cellphone__varchar ON build_level001.[user] (user_cellphone__varchar);
-CREATE INDEX city_city_name__varchar ON build_level001.city (city_name__varchar);
+CREATE INDEX state_stat_name__nvarchar ON build_level001.[state] (stat_name__nvarchar);
+CREATE UNIQUE INDEX country_coun_code__nvarchar ON build_level001.country (coun_code__nvarchar);
+CREATE INDEX user_user_username__nvarchar ON build_level001.[user] (user_username__nvarchar);
+CREATE INDEX user_user_email__nvarchar ON build_level001.[user] (user_email__nvarchar);
+CREATE INDEX user_user_cellphone__nvarchar ON build_level001.[user] (user_cellphone__nvarchar);
+CREATE INDEX city_city_name__nvarchar ON build_level001.city (city_name__nvarchar);
 CREATE UNIQUE INDEX date_date_value__date ON build_level002.[date] (date_value__date);
 
 

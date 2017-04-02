@@ -32,7 +32,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
                 {
-                    return objContext.states.Where(s => s.stat_name__varchar == stName && s.coun_uuid__uniqueidentifier == objCountry.coun_uuid__uniqueidentifier).FirstOrDefault();
+                    return objContext.states.Where(s => s.stat_name__nvarchar == stName && s.coun_uuid__uniqueidentifier == objCountry.coun_uuid__uniqueidentifier).FirstOrDefault();
                 }
             }
             catch { }
@@ -48,7 +48,7 @@ namespace General_Desktop_Application.BusinessLayer
                 {
                     return (from country in objContext.countries
                             join state in objContext.states on country.coun_uuid__uniqueidentifier equals state.coun_uuid__uniqueidentifier
-                            where (country.coun_code__varchar == "MX")
+                            where (country.coun_code__nvarchar == "MX")
                             select state).ToList();
                 }
             }

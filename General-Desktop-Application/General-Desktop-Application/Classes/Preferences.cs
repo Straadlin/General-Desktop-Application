@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using General_Desktop_Application.Properties;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
+
+using General_Desktop_Application.Properties;
+using General_Desktop_Application.BusinessLayer;
 
 namespace General_Desktop_Application.Classes
 {

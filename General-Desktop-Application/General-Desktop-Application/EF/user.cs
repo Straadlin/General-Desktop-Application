@@ -23,14 +23,14 @@ namespace General_Desktop_Application.EF
         }
     
         public System.Guid user_uuid__uniqueidentifier { get; set; }
-        public string user_username__varchar { get; set; }
-        public string user_email__varchar { get; set; }
-        public string user_cellphone__varchar { get; set; }
-        public string user_password__varchar { get; set; }
-        public string user_firstname__varchar { get; set; }
-        public string user_lastname__varchar { get; set; }
+        public string user_username__nvarchar { get; set; }
+        public string user_email__nvarchar { get; set; }
+        public string user_cellphone__nvarchar { get; set; }
+        public string user_password__nvarchar { get; set; }
+        public string user_firstname__nvarchar { get; set; }
+        public string user_lastname__nvarchar { get; set; }
         public byte user_roleaccess__tinyint { get; set; }
-        public string user_extradata__varchar { get; set; }
+        public string user_extradata__nvarchar { get; set; }
         public Nullable<System.Guid> reso_uuid_picture__uniqueidentifier { get; set; }
         public Nullable<System.Guid> date_uuid_birthdate__uniqueidentifier { get; set; }
         public Nullable<System.Guid> city_uuid__uniqueidentifier { get; set; }

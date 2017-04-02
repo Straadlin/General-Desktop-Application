@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_004_002));
             this.txtRFC = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pcbPicture = new System.Windows.Forms.PictureBox();
+            this.pcbLogo = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,7 +57,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cboMode = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLapse)).BeginInit();
@@ -68,9 +68,8 @@
             this.txtRFC.BackColor = System.Drawing.Color.Gainsboro;
             this.txtRFC.Enabled = false;
             this.txtRFC.Location = new System.Drawing.Point(128, 16);
-            this.txtRFC.MaxLength = 30;
+            this.txtRFC.MaxLength = 13;
             this.txtRFC.Name = "txtRFC";
-            this.txtRFC.PasswordChar = '•';
             this.txtRFC.Size = new System.Drawing.Size(200, 20);
             this.txtRFC.TabIndex = 2;
             // 
@@ -86,17 +85,17 @@
             this.label5.Text = "RFC:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // pcbPicture
+            // pcbLogo
             // 
-            this.pcbPicture.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcbPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pcbPicture.Location = new System.Drawing.Point(448, 64);
-            this.pcbPicture.Name = "pcbPicture";
-            this.pcbPicture.Size = new System.Drawing.Size(120, 104);
-            this.pcbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbPicture.TabIndex = 22;
-            this.pcbPicture.TabStop = false;
-            this.pcbPicture.DoubleClick += new System.EventHandler(this.pcbPicture_DoubleClick);
+            this.pcbLogo.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcbLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pcbLogo.Location = new System.Drawing.Point(448, 64);
+            this.pcbLogo.Name = "pcbLogo";
+            this.pcbLogo.Size = new System.Drawing.Size(120, 104);
+            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbLogo.TabIndex = 22;
+            this.pcbLogo.TabStop = false;
+            this.pcbLogo.DoubleClick += new System.EventHandler(this.pcbLogo_DoubleClick);
             // 
             // label10
             // 
@@ -115,7 +114,7 @@
             this.txtCompany.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCompany.Enabled = false;
             this.txtCompany.Location = new System.Drawing.Point(128, 40);
-            this.txtCompany.MaxLength = 30;
+            this.txtCompany.MaxLength = 100;
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(200, 20);
             this.txtCompany.TabIndex = 1;
@@ -137,7 +136,7 @@
             this.btnClose.Location = new System.Drawing.Point(584, 280);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 100;
+            this.btnClose.TabIndex = 128;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -147,7 +146,7 @@
             this.txtAddress.BackColor = System.Drawing.Color.Gainsboro;
             this.txtAddress.Enabled = false;
             this.txtAddress.Location = new System.Drawing.Point(128, 64);
-            this.txtAddress.MaxLength = 30;
+            this.txtAddress.MaxLength = 255;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(200, 20);
             this.txtAddress.TabIndex = 117;
@@ -169,7 +168,7 @@
             this.txtPhone.BackColor = System.Drawing.Color.Gainsboro;
             this.txtPhone.Enabled = false;
             this.txtPhone.Location = new System.Drawing.Point(128, 88);
-            this.txtPhone.MaxLength = 30;
+            this.txtPhone.MaxLength = 10;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(200, 20);
             this.txtPhone.TabIndex = 119;
@@ -191,7 +190,7 @@
             this.txtEmail.BackColor = System.Drawing.Color.Gainsboro;
             this.txtEmail.Enabled = false;
             this.txtEmail.Location = new System.Drawing.Point(128, 112);
-            this.txtEmail.MaxLength = 30;
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 20);
             this.txtEmail.TabIndex = 121;
@@ -213,7 +212,7 @@
             this.txtFacebook.BackColor = System.Drawing.Color.Gainsboro;
             this.txtFacebook.Enabled = false;
             this.txtFacebook.Location = new System.Drawing.Point(128, 136);
-            this.txtFacebook.MaxLength = 30;
+            this.txtFacebook.MaxLength = 100;
             this.txtFacebook.Name = "txtFacebook";
             this.txtFacebook.Size = new System.Drawing.Size(200, 20);
             this.txtFacebook.TabIndex = 123;
@@ -318,7 +317,7 @@
             this.groupBox1.Controls.Add(this.txtCompany);
             this.groupBox1.Controls.Add(this.cboCity);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.pcbPicture);
+            this.groupBox1.Controls.Add(this.pcbLogo);
             this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.cboState);
             this.groupBox1.Controls.Add(this.label3);
@@ -426,7 +425,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_004_002_FormClosed);
             this.Load += new System.EventHandler(this.Form_004_002_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_004_002_KeyPress);
-            ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -439,7 +438,7 @@
         #endregion
         private System.Windows.Forms.TextBox txtRFC;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pcbPicture;
+        private System.Windows.Forms.PictureBox pcbLogo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.Label label2;

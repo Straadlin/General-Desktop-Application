@@ -1,4 +1,7 @@
-﻿Problems:
+﻿The name format in the backups will be with next format: [produt code]_[versionsystem]_[date]_[time]
+Work with the possiblis and differents roles and sections.
+
+Problems:
 	Decrease quality of wallpapers in each windows form
 	Check when the file script  has been copied in the OS that it has the suitable encoding. Respecting the accents.
 	Need to change type clumns from varchar to Nvarchar, like before

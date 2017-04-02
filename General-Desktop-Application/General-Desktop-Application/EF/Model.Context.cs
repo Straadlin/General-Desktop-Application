@@ -43,6 +43,15 @@ namespace General_Desktop_Application.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_systemserver_getDatetime", dateTime);
         }
     
+        public virtual ObjectResult<proc_principalcompany_findAllBranches_Result> proc_principalcompany_findAllBranches(Nullable<System.Guid> prco_uuid__uniqueidentifier______Current)
+        {
+            var prco_uuid__uniqueidentifier______CurrentParameter = prco_uuid__uniqueidentifier______Current.HasValue ?
+                new ObjectParameter("prco_uuid__uniqueidentifier______Current", prco_uuid__uniqueidentifier______Current) :
+                new ObjectParameter("prco_uuid__uniqueidentifier______Current", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_principalcompany_findAllBranches_Result>("proc_principalcompany_findAllBranches", prco_uuid__uniqueidentifier______CurrentParameter);
+        }
+    
         public virtual ObjectResult<proc_user_findAllBranches_Result> proc_user_findAllBranches(Nullable<System.Guid> user_uuid__uniqueidentifier______Current)
         {
             var user_uuid__uniqueidentifier______CurrentParameter = user_uuid__uniqueidentifier______Current.HasValue ?

@@ -122,6 +122,9 @@
     <Compile Include="EF\principalcompany.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\proc_principalcompany_findAllBranches_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\proc_user_findAllBranches_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
