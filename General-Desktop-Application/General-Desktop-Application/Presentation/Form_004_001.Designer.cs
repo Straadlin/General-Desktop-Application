@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_004_001));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtRePassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pcbPicture = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -71,8 +69,6 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.txtRePassword);
-            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.pcbPicture);
             this.groupBox2.Controls.Add(this.btnDelete);
@@ -108,29 +104,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del usuario";
             // 
-            // txtRePassword
-            // 
-            this.txtRePassword.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtRePassword.Enabled = false;
-            this.txtRePassword.Location = new System.Drawing.Point(112, 120);
-            this.txtRePassword.MaxLength = 30;
-            this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.PasswordChar = '•';
-            this.txtRePassword.Size = new System.Drawing.Size(168, 20);
-            this.txtRePassword.TabIndex = 105;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.SlateGray;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(16, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 13);
-            this.label5.TabIndex = 116;
-            this.label5.Text = "*RePassword:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
@@ -147,7 +120,7 @@
             // 
             this.pcbPicture.BackColor = System.Drawing.Color.Gainsboro;
             this.pcbPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pcbPicture.Location = new System.Drawing.Point(384, 144);
+            this.pcbPicture.Location = new System.Drawing.Point(384, 96);
             this.pcbPicture.Name = "pcbPicture";
             this.pcbPicture.Size = new System.Drawing.Size(144, 128);
             this.pcbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -184,7 +157,7 @@
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCity.Enabled = false;
             this.cboCity.FormattingEnabled = true;
-            this.cboCity.Location = new System.Drawing.Point(384, 120);
+            this.cboCity.Location = new System.Drawing.Point(384, 72);
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(248, 21);
             this.cboCity.TabIndex = 111;
@@ -195,7 +168,7 @@
             this.cboState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboState.Enabled = false;
             this.cboState.FormattingEnabled = true;
-            this.cboState.Location = new System.Drawing.Point(384, 96);
+            this.cboState.Location = new System.Drawing.Point(384, 48);
             this.cboState.Name = "cboState";
             this.cboState.Size = new System.Drawing.Size(248, 21);
             this.cboState.TabIndex = 110;
@@ -206,7 +179,7 @@
             this.label12.BackColor = System.Drawing.Color.SlateGray;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(296, 96);
+            this.label12.Location = new System.Drawing.Point(296, 48);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(80, 13);
             this.label12.TabIndex = 19;
@@ -217,7 +190,7 @@
             this.label11.BackColor = System.Drawing.Color.SlateGray;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(296, 120);
+            this.label11.Location = new System.Drawing.Point(296, 72);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(80, 13);
             this.label11.TabIndex = 18;
@@ -228,7 +201,7 @@
             this.label10.BackColor = System.Drawing.Color.SlateGray;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(296, 144);
+            this.label10.Location = new System.Drawing.Point(296, 96);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 13);
             this.label10.TabIndex = 17;
@@ -239,7 +212,7 @@
             this.label8.BackColor = System.Drawing.Color.SlateGray;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(296, 72);
+            this.label8.Location = new System.Drawing.Point(296, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 13);
             this.label8.TabIndex = 16;
@@ -248,7 +221,7 @@
             // dtpBirthdate
             // 
             this.dtpBirthdate.Enabled = false;
-            this.dtpBirthdate.Location = new System.Drawing.Point(384, 72);
+            this.dtpBirthdate.Location = new System.Drawing.Point(384, 24);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.Size = new System.Drawing.Size(248, 20);
             this.dtpBirthdate.TabIndex = 109;
@@ -312,11 +285,13 @@
             this.txtPassword.BackColor = System.Drawing.Color.Gainsboro;
             this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(112, 96);
-            this.txtPassword.MaxLength = 30;
+            this.txtPassword.MaxLength = 15;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(168, 20);
             this.txtPassword.TabIndex = 104;
+            this.txtPassword.MouseLeave += new System.EventHandler(this.txtPassword_MouseLeave);
+            this.txtPassword.MouseHover += new System.EventHandler(this.txtPassword_MouseHover);
             // 
             // cboRoleAccess
             // 
@@ -324,7 +299,7 @@
             this.cboRoleAccess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRoleAccess.Enabled = false;
             this.cboRoleAccess.FormattingEnabled = true;
-            this.cboRoleAccess.Location = new System.Drawing.Point(112, 144);
+            this.cboRoleAccess.Location = new System.Drawing.Point(112, 120);
             this.cboRoleAccess.Name = "cboRoleAccess";
             this.cboRoleAccess.Size = new System.Drawing.Size(168, 21);
             this.cboRoleAccess.TabIndex = 106;
@@ -333,20 +308,20 @@
             // 
             this.txtLastName.BackColor = System.Drawing.Color.Gainsboro;
             this.txtLastName.Enabled = false;
-            this.txtLastName.Location = new System.Drawing.Point(384, 48);
+            this.txtLastName.Location = new System.Drawing.Point(112, 168);
             this.txtLastName.MaxLength = 30;
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(248, 20);
+            this.txtLastName.Size = new System.Drawing.Size(168, 20);
             this.txtLastName.TabIndex = 108;
             // 
             // txtFirstName
             // 
             this.txtFirstName.BackColor = System.Drawing.Color.Gainsboro;
             this.txtFirstName.Enabled = false;
-            this.txtFirstName.Location = new System.Drawing.Point(384, 24);
+            this.txtFirstName.Location = new System.Drawing.Point(112, 144);
             this.txtFirstName.MaxLength = 30;
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(248, 20);
+            this.txtFirstName.Size = new System.Drawing.Size(168, 20);
             this.txtFirstName.TabIndex = 107;
             // 
             // label9
@@ -354,7 +329,7 @@
             this.label9.BackColor = System.Drawing.Color.SlateGray;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(16, 144);
+            this.label9.Location = new System.Drawing.Point(16, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 13);
             this.label9.TabIndex = 8;
@@ -366,9 +341,9 @@
             this.label4.BackColor = System.Drawing.Color.SlateGray;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(296, 48);
+            this.label4.Location = new System.Drawing.Point(16, 168);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "*Last name:";
             // 
@@ -377,9 +352,9 @@
             this.label3.BackColor = System.Drawing.Color.SlateGray;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(296, 24);
+            this.label3.Location = new System.Drawing.Point(16, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "*First name:";
             // 
@@ -538,7 +513,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAccept;
-        private System.Windows.Forms.TextBox txtRePassword;
-        private System.Windows.Forms.Label label5;
     }
 }

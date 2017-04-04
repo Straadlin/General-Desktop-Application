@@ -1,7 +1,11 @@
-﻿The name format in the backups will be with next format: [produt code]_[versionsystem]_[date]_[time]
+﻿Works:
+Write all the citys in each state.
+The name format in the backups will be with next format: straad_generaldesktopapplication_Ct1x9w3c_auto_170402222636.bak
+
 Work with the possiblis and differents roles and sections.
 Enabled to show the logo at begining when the application starts.
 Change the two password textbox when it allows add users. It'll be only one insetead of two.
+Do at least one report using DataReport
 
 Problems:
 	Decrease quality of wallpapers in each windows form

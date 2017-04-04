@@ -50,8 +50,11 @@
             this.tsslDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslCurrentSection = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslOperation = new System.Windows.Forms.ToolStripStatusLabel();
             this.timClock = new System.Windows.Forms.Timer(this.components);
             this.TimSession = new System.Windows.Forms.Timer(this.components);
+            this.timCreateBackup = new System.Windows.Forms.Timer(this.components);
+            this.timDeleteBackup = new System.Windows.Forms.Timer(this.components);
             this.mnsMenu.SuspendLayout();
             this.stpStatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -100,31 +103,31 @@
             // ventasToolStripMenuItem
             // 
             this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.ventasToolStripMenuItem.Text = "Area A";
             // 
             // vendedoresToolStripMenuItem
             // 
             this.vendedoresToolStripMenuItem.Name = "vendedoresToolStripMenuItem";
-            this.vendedoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vendedoresToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.vendedoresToolStripMenuItem.Text = "Area B";
             // 
             // cobradoresToolStripMenuItem
             // 
             this.cobradoresToolStripMenuItem.Name = "cobradoresToolStripMenuItem";
-            this.cobradoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cobradoresToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.cobradoresToolStripMenuItem.Text = "Area C";
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.clientesToolStripMenuItem.Text = "Area D";
             // 
             // inventariosToolStripMenuItem
             // 
             this.inventariosToolStripMenuItem.Name = "inventariosToolStripMenuItem";
-            this.inventariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inventariosToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.inventariosToolStripMenuItem.Text = "Area E";
             // 
             // reportsToolStripMenuItem
@@ -146,19 +149,19 @@
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 6);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -173,7 +176,7 @@
             // aboutDeToolStripMenuItem
             // 
             this.aboutDeToolStripMenuItem.Name = "aboutDeToolStripMenuItem";
-            this.aboutDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutDeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutDeToolStripMenuItem.Text = "About...";
             this.aboutDeToolStripMenuItem.Click += new System.EventHandler(this.aboutDeToolStripMenuItem_Click);
             // 
@@ -183,7 +186,8 @@
             this.stpStatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslDate,
             this.tsslUser,
-            this.tsslCurrentSection});
+            this.tsslCurrentSection,
+            this.tsslOperation});
             this.stpStatusBar.Location = new System.Drawing.Point(0, 455);
             this.stpStatusBar.Name = "stpStatusBar";
             this.stpStatusBar.Size = new System.Drawing.Size(960, 22);
@@ -212,6 +216,13 @@
             this.tsslCurrentSection.Size = new System.Drawing.Size(16, 17);
             this.tsslCurrentSection.Visible = false;
             // 
+            // tsslOperation
+            // 
+            this.tsslOperation.Name = "tsslOperation";
+            this.tsslOperation.Size = new System.Drawing.Size(23, 17);
+            this.tsslOperation.Text = "<>";
+            this.tsslOperation.Visible = false;
+            // 
             // timClock
             // 
             this.timClock.Enabled = true;
@@ -223,6 +234,16 @@
             this.TimSession.Enabled = true;
             this.TimSession.Interval = 600000;
             this.TimSession.Tick += new System.EventHandler(this.TimSession_Tick);
+            // 
+            // timCreateBackup
+            // 
+            this.timCreateBackup.Interval = 1;
+            this.timCreateBackup.Tick += new System.EventHandler(this.timCreateBackup_Tick);
+            // 
+            // timDeleteBackup
+            // 
+            this.timDeleteBackup.Interval = 1;
+            this.timDeleteBackup.Tick += new System.EventHandler(this.timDeleteBackup_Tick);
             // 
             // Form_004
             // 
@@ -275,5 +296,8 @@
         private System.Windows.Forms.Timer timClock;
         private System.Windows.Forms.ToolStripStatusLabel tsslCurrentSection;
         private System.Windows.Forms.Timer TimSession;
+        private System.Windows.Forms.Timer timCreateBackup;
+        private System.Windows.Forms.ToolStripStatusLabel tsslOperation;
+        private System.Windows.Forms.Timer timDeleteBackup;
     }
 }

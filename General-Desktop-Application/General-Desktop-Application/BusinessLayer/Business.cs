@@ -15,10 +15,10 @@ namespace General_Desktop_Application.BusinessLayer
 {
     class Business
     {
-        //public static bool Execute(string stQuery)
-        //{
-        //    return Data.Data.Execute(stQuery);
-        //}
+        public static bool Execute(string stQuery)
+        {
+            return Data.Execute(stQuery);
+        }
 
         public static bool Execute(string stQuery, string stConnectionString)
         {

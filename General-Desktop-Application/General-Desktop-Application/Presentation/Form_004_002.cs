@@ -173,7 +173,7 @@ namespace General_Desktop_Application.Presentation
                 {
                     if (RegularExpressions.CheckIsNormalText(txtAddress.Text,0, 255))
                     {
-                        if (RegularExpressions.CheckIsNumber(txtPhone.Text,10, 10))
+                        if (RegularExpressions.CheckIsNumeric(txtPhone.Text,0, 10))
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {

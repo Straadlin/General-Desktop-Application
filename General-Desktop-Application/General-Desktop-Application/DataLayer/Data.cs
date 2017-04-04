@@ -60,22 +60,22 @@ namespace General_Desktop_Application.DataLayer
         //    return obSqlConnectionStringBuilder.ConnectionString;
         //}
 
-        //public static bool Execute(string stQuery)
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection objSqlConnection = new SqlConnection(GetConnectionString()))
-        //        {
-        //            SqlCommand obSqlCommand = new SqlCommand(stQuery, objSqlConnection);
-        //            objSqlConnection.Open();
+        public static bool Execute(string stQuery)
+        {
+            try
+            {
+                using (SqlConnection objSqlConnection = new SqlConnection(Preferences.GetGetSqlConnectionStringBuilder().ToString()))
+                {
+                    SqlCommand obSqlCommand = new SqlCommand(stQuery, objSqlConnection);
+                    objSqlConnection.Open();
 
-        //            obSqlCommand.ExecuteNonQuery();
-        //        }
+                    obSqlCommand.ExecuteNonQuery();
+                }
 
-        //        return true;
-        //    }
-        //    catch { return false; }
-        //}
+                return true;
+            }
+            catch { return false; }
+        }
 
         public static bool Execute(string stQuery, string stConnectionString)
         {

@@ -14,7 +14,8 @@ namespace General_Desktop_Application.Classes
         public static bool CheckIsUsernameAndLength(string stValue, int inMinimiumLength, int intMaximiumLength)
         {
             //return Regex.IsMatch(stValue, @"^([A-Za-z]+[0-9A-Za-z]*){4,100}$", RegexOptions.CultureInvariant);
-            return Regex.IsMatch(stValue, @"^([0-9A-Za-z]+){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
+            //return Regex.IsMatch(stValue, @"^([0-9A-Za-z]+){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
+            return Regex.IsMatch(stValue, @"^([0-9A-Za-z]){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
         }
 
         public static bool CheckIskEmail(string stValue)
@@ -37,7 +38,8 @@ namespace General_Desktop_Application.Classes
 
         public static bool CheckIsFirstNameOrLastNameAndLength(string stValue, int inMinimiumLength, int intMaximiumLength)
         {
-            return Regex.IsMatch(stValue, @"^([A-Za-z\s,á,é,í,ó,ú,ñ,Á,É,Í,Ó,Ú,Ñ]+){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
+            //return Regex.IsMatch(stValue, @"^([A-Za-z\s,á,é,í,ó,ú,ñ,Á,É,Í,Ó,Ú,Ñ]+){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
+            return Regex.IsMatch(stValue, @"^([A-Za-z\s,á,é,í,ó,ú,ñ,Á,É,Í,Ó,Ú,Ñ]){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
         }
 
         //public static bool CheckIsNormalText(string stValue, int intMaximiumLength)
@@ -70,7 +72,7 @@ namespace General_Desktop_Application.Classes
         //    return Regex.IsMatch(stValue, @"^[0-9]{" + inLength + "}$", RegexOptions.CultureInvariant);
         //}
 
-        public static bool CheckIsNumber(string stValue, int inMinimiumLength, int intMaximiumLength)
+        public static bool CheckIsNumeric(string stValue, int inMinimiumLength, int intMaximiumLength)
         {
             return Regex.IsMatch(stValue, @"^[0-9]{" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
         }
@@ -82,7 +84,7 @@ namespace General_Desktop_Application.Classes
 
         public static bool CheckIsPasswordAndLength(string stValue, int inMinimiumLength, int intMaximiumLength)
         {
-            return Regex.IsMatch(stValue, @"^([0-9A-Za-z]+){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
+            return Regex.IsMatch(stValue, @"^([0-9A-Za-z]){" + inMinimiumLength + "," + intMaximiumLength + "}$", RegexOptions.CultureInvariant);
         }
     }
 }

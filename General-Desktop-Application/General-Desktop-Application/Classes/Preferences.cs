@@ -22,6 +22,41 @@ namespace General_Desktop_Application.Classes
         public static string PathBackups { get { return "C:\\straad_data\\backups"; } }
         public static string PathTemporalBackupFile { get { return PathBackups + "\\" + DatabaseName + "_temp.bak"; } }
         public static string PathScriptInitializerFile { get { return @"Initializer.sql"; } }
+
+        public static SqlConnectionStringBuilder GetGetSqlConnectionStringBuilder()
+        {
+            SqlConnectionStringBuilder sqlBuilder;
+
+            if (Settings.Default["Local"].ToString() == "True")
+            {
+                // Initialize the connection string builder for the
+                // underlying provider.
+                sqlBuilder = new SqlConnectionStringBuilder();
+
+                // Specify the provider name, server and database.
+                // Set the properties for the data source.
+                sqlBuilder.DataSource = Settings.Default["Instance"].ToString();// serverName
+                sqlBuilder.InitialCatalog = DatabaseName;// databaseName
+                sqlBuilder.IntegratedSecurity = true;
+            }
+            else
+            {
+                // Initialize the connection string builder for the
+                // underlying provider.
+                sqlBuilder = new SqlConnectionStringBuilder();
+
+                // Specify the provider name, server and database.
+                // Set the properties for the data source.
+                sqlBuilder.DataSource = Settings.Default["IP"].ToString() + "," + Settings.Default["Port"].ToString();// serverName
+                sqlBuilder.InitialCatalog = DatabaseName;// databaseName
+                sqlBuilder.NetworkLibrary = "DBMSSOCN";
+                sqlBuilder.UserID = UserDatabase;
+                sqlBuilder.Password = PasswordDatabaseUser;
+            }
+
+            return sqlBuilder;
+        }
+
         public static string Connectionstring
         {
             get
@@ -32,18 +67,20 @@ namespace General_Desktop_Application.Classes
 
                 if (Settings.Default["Local"].ToString() == "True")
                 {
-                    // Initialize the connection string builder for the
-                    // underlying provider.
-                    SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+                    //// Initialize the connection string builder for the
+                    //// underlying provider.
+                    //SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-                    // Specify the provider name, server and database.
-                    // Set the properties for the data source.
-                    sqlBuilder.DataSource = Settings.Default["Instance"].ToString();// serverName
-                    sqlBuilder.InitialCatalog = DatabaseName;// databaseName
-                    sqlBuilder.IntegratedSecurity = true;
+                    //// Specify the provider name, server and database.
+                    //// Set the properties for the data source.
+                    //sqlBuilder.DataSource = Settings.Default["Instance"].ToString();// serverName
+                    //sqlBuilder.InitialCatalog = DatabaseName;// databaseName
+                    //sqlBuilder.IntegratedSecurity = true;
 
-                    // Build the SqlConnection connection string.
-                    string providerString = sqlBuilder.ToString();
+                    //// Build the SqlConnection connection string.
+                    //string providerString = sqlBuilder.ToString();
+
+                    string providerString = GetGetSqlConnectionStringBuilder().ToString();
 
                     // Initialize the EntityConnectionStringBuilder.
                     EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
@@ -69,20 +106,22 @@ namespace General_Desktop_Application.Classes
                 }
                 else
                 {
-                    // Initialize the connection string builder for the
-                    // underlying provider.
-                    SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+                    //// Initialize the connection string builder for the
+                    //// underlying provider.
+                    //SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-                    // Specify the provider name, server and database.
-                    // Set the properties for the data source.
-                    sqlBuilder.DataSource = Settings.Default["IP"].ToString() + "," + Settings.Default["Port"].ToString();// serverName
-                    sqlBuilder.InitialCatalog = DatabaseName;// databaseName
-                    sqlBuilder.NetworkLibrary = "DBMSSOCN";
-                    sqlBuilder.UserID = UserDatabase;
-                    sqlBuilder.Password = PasswordDatabaseUser;
+                    //// Specify the provider name, server and database.
+                    //// Set the properties for the data source.
+                    //sqlBuilder.DataSource = Settings.Default["IP"].ToString() + "," + Settings.Default["Port"].ToString();// serverName
+                    //sqlBuilder.InitialCatalog = DatabaseName;// databaseName
+                    //sqlBuilder.NetworkLibrary = "DBMSSOCN";
+                    //sqlBuilder.UserID = UserDatabase;
+                    //sqlBuilder.Password = PasswordDatabaseUser;
 
-                    // Build the SqlConnection connection string.
-                    string providerString = sqlBuilder.ToString();
+                    //// Build the SqlConnection connection string.
+                    //string providerString = sqlBuilder.ToString();
+
+                    string providerString = GetGetSqlConnectionStringBuilder().ToString();
 
                     // Initialize the EntityConnectionStringBuilder.
                     EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();

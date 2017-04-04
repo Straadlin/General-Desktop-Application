@@ -212,6 +212,9 @@
     <EmbeddedResource Include="Presentation\Form_004_002.resx">
       <DependentUpon>Form_004_002.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Form_004_003.resx">
+      <DependentUpon>Form_004_003.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Form_004_004.resx">
       <DependentUpon>Form_004_004.cs</DependentUpon>
     </EmbeddedResource>

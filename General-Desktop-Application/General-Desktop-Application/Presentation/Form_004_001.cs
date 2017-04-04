@@ -73,22 +73,17 @@ namespace General_Desktop_Application.Presentation
                 }
                 else if (txtEmail.Focused)
                 {
-                    if (txtEmail.Text.Length > 0)
+                    if (txtEmail.Text.Length > 0 || txtUserName.Text.Length > 0)
                         txtCellphone.Focus();
                 }
                 else if (txtCellphone.Focused)
                 {
-                    if (txtCellphone.Text.Length > 0)
+                    if (txtCellphone.Text.Length > 0 || txtUserName.Text.Length > 0 || txtEmail.Text.Length > 0)
                         txtPassword.Focus();
                 }
                 else if (txtPassword.Focused)
                 {
                     if (txtPassword.Text.Length > 0)
-                        txtRePassword.Focus();
-                }
-                else if (txtRePassword.Focused)
-                {
-                    if (txtRePassword.Text.Length > 0)
                         cboRoleAccess.Focus();
                 }
                 else if (cboRoleAccess.Focused)
@@ -153,6 +148,8 @@ namespace General_Desktop_Application.Presentation
                     txtEmail.Text = vUser.user_email__nvarchar;
                     txtCellphone.Text = vUser.user_cellphone__nvarchar;
 
+                    txtPassword.Text = vUser.user_password__nvarchar;
+
                     foreach (var vItem in cboRoleAccess.Items)
                         if (vItem.ToString()[0] == vUser.user_roleaccess__tinyint.ToString()[0])
                             cboRoleAccess.SelectedItem = vItem;
@@ -213,7 +210,6 @@ namespace General_Desktop_Application.Presentation
             txtEmail.Enabled = true;
             txtCellphone.Enabled = true;
             txtPassword.Enabled = true;
-            txtRePassword.Enabled = true;
             txtFirstName.Enabled = true;
             txtLastName.Enabled = true;
             dtpBirthdate.Enabled = true;
@@ -226,7 +222,6 @@ namespace General_Desktop_Application.Presentation
             txtEmail.Text = "";
             txtCellphone.Text = "";
             txtPassword.Text = "";
-            txtRePassword.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
             dtpBirthdate.Value = DateTime.Now;
@@ -240,8 +235,8 @@ namespace General_Desktop_Application.Presentation
 
             pcbPicture.Image = null;
 
-            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
             btnAccept.Visible = btnCancel.Visible = true;
+            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
 
             btnClose.Enabled = false;
 
@@ -270,7 +265,6 @@ namespace General_Desktop_Application.Presentation
                         txtEmail.Enabled = true;
                         txtCellphone.Enabled = true;
                         txtPassword.Enabled = true;
-                        txtRePassword.Enabled = true;
                         txtFirstName.Enabled = true;
                         txtLastName.Enabled = true;
                         dtpBirthdate.Enabled = true;
@@ -279,11 +273,8 @@ namespace General_Desktop_Application.Presentation
                         cboCity.Enabled = true;
                         pcbPicture.Enabled = true;
 
-                        txtPassword.Text = Preferences.GlobalTextToComparePasswords;
-                        txtRePassword.Text = Preferences.GlobalTextToComparePasswords;
-
-                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
                         btnAccept.Visible = btnCancel.Visible = true;
+                        btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
 
                         btnClose.Enabled = false;
 
@@ -327,8 +318,8 @@ namespace General_Desktop_Application.Presentation
 
                             gpbA.Enabled = false;
 
-                            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
                             btnAccept.Visible = btnCancel.Visible = true;
+                            btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = false;
 
                             btnClose.Enabled = false;
 
@@ -369,13 +360,13 @@ namespace General_Desktop_Application.Presentation
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text,10, 10))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumeric(txtCellphone.Text, 10, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphone(txtUserName.Text, txtEmail.Text, txtCellphone.Text))
                                     {
                                         case 0:
                                             {
-                                                if (RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text,4,100) && txtPassword.Text == txtRePassword.Text)
+                                                if (RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text, 4, 15))
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
@@ -393,7 +384,7 @@ namespace General_Desktop_Application.Presentation
                                                                         !string.IsNullOrEmpty(txtUserName.Text) ? txtUserName.Text : null,
                                                                         !string.IsNullOrEmpty(txtEmail.Text) ? txtEmail.Text : null,
                                                                         !string.IsNullOrEmpty(txtCellphone.Text) ? txtCellphone.Text : null,
-                                                                        txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : null,
+                                                                        txtPassword.Text,
                                                                         txtFirstName.Text,
                                                                         txtLastName.Text,
                                                                         Convert.ToByte(cboRoleAccess.SelectedIndex + 1),
@@ -412,7 +403,6 @@ namespace General_Desktop_Application.Presentation
                                                                         txtEmail.Enabled = false;
                                                                         txtCellphone.Enabled = false;
                                                                         txtPassword.Enabled = false;
-                                                                        txtRePassword.Enabled = false;
                                                                         txtFirstName.Enabled = false;
                                                                         txtLastName.Enabled = false;
                                                                         dtpBirthdate.Enabled = false;
@@ -425,7 +415,6 @@ namespace General_Desktop_Application.Presentation
                                                                         txtEmail.Text = "";
                                                                         txtCellphone.Text = "";
                                                                         txtPassword.Text = "";
-                                                                        txtRePassword.Text = "";
                                                                         txtFirstName.Text = "";
                                                                         txtLastName.Text = "";
                                                                         dtpBirthdate.Value = DateTime.Now;
@@ -440,6 +429,8 @@ namespace General_Desktop_Application.Presentation
 
                                                                         btnAccept.Visible = btnCancel.Visible = false;
                                                                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                                                        btnEdit.Enabled = btnDelete.Enabled = false;
 
                                                                         btnClose.Enabled = true;
 
@@ -481,7 +472,7 @@ namespace General_Desktop_Application.Presentation
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("The password fields are incorrect, them must be the same and include at least 4 characters, between numbers and letters.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                                    MessageBox.Show("The password field isn't correct, it must include at least 4 characters, between numbers and letters.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                                     txtPassword.Focus();
                                                 }
                                                 break;
@@ -537,13 +528,13 @@ namespace General_Desktop_Application.Presentation
                         {
                             if (string.IsNullOrEmpty(txtEmail.Text) || RegularExpressions.CheckIskEmail(txtEmail.Text))
                             {
-                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumber(txtCellphone.Text,10, 10))
+                                if (string.IsNullOrEmpty(txtCellphone.Text) || RegularExpressions.CheckIsNumeric(txtCellphone.Text, 10, 10))
                                 {
                                     switch (BUser.FindByUserNameOrEmailOrCellphoneWithExcludedUser(txtUserName.Text, txtEmail.Text, txtCellphone.Text, objUserSelectedPrincipalItem))
                                     {
                                         case 0:
                                             {
-                                                if (txtPassword.Text == Preferences.GlobalTextToComparePasswords || (RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text,4,100) && txtPassword.Text == txtRePassword.Text))
+                                                if (txtPassword.Text==objUserSelectedPrincipalItem.user_password__nvarchar||RegularExpressions.CheckIsPasswordAndLength(txtPassword.Text, 4, 15))
                                                 {
                                                     if (cboRoleAccess.SelectedIndex > -1)
                                                     {
@@ -562,7 +553,7 @@ namespace General_Desktop_Application.Presentation
                                                                         !string.IsNullOrEmpty(txtUserName.Text) ? txtUserName.Text : null,
                                                                         !string.IsNullOrEmpty(txtEmail.Text) ? txtEmail.Text : null,
                                                                         !string.IsNullOrEmpty(txtCellphone.Text) ? txtCellphone.Text : null,
-                                                                        txtPassword.Text,//txtPassword.Text != Preferences.GlobalTextToComparePasswords ? Tools.Encrypt(txtPassword.Text) : objUserSelectedPrincipalItem.user_password__nvarchar,
+                                                                        txtPassword.Text,
                                                                         txtFirstName.Text,
                                                                         txtLastName.Text,
                                                                         Convert.ToByte(cboRoleAccess.SelectedIndex + 1),
@@ -581,7 +572,6 @@ namespace General_Desktop_Application.Presentation
                                                                         txtEmail.Enabled = false;
                                                                         txtCellphone.Enabled = false;
                                                                         txtPassword.Enabled = false;
-                                                                        txtRePassword.Enabled = false;
                                                                         txtFirstName.Enabled = false;
                                                                         txtLastName.Enabled = false;
                                                                         dtpBirthdate.Enabled = false;
@@ -594,7 +584,6 @@ namespace General_Desktop_Application.Presentation
                                                                         txtEmail.Text = "";
                                                                         txtCellphone.Text = "";
                                                                         txtPassword.Text = "";
-                                                                        txtRePassword.Text = "";
                                                                         txtFirstName.Text = "";
                                                                         txtLastName.Text = "";
                                                                         dtpBirthdate.Value = DateTime.Now;
@@ -609,6 +598,8 @@ namespace General_Desktop_Application.Presentation
 
                                                                         btnAccept.Visible = btnCancel.Visible = false;
                                                                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                                                        btnEdit.Enabled = btnDelete.Enabled = false;
 
                                                                         btnClose.Enabled = true;
 
@@ -650,7 +641,7 @@ namespace General_Desktop_Application.Presentation
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("The password fields are incorrect, them must be the same and include at least 4 characters, between numbers and letters.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                                    MessageBox.Show("The password field isn't correct, it must include at least 4 characters, between numbers and letters.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                                     txtPassword.Focus();
                                                 }
                                                 break;
@@ -716,7 +707,6 @@ namespace General_Desktop_Application.Presentation
                                 txtEmail.Text = "";
                                 txtCellphone.Text = "";
                                 txtPassword.Text = "";
-                                txtRePassword.Text = "";
                                 txtFirstName.Text = "";
                                 txtLastName.Text = "";
                                 dtpBirthdate.Value = DateTime.Now;
@@ -731,6 +721,8 @@ namespace General_Desktop_Application.Presentation
 
                                 btnAccept.Visible = btnCancel.Visible = false;
                                 btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                                btnEdit.Enabled = btnDelete.Enabled = false;
 
                                 btnClose.Enabled = true;
 
@@ -769,7 +761,6 @@ namespace General_Desktop_Application.Presentation
                         txtEmail.Enabled = false;
                         txtCellphone.Enabled = false;
                         txtPassword.Enabled = false;
-                        txtRePassword.Enabled = false;
                         txtFirstName.Enabled = false;
                         txtLastName.Enabled = false;
                         dtpBirthdate.Enabled = false;
@@ -782,7 +773,6 @@ namespace General_Desktop_Application.Presentation
                         txtEmail.Text = "";
                         txtCellphone.Text = "";
                         txtPassword.Text = "";
-                        txtRePassword.Text = "";
                         txtFirstName.Text = "";
                         txtLastName.Text = "";
                         dtpBirthdate.Value = DateTime.Now;
@@ -797,6 +787,8 @@ namespace General_Desktop_Application.Presentation
 
                         btnAccept.Visible = btnCancel.Visible = false;
                         btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                        btnEdit.Enabled = btnDelete.Enabled = false;
 
                         btnClose.Enabled = true;
 
@@ -819,7 +811,6 @@ namespace General_Desktop_Application.Presentation
                             txtEmail.Enabled = false;
                             txtCellphone.Enabled = false;
                             txtPassword.Enabled = false;
-                            txtRePassword.Enabled = false;
                             txtFirstName.Enabled = false;
                             txtLastName.Enabled = false;
                             dtpBirthdate.Enabled = false;
@@ -832,7 +823,6 @@ namespace General_Desktop_Application.Presentation
                             txtEmail.Text = "";
                             txtCellphone.Text = "";
                             txtPassword.Text = "";
-                            txtRePassword.Text = "";
                             txtFirstName.Text = "";
                             txtLastName.Text = "";
                             dtpBirthdate.Value = DateTime.Now;
@@ -847,6 +837,8 @@ namespace General_Desktop_Application.Presentation
 
                             btnAccept.Visible = btnCancel.Visible = false;
                             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            btnEdit.Enabled = btnDelete.Enabled = false;
 
                             btnClose.Enabled = true;
 
@@ -870,7 +862,6 @@ namespace General_Desktop_Application.Presentation
                             txtEmail.Text = "";
                             txtCellphone.Text = "";
                             txtPassword.Text = "";
-                            txtRePassword.Text = "";
                             txtFirstName.Text = "";
                             txtLastName.Text = "";
                             dtpBirthdate.Value = DateTime.Now;
@@ -885,6 +876,8 @@ namespace General_Desktop_Application.Presentation
 
                             btnAccept.Visible = btnCancel.Visible = false;
                             btnAdd.Visible = btnEdit.Visible = btnDelete.Visible = true;
+
+                            btnEdit.Enabled = btnDelete.Enabled = false;
 
                             btnClose.Enabled = true;
 
@@ -955,7 +948,6 @@ namespace General_Desktop_Application.Presentation
             txtEmail.Text = "";
             txtCellphone.Text = "";
             txtPassword.Text = "";
-            txtRePassword.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
             dtpBirthdate.Value = DateTime.Now;
@@ -997,6 +989,18 @@ namespace General_Desktop_Application.Presentation
                             cboCity.Items.Add(vItem.city_name__nvarchar);
                 }
             }
+        }
+
+        private void txtPassword_MouseHover(object sender, EventArgs e)
+        {
+            if (byAction == 1 || byAction == 2 )
+                txtPassword.PasswordChar = '\0';
+        }
+
+        private void txtPassword_MouseLeave(object sender, EventArgs e)
+        {
+            if (txtPassword.PasswordChar != '•')
+                txtPassword.PasswordChar = '•';
         }
     }
 }
