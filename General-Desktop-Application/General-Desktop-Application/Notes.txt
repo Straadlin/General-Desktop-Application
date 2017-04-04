@@ -1,19 +1,14 @@
 ﻿Works:
-Write all the citys in each state.
-The name format in the backups will be with next format: straad_generaldesktopapplication_Ct1x9w3c_auto_170402222636.bak
-
-Work with the possiblis and differents roles and sections.
-Enabled to show the logo at begining when the application starts.
-Change the two password textbox when it allows add users. It'll be only one insetead of two.
-Do at least one report using DataReport
+	Write all the citys in each state.
+	Work with the possiblis and differents roles and sections.
+	Enabled to show the logo at begining when the application starts.
+	Do at least one report using DataReport
+	Neet to check all in sql server 2014, try all the procedures and triggers to find some problem in the differents versions.
 
 Problems:
 	Decrease quality of wallpapers in each windows form
 	Check when the file script  has been copied in the OS that it has the suitable encoding. Respecting the accents.
-	Need to change type clumns from varchar to Nvarchar, like before
-	Neet to try all in sql server 2014, try all the procedures and triggers to find some problem in the differents versions.
 
 	Form_004:
 		It ocurred an problem at close some subwindows. When I try to close "Form_004" shows me double question message in wich indicates me if I wish to
 		exit of this section and too if I wish end the complete application.
-		Finishing the aumotacall restore of database
