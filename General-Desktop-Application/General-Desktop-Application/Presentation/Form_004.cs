@@ -57,6 +57,8 @@ namespace General_Desktop_Application.Presentation
 
             Business.FreeAllRegistersAssociatedWithThisUser(ObjUser);
 
+            Program.ExtractReporViewerFiles();
+
             if (Settings.Default["Local"].ToString() == "True")
             {
                 timCreateBackup.Enabled = true;

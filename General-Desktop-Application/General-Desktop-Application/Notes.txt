@@ -7,7 +7,7 @@
 Problems:
 	Decrease quality of wallpapers in each windows form
 	Check when the file script  has been copied in the OS that it has the suitable encoding. Respecting the accents.
-	Force to end the async metods when the application has been closed.
+	Force to end the async metods when the application has been closed. (I don't really know if it is a good idea)
 
 	Form_004:
 		It ocurred an problem at close some subwindows. When I try to close "Form_004" shows me double question message in wich indicates me if I wish to

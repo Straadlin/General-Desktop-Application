@@ -89,6 +89,28 @@ namespace General_Desktop_Application
                     File.SetAttributes(item, FileAttributes.Hidden);
         }
 
+        static public void ExtractReporViewerFiles()
+        {
+            Assembly objAssembly = Assembly.GetExecutingAssembly();
+
+            string[] archivos = 
+            {
+                "Microsoft.ReportViewer.Common.dll",
+                "Microsoft.ReportViewer.DataVisualization.DLL",
+                "Microsoft.ReportViewer.ProcessingObjectModel.DLL",
+                "Microsoft.ReportViewer.WinForms.dll",
+                "Microsoft.SqlServer.Types.dll"
+            };
+            foreach (string item in archivos)
+                if (!File.Exists(item))
+                    if (!Tools.ExtractToFile(objAssembly, "Resources.Libraries.Report_Viewer_12." + item, item))
+                        MessageBox.Show("Error al extraer archivo.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                 //   else
+                 //       File.SetAttributes(item, FileAttributes.Hidden);
+                //else
+                //    File.SetAttributes(item, FileAttributes.Hidden);
+        }
+
         //static public void ExtractCA_Updater_v01()
         //{
         //    Assembly objAssembly = Assembly.GetExecutingAssembly();
