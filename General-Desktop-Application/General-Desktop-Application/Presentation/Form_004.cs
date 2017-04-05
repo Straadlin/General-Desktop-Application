@@ -23,6 +23,7 @@ namespace General_Desktop_Application.Presentation
         Form_002 objForm_002;
         Form_004_001 objForm_004_001;
         Form_004_002 objForm_004_002;
+        Form_004_003 objForm_004_003;
         Form_004_004 objForm_004_004;
 
         // Attributes
@@ -100,7 +101,7 @@ namespace General_Desktop_Application.Presentation
 
                 timClock.Enabled = TimSession.Enabled = false;
 
-                MessageBox.Show("The difference of time between server and this device is incorrect, you need to check the clocs in both devices.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The difference of time between server and this device isn't correct, you need to check the clocs in both devices.", Preferences.TitleSoftware, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Close();
             }
@@ -125,14 +126,12 @@ namespace General_Desktop_Application.Presentation
             if (!string.IsNullOrEmpty(stCurrentSection))
             {
                 mnsMenu.Enabled = false;
-                //stpStatusBar.Enabled = false;
                 tsslCurrentSection.Visible = true;
                 tsslCurrentSection.Text = stCurrentSection;
             }
             else
             {
                 mnsMenu.Enabled = true;
-                //stpStatusBar.Enabled = true;
                 tsslCurrentSection.Visible = false;
                 tsslCurrentSection.Text = "";
             }
@@ -169,6 +168,15 @@ namespace General_Desktop_Application.Presentation
             objForm_004_004 = new Form_004_004(this);
             objForm_004_004.MdiParent = this;
             objForm_004_004.Show();
+        }
+
+        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            objForm_004_003 = new Form_004_003(this);
+            objForm_004_003.MdiParent = this;
+            objForm_004_003.Show();
         }
 
         private async void timCreateBackup_Tick(object sender, EventArgs e)

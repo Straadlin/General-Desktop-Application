@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data.Entity.Core.Objects;
+
 using General_Desktop_Application.Classes;
 using General_Desktop_Application.DataLayer;
 using General_Desktop_Application.EF;
@@ -24,6 +26,36 @@ namespace General_Desktop_Application.BusinessLayer
             catch
             {
                 return -1;
+            }
+        }
+
+        public static proc_user_findAllBranches_Result GetLastBranch(Guid objUUID)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.proc_user_findAllBranches(objUUID).ToList()[1];
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static List<proc_user_findAllBranches_Result> GetAllBranches(Guid objUUID)
+        {
+            try
+            {
+                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                {
+                    return objContext.proc_user_findAllBranches(objUUID).ToList();
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
 

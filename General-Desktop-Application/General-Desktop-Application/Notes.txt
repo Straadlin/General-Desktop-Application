@@ -2,12 +2,12 @@
 	Write all the citys in each state.
 	Work with the possiblis and differents roles and sections.
 	Enabled to show the logo at begining when the application starts.
-	Do at least one report using DataReport
 	Neet to check all in sql server 2014, try all the procedures and triggers to find some problem in the differents versions.
 
 Problems:
 	Decrease quality of wallpapers in each windows form
 	Check when the file script  has been copied in the OS that it has the suitable encoding. Respecting the accents.
+	Force to end the async metods when the application has been closed.
 
 	Form_004:
 		It ocurred an problem at close some subwindows. When I try to close "Form_004" shows me double question message in wich indicates me if I wish to
