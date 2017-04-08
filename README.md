@@ -12,3 +12,5 @@ SQL_Server_2016_Express_64_Bit_ENU:
 http://
 
 If you like too, you can create an installator using some aditional software or using InstallShield Limited Edition, like is inside of Visual Studio 2015.
+
+I thank to: Syncfusion for every resource used.
