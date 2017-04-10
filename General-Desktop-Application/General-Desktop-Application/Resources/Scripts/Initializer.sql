@@ -1,4 +1,5 @@
-
+--internal_straad_generaldesktopapplication_Ct1x9w3c
+--6[A9$Sd#u-5CHJUsm_5Rxts-CtVa7SmE6
 
 
 CREATE DATABASE _dbname_;
@@ -401,6 +402,13 @@ CREATE PROCEDURE build_level001.proc_principalcompany_findAllBranches
 					ON e.prco_uuid_root__uniqueidentifier = m.[prco_uuid__uniqueidentifier]
 		)
 		SELECT * FROM EntityCTE
+
+GO
+
+--We give permissions to the stored procedures
+GRANT EXECUTE ON [build_level000].[proc_systemserver_getDatetime] TO [_internal_]
+GRANT EXECUTE ON [build_level001].[proc_user_findAllBranches] TO [_internal_]
+GRANT EXECUTE ON [build_level001].[proc_principalcompany_findAllBranches] TO [_internal_]
 
 GO
 

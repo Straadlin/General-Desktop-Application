@@ -12,7 +12,7 @@ namespace General_Desktop_Application_UnitTest
         private string stGettedResult;
 
         [TestMethod]
-        public void Decrypt_BuildingString_ValueMustBeTheSameWithStringA()
+        public void Decrypt_BuildingString_ValueMustBeEquivalentWithStringA()
         {
             stExpectedResult = "Camille";
 
@@ -22,7 +22,7 @@ namespace General_Desktop_Application_UnitTest
         }
 
         [TestMethod]
-        public void Decrypt_BuildingString_ValueMustBeTheSameWithStringB()
+        public void Decrypt_BuildingString_ValueMustBeEquivalentWithStringB()
         {
             stExpectedResult = "Kitt";
 

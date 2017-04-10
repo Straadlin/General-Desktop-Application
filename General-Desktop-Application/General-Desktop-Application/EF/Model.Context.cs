@@ -17,11 +17,16 @@ namespace General_Desktop_Application.EF
     
     public partial class straad_generaldesktopapplication_pcpcpcpc_001Entities : DbContext
     {
+        //public straad_generaldesktopapplication_pcpcpcpc_001Entities()
+        //    : base("name=straad_generaldesktopapplication_pcpcpcpc_001Entities")
+        //{
+        //}
+
         public straad_generaldesktopapplication_pcpcpcpc_001Entities()
-            : base("name=straad_generaldesktopapplication_pcpcpcpc_001Entities")
+            : base(General_Desktop_Application.Classes.Preferences.Connectionstring)
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

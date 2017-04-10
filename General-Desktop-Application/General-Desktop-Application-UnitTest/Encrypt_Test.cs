@@ -12,7 +12,7 @@ namespace General_Desktop_Application_UnitTest
         private string stGettedResult;
 
         [TestMethod]
-        public void Encrypt_BuildingString_ValueMustBeTheSameWithStringA()
+        public void Encrypt_BuildingString_ValueMustBeEquivalentWithStringA()
         {
             stExpectedResult = "ny9jObdzs3s=";
 
@@ -22,7 +22,7 @@ namespace General_Desktop_Application_UnitTest
         }
 
         [TestMethod]
-        public void Encrypt_BuildingString_ValueMustBeTheSameWithStringB()
+        public void Encrypt_BuildingString_ValueMustBeEquivalentWithStringB()
         {
             stExpectedResult = "Ccngc1ZFV8g=";
 

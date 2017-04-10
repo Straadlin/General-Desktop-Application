@@ -64,7 +64,7 @@ namespace General_Desktop_Application.BusinessLayer
                 {
                     SqlParameter objSqlParameter = new SqlParameter("@dateTime", "");
 
-                    string vDate = objContext.Database.SqlQuery<string>("EXEC build_level000.proc_systemserver_getdatetime @dateTime", objSqlParameter).FirstOrDefault();
+                    var vDate = objContext.Database.SqlQuery<string>("EXEC build_level000.proc_systemserver_getdatetime @dateTime", objSqlParameter).FirstOrDefault();
 
                     return Convert.ToDateTime(vDate);
                 }
@@ -84,7 +84,7 @@ namespace General_Desktop_Application.BusinessLayer
                     {
                         SqlParameter objSqlParameter = new SqlParameter("@dateTime", "");
 
-                        string vDate = objContext.Database.SqlQuery<string>("EXEC build_level000.proc_systemserver_getDatetime @dateTime", objSqlParameter).FirstOrDefault();
+                        var vDate = objContext.Database.SqlQuery<string>("EXEC build_level000.proc_systemserver_getDatetime @dateTime", objSqlParameter).FirstOrDefault();
 
                         return Convert.ToDateTime(vDate);
                     }

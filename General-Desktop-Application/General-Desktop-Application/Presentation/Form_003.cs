@@ -14,7 +14,6 @@ using General_Desktop_Application.Properties;
 using System.Diagnostics;
 using System.IO;
 
-
 namespace General_Desktop_Application.Presentation
 {
     public partial class Form_003 : Form

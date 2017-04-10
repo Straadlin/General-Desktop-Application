@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Decrypt_Test.cs" />
     <Compile Include="Encrypt_Test.cs" />
+    <Compile Include="GetDefaulHash_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
