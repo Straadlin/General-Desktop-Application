@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     Guid objGuid;
                     do
@@ -58,7 +58,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objGuid).FirstOrDefault();
                 }
@@ -72,7 +72,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExternall.sess_uuid__uniqueidentifier).FirstOrDefault();
                     DateTime objDateTime = Business.GetServersDateAndTime();
@@ -95,7 +95,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExtternall.sess_uuid__uniqueidentifier).FirstOrDefault();
                     DateTime objDateTime = Business.GetServersDateAndTime();
@@ -116,7 +116,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 try
                 {
-                    using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                    using (ModelContext objContext = new ModelContext())
                     {
                         session objSession = objContext.sessions.Where(s => s.sess_uuid__uniqueidentifier == objSessionExtternall.sess_uuid__uniqueidentifier).FirstOrDefault();
                         DateTime objDateTime = Business.GetServersDateAndTime();

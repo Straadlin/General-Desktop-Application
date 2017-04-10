@@ -15,14 +15,14 @@ namespace General_Desktop_Application.EF
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class straad_generaldesktopapplication_pcpcpcpc_001Entities : DbContext
+    public partial class ModelContext : DbContext
     {
         //public straad_generaldesktopapplication_pcpcpcpc_001Entities()
         //    : base("name=straad_generaldesktopapplication_pcpcpcpc_001Entities")
         //{
         //}
 
-        public straad_generaldesktopapplication_pcpcpcpc_001Entities()
+        public ModelContext()
             : base(General_Desktop_Application.Classes.Preferences.Connectionstring)
         {
         }

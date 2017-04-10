@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.countries.Where(c => c.coun_code__nvarchar == stCode).FirstOrDefault();
                 }

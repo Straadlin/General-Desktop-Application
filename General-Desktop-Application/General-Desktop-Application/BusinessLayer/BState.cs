@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.states.Where(s => s.stat_uuid__uniqueidentifier == objUUID).FirstOrDefault();
                 }
@@ -30,7 +30,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.states.Where(s => s.stat_name__nvarchar == stName && s.coun_uuid__uniqueidentifier == objCountry.coun_uuid__uniqueidentifier).FirstOrDefault();
                 }
@@ -44,7 +44,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return (from country in objContext.countries
                             join state in objContext.states on country.coun_uuid__uniqueidentifier equals state.coun_uuid__uniqueidentifier

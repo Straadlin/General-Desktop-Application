@@ -60,7 +60,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     SqlParameter objSqlParameter = new SqlParameter("@dateTime", "");
 
@@ -80,7 +80,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 try
                 {
-                    using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                    using (ModelContext objContext = new ModelContext())
                     {
                         SqlParameter objSqlParameter = new SqlParameter("@dateTime", "");
 
@@ -99,7 +99,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     // This is identcal like the next block but in Linq
                     //SELECT u.*FROM[build_level002].[session] AS s

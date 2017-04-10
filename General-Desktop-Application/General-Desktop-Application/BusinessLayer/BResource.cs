@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.resources.Where(r => r.reso_uuid__uniqueidentifier == objUUID).FirstOrDefault();
                 }
@@ -30,7 +30,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.resources.Where(r => r.reso_name__nvarchar == stNameFile).FirstOrDefault();
                 }
@@ -44,7 +44,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     Guid objGuid;
                     do

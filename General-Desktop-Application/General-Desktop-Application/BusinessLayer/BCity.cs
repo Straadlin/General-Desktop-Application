@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.cities.Where(c => c.city_uuid__uniqueidentifier == objUUID).FirstOrDefault();
                 }
@@ -30,7 +30,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.cities.ToList();
                 }
@@ -45,7 +45,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.cities.Where(c => c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).ToList();
                 }
@@ -59,7 +59,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.cities.Where(c => c.city_name__nvarchar == stName && c.stat_uuid__uniqueidentifier == objState.stat_uuid__uniqueidentifier).FirstOrDefault();
                 }

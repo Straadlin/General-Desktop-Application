@@ -16,7 +16,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.principalcompanies.Where(p => (p.prco_uuid_root__uniqueidentifier == null)).FirstOrDefault();
                 }
@@ -30,7 +30,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.principalcompanies.Where(p => p.prco_uuid__uniqueidentifier == objUUID).FirstOrDefault();
                 }
@@ -44,7 +44,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     principalcompany objPrincipalCompany = objContext.principalcompanies.Where(p => p.prco_uuid__uniqueidentifier == objGuid).FirstOrDefault();
 
@@ -64,7 +64,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     principalcompany objPrincipalCompany = objContext.principalcompanies.Where(p => p.prco_uuid__uniqueidentifier == objGuid).FirstOrDefault();
 
@@ -101,7 +101,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     var vPreferencePrincipal = objContext.principalcompanies.Where(p => p.prco_uuid__uniqueidentifier == objPrincipalCompany.prco_uuid__uniqueidentifier).FirstOrDefault();
 

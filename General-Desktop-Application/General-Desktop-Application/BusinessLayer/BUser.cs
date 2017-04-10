@@ -18,7 +18,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.users.Count();
                 }
@@ -33,7 +33,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.proc_user_findAllBranches(objUUID).ToList()[1];
                 }
@@ -48,7 +48,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.proc_user_findAllBranches(objUUID).ToList();
                 }
@@ -63,7 +63,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     stPassword = Tools.GetDefaulHash(stPassword);
 
@@ -81,7 +81,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 if (!string.IsNullOrEmpty(stUserName) || !string.IsNullOrEmpty(stEmail) || !string.IsNullOrEmpty(stCellphone))
                 {
-                    using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                    using (ModelContext objContext = new ModelContext())
                     {
                         if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__nvarchar == stUserName && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 1;
@@ -105,7 +105,7 @@ namespace General_Desktop_Application.BusinessLayer
             {
                 if (!string.IsNullOrEmpty(stUserName) || !string.IsNullOrEmpty(stEmail) || !string.IsNullOrEmpty(stCellphone))
                 {
-                    using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                    using (ModelContext objContext = new ModelContext())
                     {
                         if (!string.IsNullOrEmpty(stUserName) && objContext.users.Where(u => u.user_username__nvarchar == stUserName && u.user_uuid__uniqueidentifier != objUserSelected.user_uuid__uniqueidentifier && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault() != null)
                             return 1;
@@ -127,7 +127,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.users.Where(u => (u.user_username__nvarchar == stUserNameEmailCellphone || u.user_email__nvarchar == stUserNameEmailCellphone || u.user_cellphone__nvarchar == stUserNameEmailCellphone) && u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).FirstOrDefault();
                 }
@@ -141,7 +141,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.users.Where(u => u.user_uuid__uniqueidentifier == objUUID).FirstOrDefault();
                 }
@@ -155,7 +155,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     return objContext.users.Where(u => u.user_uuid_root__uniqueidentifier == null && u.sess_uuid_deleted__uniqueidentifier == null).ToList();
                 }
@@ -169,7 +169,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
 
@@ -189,7 +189,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     user objUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objGuid).FirstOrDefault();
 
@@ -225,7 +225,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     // Add Date
                     Guid? objGuidDate = null;
@@ -298,7 +298,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     var vUserPrincipal = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objUser.user_uuid__uniqueidentifier).FirstOrDefault();
 
@@ -377,7 +377,7 @@ namespace General_Desktop_Application.BusinessLayer
         {
             try
             {
-                using (straad_generaldesktopapplication_pcpcpcpc_001Entities objContext = new straad_generaldesktopapplication_pcpcpcpc_001Entities())
+                using (ModelContext objContext = new ModelContext())
                 {
                     var vUser = objContext.users.Where(u => u.user_uuid__uniqueidentifier == objUser.user_uuid__uniqueidentifier && u.sess_uuid_used__uniqueidentifier == objSession.sess_uuid__uniqueidentifier).FirstOrDefault();
 

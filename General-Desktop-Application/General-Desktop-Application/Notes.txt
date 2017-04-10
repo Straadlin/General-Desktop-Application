@@ -3,6 +3,7 @@
 	Work with the possiblis and differents roles and sections.
 	Enabled to show the logo at begining when the application starts.
 	Neet to check all in sql server 2014, try all the procedures and triggers to find some problem in the differents versions.
+	If one user connect in network modal then we have show an icon that it identify itself in the MDI form.
 
 Problems:
 	Decrease quality of wallpapers in each windows form
